@@ -1,0 +1,48 @@
+{% extends "inventory/base.html" %}
+
+{% block title %}Home - Django Delights{% endblock title %}
+
+{% block header %}
+<div>
+    <span>Django Delights</span>
+</div>
+{% endblock header %}
+
+{% block content %}
+<div>
+    <h1>Welcome to Django Delights!</h1>
+    <p>Django Delights is an inventory and sales tracking application designed to take the hassle out of running your restaurant. Django Delights streamlines administrative tasks so that you can focus on your food and your customers.</p>
+</div>
+
+<div>
+    <div>
+        <a href=""><h3>Menu</h3></a>
+        <p>List, update and edit your menu</p>
+    </div>
+    <div>
+        <a href=""><h3>Inventory</h3></a>
+        <p>Track, update and edit your inventory</p>
+    </div>
+    <div>
+        <a href=""><h3>Recipes</h3></a>
+        <p>Track and update recipes for your menu items</p>
+    </div>
+    <div>
+        <a href=""><h3>Purchase Log</h3></a>
+        <p>Track your sales history and add customer purchases</p>
+    </div>
+    <div>
+        <a href=""><h3>Revenue</h3></a>
+        <p>Track your revenue and costs</p>
+    </div>
+</div>
+
+<div>
+    <h2>Please Login to get started</h2>
+    <a href=""><button>LOGIN</button></a>
+</div>
+<div>
+    <p>Don't have an account? Sign up here</p>
+    <a href=""><button>CREATE NEW ACCOUNT</button></a>
+</div>
+{% endblock content %}
