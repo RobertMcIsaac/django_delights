@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <title>{% block title %}{% endblock title %}</title>
+        {% block extrahead %}{% endblock extrahead %}
+    </head>
+
+    <body>
+        <header>
+            {% block header %}
+            <div>
+                <div>
+                    <span>Django Delights</span>
+                </div>
+                <nav>
+                    <ul>
+                        <a href=""><li>Home</li></a>
+                        <a href=""><li>Menu</li></a>
+                        <a href=""><li>Inventory</li></a>
+                        <a href=""><li>Recipes</li></a>
+                        <a href=""><li>Purchase Log</li></a>
+                        <a href=""><li>Revenue</li></a>
+                        <a href=""><li>Logout</li></a>
+                    </ul>
+                </nav>
+            </div> 
+            {% endblock header %}
+        </header>
+
+        <main>
+            {% block content %}
+            {% endblock content %}
+        </main> 
+        
+        <footer>
+            {% block footer %}
+            {% endblock footer %}
+        </footer>
+
+    </body>
+    
+</html>

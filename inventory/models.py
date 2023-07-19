@@ -34,6 +34,7 @@ class Ingredient(models.Model):
 
     class Meta:
         ordering = ["name"]
+        verbose_name = "Ingredient"
 
 
 # MenuItem MODEL
@@ -47,6 +48,7 @@ class MenuItem(models.Model):
     
     class Meta:
         ordering = ["name"]
+        verbose_name = "Menu item"
 
 
 # RecipeRequirement MODEL
@@ -60,6 +62,7 @@ class RecipeRequirement(models.Model):
     
     class Meta:
         ordering = ["menu_item"]
+        verbose_name = "Recipe requirement"
 
 
 # Purchase MODEL
@@ -74,3 +77,4 @@ class Purchase(models.Model):
 
     class Meta:
         ordering = ["purchase_time"]
+        verbose_name = "Purchase"
