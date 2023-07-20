@@ -1,0 +1,25 @@
+{% extends "inventory/base.html" %}
+
+{% block title %}Login - Django Delights{% endblock title %}
+
+{% block header %}
+<div>
+    <span>Django Delights</span>
+</div>
+{% endblock header %}
+
+{% block content %} 
+<section>
+    <div>
+        <h3>Login</h3>
+    </div>
+    <form action="" method="post">
+        {% csrf_token %}
+        <label for="user_username">Username:</label>
+        <input id= "user_username" type="text" name="username">
+        <label for="user_password">Password:</label>
+        <input id="user_password" type="password" name="password">
+        <input type="submit" value="Login">
+    </form>
+</section>
+{% endblock content %}
