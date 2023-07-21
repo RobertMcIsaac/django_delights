@@ -14,11 +14,15 @@
         <h3>Login</h3>
     </div>
     <div>
-        <form class="login" action="" method="post">
+        <form class="login" action="{% url 'login' %}" method="POST">
             {% csrf_token %}
             {{form.as_p}}
             <button type="submit">Login</button>    
         </form>
-    </div>    
+    </div>
+    <div>
+        <p>Don't have an account? Sign up here:</p>
+        <a href="{% url 'signup' %}"><button>Create new account</button></a>
+    </div>
 </section>
 {% endblock content %}

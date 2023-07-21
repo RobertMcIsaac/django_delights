@@ -1,0 +1,26 @@
+{% extends "inventory/base.html" %}
+
+{% block title %}Signup - Django Delights{% endblock title %}
+
+{% block header %}
+<div>
+    <span>Django Delights</span>
+</div>
+{% endblock header %}
+
+{% block content %}
+
+<section>
+    <div>
+        <h3>Create New Account</h3>
+    </div>
+    <div>
+        <form class="signup" action="{% url 'signup' %}" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Create Account</button>
+        </form>
+    </div>
+</section>
+
+{% endblock content %}
