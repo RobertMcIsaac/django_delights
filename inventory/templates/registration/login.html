@@ -13,10 +13,12 @@
     <div>
         <h3>Login</h3>
     </div>
-    <form class="login" action="{% url 'login' %}" method="post">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit">Login</button>    
-    </form>
+    <div>
+        <form class="login" action="" method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button type="submit">Login</button>    
+        </form>
+    </div>    
 </section>
 {% endblock content %}
