@@ -2,12 +2,6 @@
 
 {% block title %}Home - Django Delights{% endblock title %}
 
-{% block header %}
-<div>
-    <span>Django Delights</span>
-</div>
-{% endblock header %}
-
 {% block content %}
 <div>
     <h1>Welcome to Django Delights!</h1>
@@ -37,12 +31,16 @@
     </div>
 </div>
 <!-- create conditional statement to have this appear only if user is not authenticated -->
+
+{% if user.is_authenticated %}
+
+{% else %}
 <div>
     <h2>Please Login to get started</h2>
-    <a href=""><button>LOGIN</button></a>
+    <a href="{% url 'login' %}"><button>LOGIN</button></a>
 </div>
 <div>
-    <p>Don't have an account? Sign up here:</p>
-    <a href=""><button>CREATE NEW ACCOUNT</button></a>
+    <p>Don't have an account?<a href="{% url 'signup' %}"> Sign-up here</a></p>
 </div>
+{% endif %}
 {% endblock content %}

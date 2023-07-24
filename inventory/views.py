@@ -33,4 +33,4 @@ class SignUpView(CreateView):
 # HOME VIEW
 def home_view(request):
     context = {}
-    return render(request, "home.html", context)
+    return render(request, "inventory/home.html", context)

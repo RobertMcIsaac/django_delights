@@ -8,29 +8,44 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link type="text/css" rel="stylesheet" href="{% static 'inventory/style.css' %}">
         <title>{% block title %}Page Title - Django Delights{% endblock title %}</title>
         {% block extrahead %}{% endblock extrahead %}
     </head>
 
     <body>
-        <header>
+        <header id="header" class="head">
             {% block header %}
-            <div>
-                <div>
+            {% if user.is_authenticated %}
+            <div class="head__container">
+                <div class="head__logo">
                     <span>Django Delights</span>
                 </div>
-                <nav>
-                    <ul>
-                        <a href=""><li>Home</li></a>
-                        <a href=""><li>Menu</li></a>
-                        <a href=""><li>Inventory</li></a>
-                        <a href=""><li>Recipes</li></a>
-                        <a href=""><li>Purchase Log</li></a>
-                        <a href=""><li>Revenue</li></a>
-                        <a href=""><li>Logout</li></a>
+                <nav class="head__nav">
+                    <ul class="nav__navlist">
+                        <a href=""><li class="nav__navitem">Home</li></a>
+                        <a href=""><li class="nav__navitem">Menu</li></a>
+                        <a href=""><li class="nav__navitem">Inventory</li></a>
+                        <a href=""><li class="nav__navitem">Recipes</li></a>
+                        <a href=""><li class="nav__navitem">Purchase Log</li></a>
+                        <a href=""><li class="nav__navitem">Revenue</li></a>
+                        <a href="{% url 'logout' %}"><li class="nav__navitem">Logout</li></a>
                     </ul>
                 </nav>
             </div> 
+            {% else %}
+            <div class="head__container">
+                <div class="head__logo">
+                    <span>Django Delights</span>
+                </div>
+                <nav class="head__nav">
+                    <ul class="nav__navlist">
+                        <a href="{% url 'login' %}"><li class="nav__navitem">Login</li></a>
+                        <a href="{% url 'signup' %}"><li class="nav__navitem">Sign Up</li></a>
+                    </ul>
+                </nav>
+            </div>
+            {% endif %}
             {% endblock header %}
         </header>
 
