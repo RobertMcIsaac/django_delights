@@ -3,44 +3,43 @@
 {% block title %}Home - Django Delights{% endblock title %}
 
 {% block content %}
-<div>
+<div class="title__container flex__center">
     <h1>Welcome to Django Delights!</h1>
     <p>Django Delights is an inventory and sales tracking application designed to take the hassle out of running your restaurant. Django Delights streamlines administrative tasks so that you can focus on your food and your customers.</p>
 </div>
 
-<div>
-    <div>
-        <a href=""><h3>Menu</h3></a>
-        <p>List, update and edit your menu</p>
+<div class="feat__container flex__center">
+    <div class="feat__item flex__center">
+        <a href=""><h4 class="feat__item--title">Menu</h4></a>
+        <p class="feat__item--description">List, update and edit your menu</p>
     </div>
-    <div>
-        <a href=""><h3>Inventory</h3></a>
-        <p>Track, update and edit your inventory</p>
+    <div class="feat__item flex__center">
+        <a href=""><h4 class="feat__item--title">Inventory</h4></a>
+        <p class="feat__item--description">Track, update and edit your inventory</p>
     </div>
-    <div>
-        <a href=""><h3>Recipes</h3></a>
-        <p>Track and update recipes for your menu items</p>
+    <div class="feat__item flex__center">
+        <a href=""><h4 class="feat__item--title">Recipes</h4></a>
+        <p class="feat__item--description">Track and update recipes for your menu items</p>
     </div>
-    <div>
-        <a href=""><h3>Purchase Log</h3></a>
-        <p>Track your sales history and add customer purchases</p>
+    <div class="feat__item flex__center">
+        <a href=""><h4 class="feat__item--title">Purchase Log</h4></a>
+        <p class="feat__item--description">Track your sales history and add customer purchases</p>
     </div>
-    <div>
-        <a href=""><h3>Revenue</h3></a>
-        <p>Track your revenue and costs</p>
+    <div class="feat__item flex__center">
+        <a href=""><h4 class="feat__item--title">Revenue</h4></a>
+        <p class="feat__item--description">Track your revenue and costs</p>
     </div>
 </div>
-<!-- create conditional statement to have this appear only if user is not authenticated -->
 
 {% if user.is_authenticated %}
 
 {% else %}
-<div>
-    <h2>Please Login to get started</h2>
-    <a href="{% url 'login' %}"><button>LOGIN</button></a>
+<div class="loginprompt__container">
+    <h4 class="login__prompt">Please Login to get started</h4>
+    <a href="{% url 'login' %}"><button class="login__button">LOGIN</button></a>
 </div>
 <div>
-    <p>Don't have an account?<a href="{% url 'signup' %}"> Sign-up here</a></p>
+    <small>Don't have an account?<a href="{% url 'signup' %}"> Sign-up here</a></small>
 </div>
 {% endif %}
 {% endblock content %}

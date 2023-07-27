@@ -8,48 +8,45 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="{% static 'inventory/reset.css' %}">
         <link type="text/css" rel="stylesheet" href="{% static 'inventory/style.css' %}">
         <title>{% block title %}Page Title - Django Delights{% endblock title %}</title>
         {% block extrahead %}{% endblock extrahead %}
     </head>
 
     <body>
-        <header id="header" class="head">
+        <header id="header" class="header__container">
             {% block header %}
             {% if user.is_authenticated %}
-            <div class="head__container">
-                <div class="head__logo">
-                    <span>Django Delights</span>
-                </div>
-                <nav class="head__nav">
-                    <ul class="nav__navlist">
-                        <a href=""><li class="nav__navitem">Home</li></a>
-                        <a href=""><li class="nav__navitem">Menu</li></a>
-                        <a href=""><li class="nav__navitem">Inventory</li></a>
-                        <a href=""><li class="nav__navitem">Recipes</li></a>
-                        <a href=""><li class="nav__navitem">Purchase Log</li></a>
-                        <a href=""><li class="nav__navitem">Revenue</li></a>
-                        <a href="{% url 'logout' %}"><li class="nav__navitem">Logout</li></a>
-                    </ul>
-                </nav>
-            </div> 
-            {% else %}
-            <div class="head__container">
-                <div class="head__logo">
-                    <span>Django Delights</span>
-                </div>
-                <nav class="head__nav">
-                    <ul class="nav__navlist">
-                        <a href="{% url 'login' %}"><li class="nav__navitem">Login</li></a>
-                        <a href="{% url 'signup' %}"><li class="nav__navitem">Sign Up</li></a>
-                    </ul>
-                </nav>
+            <div class="header__logo">
+                <span>Django Delights</span>
             </div>
+            <nav class="header__nav">
+                <ul class="nav__navlist">
+                    <a href=""><li class="nav__navitem">Home</li></a>
+                    <a href=""><li class="nav__navitem">Menu</li></a>
+                    <a href=""><li class="nav__navitem">Inventory</li></a>
+                    <a href=""><li class="nav__navitem">Recipes</li></a>
+                    <a href=""><li class="nav__navitem">Purchase Log</li></a>
+                    <a href=""><li class="nav__navitem">Revenue</li></a>
+                    <a href="{% url 'logout' %}"><li class="nav__navitem"><button>Logout</button></li></a>
+                </ul>
+            </nav>
+            {% else %}
+            <div class="header__logo">
+                <span>Django Delights</span>
+            </div>
+            <nav class="header__nav">
+                <ul class="nav__navlist">
+                    <a href="{% url 'login' %}"><li class="nav__navitem">Login</li></a>
+                    <a href="{% url 'signup' %}"><li class="nav__navitem">Sign Up</li></a>
+                </ul>
+            </nav>
             {% endif %}
             {% endblock header %}
         </header>
 
-        <main>
+        <main class="main__container flex__center">
             {% block content %}
             {% endblock content %}
         </main> 
