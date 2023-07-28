@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
+from .models import Ingredient, MenuItem, RecipeRequirement, Purchase
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 
 # LOGIN VIEW (built-in)
@@ -34,3 +35,15 @@ class SignUpView(CreateView):
 def home_view(request):
     context = {}
     return render(request, "inventory/home.html", context)
+
+# MENU VIEWS
+class MenuList(ListView):
+    model = MenuItem
+    template_name = "inventory/menu.html"
+    context_object_name = "menuitem_list"
+
+# INVENTORY VIEWS
+class IngredientList(ListView):
+    model = Ingredient
+    template_name = "inventory/inventory.html"
+    context_object_name = "ingredient_list"

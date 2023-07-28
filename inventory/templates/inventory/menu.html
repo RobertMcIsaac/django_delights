@@ -1,0 +1,40 @@
+{% extends "inventory/base.html" %}
+
+{% block title %}Menu - Django Delights{% endblock title %}
+
+{% block content %}
+<section class="content__container">
+    <div class="desciption__container">
+        <h2 class="table__title">Menu</h2>
+        <p>A complete list of menu items and their prices. </p>
+        <p>Click on a menu item to see it's recipe details, including ingredients and costs.</p>
+        <p>To add a new item to the menu, click the 'Add New Menu Item' link below.</p>  
+    </div>
+
+    <table id="menu" class="table__container">
+        <thead class="table__head">
+            <tr class="table__head--row">
+                <th class="table__row--heading">Menu Item</th>
+                <th class="table__row--heading">Sale Price</th>
+                <th class="table__row--heading"></th>
+                <th class="table__row--heading"></th>
+            </tr>
+        </thead>
+        <tbody class="table__body">
+            {% for menuitem in menuitem_list %}
+            <tr class="table__body--row">
+                <td class="table__row--detail"><a href="">{{menuitem.name}}</a></td>
+                <td class="table__row--detail">{{menuitem.price}}</td>
+                <td class="table__row--detail">
+                    <a href=""><small class="table__edit">Edit</small></a>
+                </td>
+                <td>
+                    <a href=""><small class="table__delete">Delete</small></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href=""><button class="add__button buttons">Add New Menu Item</button></a>
+</section>
+{% endblock content%}

@@ -23,13 +23,13 @@
             </div>
             <nav class="header__nav">
                 <ul class="nav__navlist">
-                    <a href=""><li class="nav__navitem">Home</li></a>
-                    <a href=""><li class="nav__navitem">Menu</li></a>
-                    <a href=""><li class="nav__navitem">Inventory</li></a>
+                    <a href="{% url 'home' %}"><li class="nav__navitem">Home</li></a>
+                    <a href="{% url 'menu' %}"><li class="nav__navitem">Menu</li></a>
+                    <a href="{% url 'inventory' %}"><li class="nav__navitem">Inventory</li></a>
                     <a href=""><li class="nav__navitem">Recipes</li></a>
                     <a href=""><li class="nav__navitem">Purchase Log</li></a>
                     <a href=""><li class="nav__navitem">Revenue</li></a>
-                    <a href="{% url 'logout' %}"><li class="nav__navitem"><button>Logout</button></li></a>
+                    <a href="{% url 'logout' %}"><li class="nav__navitem"><button class="buttons">Logout</button></li></a>
                 </ul>
             </nav>
             {% else %}

@@ -2,7 +2,6 @@ html {
     font-size: 100%;
     font-family: "Sofia Sans", sans-serif;
     color: black;
-    text-align: center;
 }
 
 ol,ul {
@@ -20,7 +19,22 @@ h4 {
     align-items: center;
 }
 
-/* HEADER */
+    /* BUTTONS */
+
+/* .buttons {
+    
+} */
+
+.login__button {
+    margin: .75rem;
+}
+
+.add__button {
+    margin: 2rem 0;
+}
+
+
+    /* HEADER */
 
 .header__container {
     width: 100%;
@@ -53,16 +67,27 @@ h4 {
 } */
 
 
-/* MAIN */
+    /* MAIN */
 
 .main__container {
     padding: 6rem 2rem 2rem 2rem;
     flex-direction: column;
+    text-align: center;
 }
+
+
+    /* TITLE */
 
 .title__container {
     flex-direction: column;
 }
+
+.title__detail {
+    width: 50%;
+}
+
+
+    /* FEATURES */
 
 .feat__container {
     flex-direction: column;
@@ -89,6 +114,66 @@ h4 {
     padding: .5rem;
 }
 
-.login__button {
-    margin: .75rem;
+
+    /* MENU */
+
+.content__container {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0;
 }
+
+.inventory__container {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0;
+}
+
+.desciption__container {
+    text-align: left;
+    padding: 1rem 2rem;
+}
+
+
+    /* TABLES */
+
+/* .table__title {
+    text-align: left;
+    padding-left: 2rem; */
+
+
+.table__container {
+    margin: 1rem 0;
+}
+
+/* .table__head {
+
+} */
+
+/* .table__head--row {
+
+} */
+
+.table__row--heading {
+    padding: 1rem;
+}
+
+/* .table__body {
+
+} */
+
+/* .table__body--row {
+
+} */
+
+.table__row--detail {
+    padding: 0.5rem;
+}
+
+/* .table__edit {
+
+} */
+
+/* .table__delete {
+
+} */

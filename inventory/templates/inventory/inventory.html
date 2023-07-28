@@ -1,0 +1,44 @@
+{% extends "inventory/base.html" %}
+
+{% block title %}Inventory - Django Delights{% endblock title %}
+
+{% block content %}
+<section class="content__container">
+    <div class="desciption__container">
+        <h2 class="table__title">Inventory</h2>
+        <p>A complete list of the available ingredients in your inventory, including the quantity available, it's unit of measurement and the cost-per-unit.</p>
+        <p>To add a new ingredient to your inventory, click the 'Add New Ingredient' link below.</p>
+        <p></p>  
+    </div>
+
+    <table id="inventory" class="table__container">
+        <thead class="table__head">
+            <tr class="table__head--row">
+                <th class="table__row--heading">Ingredient</th>
+                <th class="table__row--heading">Quantity</th>
+                <th class="table__row--heading">Unit</th>
+                <th class="table__row--heading">Cost/unit</th>
+                <th class="table__row--heading"></th>
+                <th class="table__row--heading"></th>
+            </tr>
+        </thead>
+        <tbody class="table__body">
+            {% for ingredient in ingredient_list %}
+            <tr class="table__body--row">
+                <td class="table__row--detail"><a href="">{{ingredient.name}}</a></td>
+                <td class="table__row--detail">{{ingredient.quantity_available}}</td>
+                <td class="table__row--detail">{{ingredient.get_measurement_unit_display}}</td>
+                <td class="table__row--detail">{{ingredient.cost_per_unit}}</td>
+                <td class="table__row--detail">
+                    <a href=""><small class="table__edit">Edit</small></a>
+                </td>
+                <td>
+                    <a href=""><small class="table__delete">Delete</small></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href=""><button class="add__button buttons">Add New Ingredient</button></a>
+</section>
+{% endblock content%}

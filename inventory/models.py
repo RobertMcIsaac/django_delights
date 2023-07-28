@@ -10,14 +10,18 @@ class Ingredient(models.Model):
     quantity_available = models.DecimalField(max_digits=5, decimal_places=2)
     # Define constants at class level for MEASUREMENT_UNIT_CHOICES
     GRAMS = "GR"
+    KILOGRAMS = "KG"
     MILILITRES = "ML"
+    LITRES = "LI"
     NUMBER = "NU"
     TEASPOON = "TS"
     TABLESPOON = "TB"
     # Define MEASUREMENT_UNIT_CHOICES for measurement_unit field
     MEASUREMENT_UNIT_CHOICES = [
         (GRAMS, "Grams"),
+        (KILOGRAMS, "Kilograms"),
         (MILILITRES, "Mililitres"),
+        (LITRES, "Litres"),
         (NUMBER, "Number"),
         (TEASPOON, "Teaspoon"),
         (TABLESPOON, "Tablespoon")
