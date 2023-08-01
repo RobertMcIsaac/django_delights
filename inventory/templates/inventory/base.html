@@ -10,7 +10,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link rel="stylesheet" href="{% static 'inventory/reset.css' %}">
         <link type="text/css" rel="stylesheet" href="{% static 'inventory/style.css' %}">
-        <title>{% block title %}Page Title - Django Delights{% endblock title %}</title>
+        <title>{% block title %}Page Title - Pantry Pilot{% endblock title %}</title>
         {% block extrahead %}{% endblock extrahead %}
     </head>
 
@@ -19,7 +19,7 @@
             {% block header %}
             {% if user.is_authenticated %}
             <div class="header__logo">
-                <span>Django Delights</span>
+                <span>Pantry Pilot</span>
             </div>
             <nav class="header__nav">
                 <ul class="nav__navlist">
@@ -34,7 +34,7 @@
             </nav>
             {% else %}
             <div class="header__logo">
-                <span>Django Delights</span>
+                <span>Pantry Pilot</span>
             </div>
             <nav class="header__nav">
                 <ul class="nav__navlist">

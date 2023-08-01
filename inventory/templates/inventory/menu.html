@@ -1,6 +1,6 @@
 {% extends "inventory/base.html" %}
 
-{% block title %}Menu - Django Delights{% endblock title %}
+{% block title %}Menu - Pantry Pilot{% endblock title %}
 
 {% block content %}
 <section class="content__container">
@@ -35,6 +35,6 @@
             {% endfor %}
         </tbody>
     </table>
-    <a href=""><button class="add__button buttons">Add New Menu Item</button></a>
+    <a href="{% url 'menu_new' %}"><button class="add__button buttons">Add New Menu Item</button></a>
 </section>
 {% endblock content%}

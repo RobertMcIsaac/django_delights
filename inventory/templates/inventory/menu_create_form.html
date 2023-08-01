@@ -1,0 +1,23 @@
+{% extends "inventory/base.html" %}
+
+{% block title %}Add Menu Item - Pantry Pilot{% endblock title %}
+
+{% block content %}
+<section class="formpage__container">
+    <div>
+        <h2>Add New Menu Item</h2>
+    </div>
+    <form class="form__container" action="{% url 'menu_new' %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="requirements__container">
+            <h4>Recipe Requirements</h4>
+            {{ requirements.management_form}}
+            {% for form in requirements.forms %}
+                {{ form.as_p }}
+            {% endfor %}
+        </div>
+        <button class="buttons form__button" type="submit">Add Item to Menu</button>
+    </form>
+</section>
+{% endblock content %}

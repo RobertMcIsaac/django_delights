@@ -33,6 +33,10 @@ h4 {
     margin: 2rem 0;
 }
 
+.form__button {
+    margin: 2rem 0;
+}
+
 
     /* HEADER */
 
@@ -81,6 +85,10 @@ h4 {
 .title__container {
     flex-direction: column;
 }
+
+/* .home__title {
+
+} */
 
 .title__detail {
     width: 50%;
@@ -176,4 +184,21 @@ h4 {
 
 /* .table__delete {
 
+} */
+
+
+    /* FORMS */
+
+.formpage__container {
+    padding: 6rem 2rem 2rem 2rem;
+}
+
+.form__container {
+    margin: 1rem 0;
+    text-align: left;
+}
+
+/* .requirements__container {
+    display: flex;
+    flex-direction: column;
 } */
