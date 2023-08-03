@@ -1,0 +1,24 @@
+{% extends 'inventory/base.html' %}
+
+{% block title %}Add Recipe To Menu Item - Pantry Pilot{% endblock title %}
+
+{% block content %}
+<section class="content__container">
+    <div class="desciption__container">
+        <h2 class="table__title">{{ object.name }}</h2>
+        <p></p>
+        <p></p>
+        <p></p>  
+    </div>
+    <div>
+        <ul>
+            {% for reciperequirement in reciperequirement_list %}
+            <li>{{ recipe_requirement.ingredient.name }}: {{ recipe_requirement.quantity }}</li>
+            {% empty %}
+            <li>No recipe requirements.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+
+{% endblock content %}

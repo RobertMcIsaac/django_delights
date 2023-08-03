@@ -11,7 +11,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from .models import Ingredient, MenuItem, RecipeRequirement, Purchase
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
-from .forms import MenuCreateForm, RecipeRequirementForm, RecipeRequirementFormSet
+from .forms import MenuCreateForm, IngredientCreateForm, RecipeRequirementCreateForm, PurchaseCreateForm
 
 # LOGIN VIEW (built-in)
 class InventoryLoginView(auth_views.LoginView):
@@ -23,20 +23,6 @@ class SignUpView(CreateView):
     form_class = UserCreationForm
     success_url = reverse_lazy("login")
     template_name = "registration/signup.html"
-
-# # LOGIN VIEW (custom)
-# def login_view(request):
-#     if request.method == "POST":
-#         username = request.POST["username"]
-#         password = request.POST["password"]
-#         user = authenticate(request, username=username, password=password)
-#         if user is not None:
-#             login(request, user)
-#             return redirect("home")
-#         else:
-#             return render(request, "registration/login.html")
-
-
 
 # HOME VIEW
 def home_view(request):
@@ -53,24 +39,17 @@ class MenuCreate(LoginRequiredMixin ,CreateView):
     model= MenuItem
     template_name = "inventory/menu_create_form.html"
     form_class = MenuCreateForm
-    success_url = reverse_lazy("menu")
+    success_url = reverse_lazy("recipe_new")
 
-    def get_context_data(self, **kwargs):
+class MenuItemDetail(LoginRequiredMixin, DetailView):
+    model = MenuItem
+    template_name = "inventory/menu_item_detail.html"
+
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super().get_context_data(**kwargs)
-        if self.request.method == "POST":
-            context["requirements"] = RecipeRequirementFormSet(self.request.POST)
-        else:
-            context["requirements"] = RecipeRequirementFormSet()
-            return context
-    
-    def form_valid(self, form):
-        context = super().form_valid(form)
-        requirements = context["requirements"]
-        self.object = form.save()
-        if requirements.is_valid():
-            requirements.instance = self.object
-            requirements.save()
-            return super().form_valid(form)
+        context["reciperequirment_list"] = RecipeRequirement.objects.filter(menu_item=self.object)
+        return context
+
 
 # INVENTORY VIEWS
 class IngredientList(LoginRequiredMixin ,ListView):
@@ -78,8 +57,24 @@ class IngredientList(LoginRequiredMixin ,ListView):
     template_name = "inventory/inventory.html"
     context_object_name = "ingredient_list"
 
+class IngredientCreate(LoginRequiredMixin, CreateView):
+    model = Ingredient
+    template_name = "inventory/ingredient_create_form.html"
+    form_class = IngredientCreateForm
+    success_url = reverse_lazy("inventory")
+
 
 # RECIPE VIEWS
+class RecipeRequirementList(LoginRequiredMixin, ListView):
+    model = RecipeRequirement
+    template_name = "inventory/recipes.html"
+    context_object_name = "reciperequirement_list"
+
+class RecipeRequirementCreate(LoginRequiredMixin, CreateView):
+    model = RecipeRequirement
+    template_name = "inventory/recipe_create_form.html"
+    form_class = RecipeRequirementCreateForm
+    success_url = reverse_lazy("menu")
 
 
 

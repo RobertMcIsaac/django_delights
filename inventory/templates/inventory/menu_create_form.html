@@ -10,14 +10,9 @@
     <form class="form__container" action="{% url 'menu_new' %}" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <div class="requirements__container">
-            <h4>Recipe Requirements</h4>
-            {{ requirements.management_form}}
-            {% for form in requirements.forms %}
-                {{ form.as_p }}
-            {% endfor %}
-        </div>
-        <button class="buttons form__button" type="submit">Add Item to Menu</button>
+        <button class="buttons form__button" type="submit">Add The Recipe</button>
     </form>
 </section>
 {% endblock content %}
+
+

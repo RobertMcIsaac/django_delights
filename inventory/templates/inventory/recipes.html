@@ -1,0 +1,30 @@
+{% extends "inventory/base.html" %}
+
+{% block title %}Recipes - Pantry Pilot{% endblock title %}
+
+{% block content %}
+<section class="content__container">
+    <div class="desciption__container">
+        <h2 class="table__title">Recipes</h2>
+        <p></p>
+        <p></p>
+        <p></p>  
+    <!-- </div>
+    <table>
+        <tbody>
+            {% for recipe in reciperequirements_list %}
+            <tr>{{ reciperequirements_list.menu_item.name}}</tr>
+            {% endfor %} 
+        </tbody>
+    </table> -->
+    <div>
+        <ol>
+            {% for recipe in reciperequirement_list %}
+            <li>{{ recipe.menu_item.name }}</li>
+            {% endfor %}
+        </ol>
+    </div>
+    
+    <!-- <a href=""><button class="add__button buttons"></button></a> -->
+</section>
+{% endblock content%}

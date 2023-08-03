@@ -195,7 +195,8 @@ h4 {
 
 .form__container {
     margin: 1rem 0;
-    text-align: left;
+    display: flex;
+    flex-direction: column;
 }
 
 /* .requirements__container {
