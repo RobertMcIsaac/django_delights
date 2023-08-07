@@ -7,7 +7,7 @@
     <div>
         <h2>Add New Menu Item</h2>
     </div>
-    <form class="form__container" action="{% url 'menu_new' %}" method="POST">
+    <form class="form__container" action="" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         <button class="buttons form__button" type="submit">Add The Recipe</button>

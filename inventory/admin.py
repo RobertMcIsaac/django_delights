@@ -3,7 +3,7 @@ from .models import Ingredient, MenuItem, RecipeRequirement, Purchase
 
 class RecipeRequirementInline(admin.TabularInline):
     model = RecipeRequirement
-    extra = 5
+    extra = 10
 
 class MenuItemAdmin(admin.ModelAdmin):
     inlines = [RecipeRequirementInline]

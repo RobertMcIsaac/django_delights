@@ -4,17 +4,32 @@
 
 {% block content %}
 <section class="formpage__container">
-    <div>
-        <h2>Add Recipe for:</h2>
-        <h4>
+     <!-- if statement for when menu item has no recipe requirements -->
+     {% if recipe_requirement %}
 
-        </h4>
+     <div>
+        <h3>Finalise recipe for {{ menu_item.name }}:</h3>
+        <a href="{% url 'menu_item_detail' menu_item.pk %}"><button class="buttons form__button" type="">Recipe Complete</button></a>
+        <h4>Or</h4>
+        <h3>Continue Recipe for {{ menu_item.name }}:</h3>
     </div>
-    <form class="form__container" action="{% url 'recipe_new' %}" method="POST">
+    <form class="form__container" action="{% url 'recipe_new' menu_item.pk %}" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <button class="buttons form__button" type="submit">Add Recipe</button>
+        <button class="buttons form__button" type="submit">Add To Recipe</button>
+    </form>  
+
+    {% else %}
+    <div>
+        <h3>Create recipe for {{ menu_item.name }}:</h3>
+    </div>
+    <form class="form__container" action="{% url 'recipe_new' menu_item.pk %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="buttons form__button" type="submit">Add To Recipe</button>
     </form>
+
+    {% endif %}
 </section>
 {% endblock content %}
 

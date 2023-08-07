@@ -15,7 +15,7 @@ class IngredientCreateForm(forms.ModelForm):
 class RecipeRequirementCreateForm(forms.ModelForm):
     class Meta:
         model = RecipeRequirement
-        fields = "__all__"
+        fields = ["ingredient", "ingredient_quantity"]
 
 class PurchaseCreateForm(forms.ModelForm):
     class Meta:

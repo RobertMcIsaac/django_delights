@@ -41,6 +41,13 @@ class MenuCreate(LoginRequiredMixin ,CreateView):
     form_class = MenuCreateForm
     success_url = reverse_lazy("recipe_new")
 
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        return redirect('recipe_new', pk=self.object.pk)
+    
+    def get_success_url(self):
+        return reverse_lazy('recipe_new', kwargs={'pk': self.object.pk})
+
 class MenuItemDetail(LoginRequiredMixin, DetailView):
     model = MenuItem
     template_name = "inventory/menu_item_detail.html"
@@ -75,7 +82,23 @@ class RecipeRequirementCreate(LoginRequiredMixin, CreateView):
     template_name = "inventory/recipe_create_form.html"
     form_class = RecipeRequirementCreateForm
     success_url = reverse_lazy("menu")
-
+    
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context["menu_item"] = MenuItem.objects.get(pk=self.kwargs["pk"])
+        context["recipe_requirement"] = RecipeRequirement.objects.filter(menu_item=context["menu_item"]).exists()
+        return context
+    
+    def form_valid(self, form):
+        form.instance.menu_item = MenuItem.objects.get(pk=self.kwargs['pk'])
+        return super().form_valid(form)
+    
+    def get_success_url(self):
+        return reverse_lazy("recipe_new", kwargs={"pk": self.object.menu_item.pk})
+    
+class RecipeRequirementDetail(LoginRequiredMixin, DetailView):
+    model = RecipeRequirement
+    template_name = "inventory/reciperequirement_detail.html"
 
 
 # PURCHASE VIEWS
