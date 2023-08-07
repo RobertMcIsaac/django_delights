@@ -54,7 +54,7 @@ class MenuItemDetail(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super().get_context_data(**kwargs)
-        context["reciperequirment_list"] = RecipeRequirement.objects.filter(menu_item=self.object)
+        context["reciperequirement_list"] = RecipeRequirement.objects.filter(menu_item=self.object)
         return context
 
 
