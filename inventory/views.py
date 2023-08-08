@@ -50,7 +50,7 @@ class MenuCreate(LoginRequiredMixin ,CreateView):
 
 class MenuItemDetail(LoginRequiredMixin, DetailView):
     model = MenuItem
-    template_name = "inventory/menuitem_detail.html"
+    template_name = "inventory/menuitem.html"
 
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super().get_context_data(**kwargs)
@@ -98,7 +98,12 @@ class RecipeRequirementCreate(LoginRequiredMixin, CreateView):
     
 class RecipeRequirementDetail(LoginRequiredMixin, DetailView):
     model = RecipeRequirement
-    template_name = "inventory/reciperequirement_detail.html"
+    template_name = "inventory/recipe.html"
+
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context["menuitem_list"] = MenuItem.objects.filter(menuitem=self.object)
+        return context 
 
 
 # PURCHASE VIEWS
