@@ -56,27 +56,27 @@ class MenuItem(models.Model):
 
 # RecipeRequirement MODEL
 class RecipeRequirement(models.Model):
-    menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
+    menuitem = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
     ingredient = models.ForeignKey(Ingredient, on_delete=models.PROTECT)
     ingredient_quantity = models.DecimalField(max_digits=5, decimal_places=2, default=0)
 
     def __str__(self):
-        return str(self.menu_item) + " Recipe"
+        return str(self.menuitem) + " Recipe"
     
     class Meta:
-        ordering = ["menu_item"]
+        ordering = ["menuitem"]
         verbose_name = "Recipe requirement"
 
 
 # Purchase MODEL
 class Purchase(models.Model):
-    menu_item = models.ForeignKey(MenuItem, on_delete=models.PROTECT)
+    menuitem = models.ForeignKey(MenuItem, on_delete=models.PROTECT)
     purchase_time = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.PROTECT)
 
     def __str__(self):
         formatted_time = self.purchase_time.strftime("%Y-%m-%d %I:%M%p")
-        return str(self.menu_item.name) + " purchased " + formatted_time
+        return str(self.menuitem.name) + " purchased " + formatted_time
 
     class Meta:
         ordering = ["purchase_time"]

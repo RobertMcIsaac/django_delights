@@ -37,7 +37,7 @@ class MenuList(LoginRequiredMixin ,ListView):
 
 class MenuCreate(LoginRequiredMixin ,CreateView):
     model= MenuItem
-    template_name = "inventory/menu_create_form.html"
+    template_name = "inventory/menuitem_create_form.html"
     form_class = MenuCreateForm
     success_url = reverse_lazy("recipe_new")
 
@@ -50,11 +50,11 @@ class MenuCreate(LoginRequiredMixin ,CreateView):
 
 class MenuItemDetail(LoginRequiredMixin, DetailView):
     model = MenuItem
-    template_name = "inventory/menu_item_detail.html"
+    template_name = "inventory/menuitem_detail.html"
 
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super().get_context_data(**kwargs)
-        context["reciperequirement_list"] = RecipeRequirement.objects.filter(menu_item=self.object)
+        context["reciperequirement_list"] = RecipeRequirement.objects.filter(menuitem=self.object)
         return context
 
 
@@ -85,16 +85,16 @@ class RecipeRequirementCreate(LoginRequiredMixin, CreateView):
     
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super().get_context_data(**kwargs)
-        context["menu_item"] = MenuItem.objects.get(pk=self.kwargs["pk"])
-        context["recipe_requirement"] = RecipeRequirement.objects.filter(menu_item=context["menu_item"]).exists()
+        context["menuitem"] = MenuItem.objects.get(pk=self.kwargs["pk"])
+        context["recipe_requirement"] = RecipeRequirement.objects.filter(menuitem=context["menuitem"]).exists()
         return context
     
     def form_valid(self, form):
-        form.instance.menu_item = MenuItem.objects.get(pk=self.kwargs['pk'])
+        form.instance.menuitem = MenuItem.objects.get(pk=self.kwargs['pk'])
         return super().form_valid(form)
     
     def get_success_url(self):
-        return reverse_lazy("recipe_new", kwargs={"pk": self.object.menu_item.pk})
+        return reverse_lazy("recipe_new", kwargs={"pk": self.object.menuitem.pk})
     
 class RecipeRequirementDetail(LoginRequiredMixin, DetailView):
     model = RecipeRequirement

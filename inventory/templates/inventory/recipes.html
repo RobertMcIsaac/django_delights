@@ -13,14 +13,14 @@
     <table>
         <tbody>
             {% for recipe in reciperequirements_list %}
-            <tr>{{ reciperequirements_list.menu_item.name}}</tr>
+            <tr>{{ reciperequirements_list.menuitem.name}}</tr>
             {% endfor %} 
         </tbody>
     </table> -->
     <div>
         <ol>
             {% for recipe in reciperequirement_list %}
-            <a href=""><li>{{ recipe.menu_item.name }}</li></a>
+            <a href=""><li>{{ recipe.menuitem.name }}</li></a>
             {% endfor %}
         </ol>
     </div>

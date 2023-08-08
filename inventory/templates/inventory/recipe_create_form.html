@@ -7,12 +7,12 @@
     
      {% if recipe_requirement %}
      <div>
-        <h3>Finalise recipe for {{ menu_item.name }}:</h3>
-        <a href="{% url 'menu_item_detail' menu_item.pk %}"><button class="buttons form__button" type="">Recipe Complete</button></a>
+        <h3>Finalise recipe for {{ menuitem.name }}:</h3>
+        <a href="{% url 'menuitem_detail' menuitem.pk %}"><button class="buttons form__button" type="">Recipe Complete</button></a>
         <h4>Or</h4>
-        <h3>Continue Recipe for {{ menu_item.name }}:</h3>
+        <h3>Continue Recipe for {{ menuitem.name }}:</h3>
     </div>
-    <form class="form__container" action="{% url 'recipe_new' menu_item.pk %}" method="POST">
+    <form class="form__container" action="{% url 'recipe_new' menuitem.pk %}" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         <button class="buttons form__button" type="submit">Add To Recipe</button>
@@ -20,9 +20,9 @@
 
     {% else %}
     <div>
-        <h3>Create recipe for {{ menu_item.name }}:</h3>
+        <h3>Create recipe for {{ menuitem.name }}:</h3>
     </div>
-    <form class="form__container" action="{% url 'recipe_new' menu_item.pk %}" method="POST">
+    <form class="form__container" action="{% url 'recipe_new' menuitem.pk %}" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         <button class="buttons form__button" type="submit">Add To Recipe</button>
