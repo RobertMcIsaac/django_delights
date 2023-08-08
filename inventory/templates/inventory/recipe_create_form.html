@@ -4,9 +4,8 @@
 
 {% block content %}
 <section class="formpage__container">
-     <!-- if statement for when menu item has no recipe requirements -->
+    
      {% if recipe_requirement %}
-
      <div>
         <h3>Finalise recipe for {{ menu_item.name }}:</h3>
         <a href="{% url 'menu_item_detail' menu_item.pk %}"><button class="buttons form__button" type="">Recipe Complete</button></a>

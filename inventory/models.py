@@ -18,10 +18,10 @@ class Ingredient(models.Model):
     TABLESPOON = "TB"
     # Define MEASUREMENT_UNIT_CHOICES for measurement_unit field
     MEASUREMENT_UNIT_CHOICES = [
-        (GRAMS, "g (Grams)"),
+        (GRAMS, "g (grams)"),
         (KILOGRAMS, "kg (kilograms)"),
-        (MILILITRES, "mL (mililitres)"),
-        (LITRES, "L (Litres)"),
+        (MILILITRES, "ml (mililitres)"),
+        (LITRES, "l (litres)"),
         (NUMBER, ""),
         (TEASPOON, "tsp (teaspoon)"),
         (TABLESPOON, "tbsp (tablespoon)")
