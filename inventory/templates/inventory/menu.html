@@ -23,7 +23,7 @@
         <tbody class="table__body">
             {% for menuitem in menuitem_list %}
             <tr class="table__body--row">
-                <td class="table__row--detail"><a href="{% url 'menuitem' menuitem.id %}">{{menuitem.name}}</a></td>
+                <td class="table__row--detail"><a href="{% url 'menuitem_recipe' menuitem.id %}">{{menuitem.name}}</a></td>
                 <td class="table__row--detail">{{menuitem.price}}</td>
                 <td class="table__row--detail">
                     <a href=""><small class="table__edit">Edit</small></a>

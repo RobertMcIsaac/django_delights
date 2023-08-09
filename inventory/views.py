@@ -48,15 +48,6 @@ class MenuCreate(LoginRequiredMixin ,CreateView):
     def get_success_url(self):
         return reverse_lazy('recipe_new', kwargs={'pk': self.object.pk})
 
-class MenuItemDetail(LoginRequiredMixin, DetailView):
-    model = MenuItem
-    template_name = "inventory/menuitem.html"
-
-    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
-        context = super().get_context_data(**kwargs)
-        context["reciperequirement_list"] = RecipeRequirement.objects.filter(menuitem=self.object)
-        return context
-
 
 # INVENTORY VIEWS
 class IngredientList(LoginRequiredMixin ,ListView):
@@ -73,9 +64,9 @@ class IngredientCreate(LoginRequiredMixin, CreateView):
 
 # RECIPE VIEWS
 class RecipeRequirementList(LoginRequiredMixin, ListView):
-    model = RecipeRequirement
+    model = MenuItem
     template_name = "inventory/recipes.html"
-    context_object_name = "reciperequirement_list"
+    context_object_name = "menuitem_list"
 
 class RecipeRequirementCreate(LoginRequiredMixin, CreateView):
     model = RecipeRequirement
@@ -96,14 +87,23 @@ class RecipeRequirementCreate(LoginRequiredMixin, CreateView):
     def get_success_url(self):
         return reverse_lazy("recipe_new", kwargs={"pk": self.object.menuitem.pk})
     
-class RecipeRequirementDetail(LoginRequiredMixin, DetailView):
-    model = RecipeRequirement
-    template_name = "inventory/recipe.html"
+class RecipeDetail(LoginRequiredMixin, DetailView):
+    model = MenuItem
+    template_name = "inventory/menuitem-recipe.html"
 
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super().get_context_data(**kwargs)
         context["reciperequirement_list"] = RecipeRequirement.objects.filter(menuitem=self.object)
-        return context 
+        return context
+    
+# class RecipeRequirementDetail(LoginRequiredMixin, DetailView):
+#     model = RecipeRequirement
+#     template_name = "inventory/recipe.html"
+
+#     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+#         context = super().get_context_data(**kwargs)
+#         context["reciperequirement_list"] = RecipeRequirement.objects.filter(menuitem=self.object)
+#         return context 
 
 
 # PURCHASE VIEWS

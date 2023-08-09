@@ -9,22 +9,14 @@
         <p></p>
         <p></p>
         <p></p>  
-    <!-- </div>
-    <table>
-        <tbody>
-            {% for recipe in reciperequirements_list %}
-            <tr>{{ reciperequirements_list.menuitem.name}}</tr>
-            {% endfor %} 
-        </tbody>
-    </table> -->
+
     <div>
         <ol>
-            {% for recipe in reciperequirement_list %}
-            <a href="{% url 'recipe' recipe.menuitem.id %}"><li>{{ recipe.menuitem.name }}</li></a>
+            {% for menuitem in menuitem_list %}
+            <a href="{% url 'menuitem_recipe' menuitem.pk %}"><li>{{ menuitem.name }}</li></a>
             {% endfor %}
         </ol>
     </div>
     
-    <!-- <a href=""><button class="add__button buttons"></button></a> -->
 </section>
 {% endblock content%}

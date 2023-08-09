@@ -5,10 +5,13 @@
 {% block content %}
 <section class="content__container">
     <div class="desciption__container">
-        <h2 class="table__title">{{ object.name }} Recipe</h2> 
+        <h2 class="table__title">Recipe for: {{ object.name }}</h2> 
     </div>
     <div>
         <ul>
+            {% for menuitem in menuitem_list %}
+            <li>Sale Price: {{ menuitem.price }}</li>
+            {% endfor %}
             {% for reciperequirement in reciperequirement_list %}
             <li>{{ reciperequirement.ingredient.name }}: {{ reciperequirement.ingredient_quantity }}{{ reciperequirement.ingredient.get_measurement_unit_display }}</li>
             {% empty %}

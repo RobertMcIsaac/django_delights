@@ -9,10 +9,10 @@ urlpatterns = [
     path('signup/', views.SignUpView.as_view(),name="signup"),
     path('menu/', views.MenuList.as_view(), name="menu"),
     path('menuitem/add/', views.MenuCreate.as_view(), name="menuitem_new"),
-    path('menuitem/<int:pk>/', views.MenuItemDetail.as_view(), name="menuitem"),
     path('inventory/', views.IngredientList.as_view(), name="inventory"),
     path('inventory/add/', views.IngredientCreate.as_view(), name="ingredient_new"),
     path('recipes/', views.RecipeRequirementList.as_view(), name="recipes"),
     path('recipes/add/<int:pk>/', views.RecipeRequirementCreate.as_view(), name="recipe_new"),
-    path('recipe/<int:pk>/', views.RecipeRequirementDetail.as_view(), name="recipe"),
+    path('menuitem-recipe/<int:pk>/', views.RecipeDetail.as_view(), name="menuitem_recipe"),
+    # path('recipe/<int:pk>/', views.RecipeRequirementDetail.as_view(), name="recipe"),
 ]
