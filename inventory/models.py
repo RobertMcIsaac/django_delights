@@ -21,7 +21,7 @@ class Ingredient(models.Model):
         (KILOGRAMS, "kg"),
         (MILILITRES, "ml"),
         (LITRES, "l"),
-        (NUMBER, ""),
+        (NUMBER, "count"),
     ]
 
     # Define measurement_unit field with choices option
