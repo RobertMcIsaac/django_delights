@@ -102,7 +102,7 @@ class RecipeRequirementDetail(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super().get_context_data(**kwargs)
-        context["menuitem_list"] = MenuItem.objects.filter(menuitem=self.object)
+        context["reciperequirement_list"] = RecipeRequirement.objects.filter(menuitem=self.object)
         return context 
 
 
