@@ -6,8 +6,8 @@ from django.contrib.auth.models import User
 # Ingredient MODEL
 class Ingredient(models.Model):
     name = models.CharField(max_length=100, unique=True)
-    cost_per_unit = models.DecimalField(max_digits=5, decimal_places=2, default=0)
-    quantity_available = models.DecimalField(max_digits=6, decimal_places=3, default=0)
+    cost_per_unit = models.DecimalField(max_digits=8, decimal_places=2, default=0)
+    quantity_available = models.DecimalField(max_digits=8, decimal_places=2, default=0)
     # Define constants at class level for MEASUREMENT_UNIT_CHOICES
     GRAMS = "GR"
     KILOGRAMS = "KG"
@@ -56,7 +56,7 @@ class MenuItem(models.Model):
 class RecipeRequirement(models.Model):
     menuitem = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
     ingredient = models.ForeignKey(Ingredient, on_delete=models.PROTECT)
-    ingredient_quantity = models.DecimalField(max_digits=6, decimal_places=3, default=0)
+    ingredient_quantity = models.DecimalField(max_digits=6, decimal_places=2, default=0)
 
     def __str__(self):
         return str(self.menuitem) + " Recipe"
