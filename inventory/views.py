@@ -72,6 +72,17 @@ class IngredientCreate(LoginRequiredMixin, CreateView):
     form_class = IngredientCreateForm
     success_url = reverse_lazy("inventory")
 
+class IngredientUpdate(LoginRequiredMixin, UpdateView):
+    model = Ingredient
+    template_name = "inventory/ingredient_update.html"
+    fields = "__all__"
+    success_url = reverse_lazy("inventory")
+
+class IngredientDelete(LoginRequiredMixin, DeleteView):
+    model = Ingredient
+    template_name = "inventory/ingredient_delete.html"
+    success_url = reverse_lazy("inventory")
+
 
 # RECIPE VIEWS
 class RecipeRequirementList(LoginRequiredMixin, ListView):

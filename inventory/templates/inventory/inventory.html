@@ -30,10 +30,10 @@
                 <td class="table__row--detail">{{ingredient.get_measurement_unit_display}}</td>
                 <td class="table__row--detail">{{ingredient.cost_per_unit}}</td>
                 <td class="table__row--detail">
-                    <a href=""><small class="table__edit">Edit</small></a>
+                    <a href="{% url 'ingredient_edit' ingredient.id %}"><small class="table__edit">Edit</small></a>
                 </td>
                 <td>
-                    <a href=""><small class="table__delete">Delete</small></a>
+                    <a href="{% url 'ingredient_delete' ingredient.id %}"><small class="table__delete">Delete</small></a>
                 </td>
             </tr>
             {% endfor %}
