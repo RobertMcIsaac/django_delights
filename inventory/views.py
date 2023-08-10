@@ -11,7 +11,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from .models import Ingredient, MenuItem, RecipeRequirement, Purchase
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
-from .forms import MenuCreateForm, IngredientCreateForm, RecipeRequirementCreateForm, PurchaseCreateForm
+from .forms import MenuItemCreateForm, IngredientCreateForm, RecipeRequirementCreateForm, PurchaseCreateForm
 
 # LOGIN VIEW (built-in)
 class InventoryLoginView(auth_views.LoginView):
@@ -30,15 +30,15 @@ def home_view(request):
     return render(request, "inventory/home.html", context)
 
 # MENU VIEWS
-class MenuList(LoginRequiredMixin ,ListView):
+class MenuItemList(LoginRequiredMixin ,ListView):
     model = MenuItem
     template_name = "inventory/menu.html"
     context_object_name = "menuitem_list"
 
-class MenuCreate(LoginRequiredMixin ,CreateView):
+class MenuItemCreate(LoginRequiredMixin ,CreateView):
     model= MenuItem
     template_name = "inventory/menuitem_create_form.html"
-    form_class = MenuCreateForm
+    form_class = MenuItemCreateForm
     success_url = reverse_lazy("recipe_new")
 
     def form_valid(self, form):
@@ -47,6 +47,17 @@ class MenuCreate(LoginRequiredMixin ,CreateView):
     
     def get_success_url(self):
         return reverse_lazy('recipe_new', kwargs={'pk': self.object.pk})
+    
+class MenuItemUpdate(UpdateView):
+    model = MenuItem
+    template_name = "inventory/menuitem_update.html"
+    fields = "__all__"
+    success_url = reverse_lazy("menu")
+
+class MenuItemDelete(DeleteView):
+    model = MenuItem
+    template_name = "inventory/menuitem_delete.html"
+    success_url = reverse_lazy("menu")
 
 
 # INVENTORY VIEWS
@@ -89,21 +100,22 @@ class RecipeRequirementCreate(LoginRequiredMixin, CreateView):
     
 class RecipeDetail(LoginRequiredMixin, DetailView):
     model = MenuItem
-    template_name = "inventory/menuitem-recipe.html"
+    template_name = "inventory/recipe_detail.html"
 
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super().get_context_data(**kwargs)
         context["reciperequirement_list"] = RecipeRequirement.objects.filter(menuitem=self.object)
         return context
-    
-# class RecipeRequirementDetail(LoginRequiredMixin, DetailView):
-#     model = RecipeRequirement
-#     template_name = "inventory/recipe.html"
-
-#     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
-#         context = super().get_context_data(**kwargs)
-#         context["reciperequirement_list"] = RecipeRequirement.objects.filter(menuitem=self.object)
-#         return context 
 
 
 # PURCHASE VIEWS
+class PurchaseList(LoginRequiredMixin, ListView):
+    model = Purchase
+    template_name = "inventory/purchase_log.html"
+    context_object_name = "purchase_list"
+
+class PurchaseCreate(LoginRequiredMixin, CreateView):
+    model = Purchase
+    template_name = "inventory/purchase_create_form.html"
+    form_class = PurchaseCreateForm
+    success_url = reverse_lazy("purchase_log")

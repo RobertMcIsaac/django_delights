@@ -26,10 +26,10 @@
                 <td class="table__row--detail"><a href="{% url 'menuitem_recipe' menuitem.id %}">{{menuitem.name}}</a></td>
                 <td class="table__row--detail">{{menuitem.price}}</td>
                 <td class="table__row--detail">
-                    <a href=""><small class="table__edit">Edit</small></a>
+                    <a href="{% url 'menuitem_edit' menuitem.id %}"><small class="table__edit">Edit</small></a>
                 </td>
                 <td>
-                    <a href=""><small class="table__delete">Delete</small></a>
+                    <a href="{% url 'menuitem_delete' menuitem.id %}"><small class="table__delete">Delete</small></a>
                 </td>
             </tr>
             {% endfor %}

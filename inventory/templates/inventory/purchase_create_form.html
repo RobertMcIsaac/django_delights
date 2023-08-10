@@ -1,0 +1,16 @@
+{% extends "inventory/base.html" %}
+
+{% block title %}Log new purchase - Pantry Pilot{% endblock title %}
+
+{% block content %}
+<section class="formpage__container">
+    <div>
+        <h2>Log New Purchase</h2>
+    </div>
+    <form class="form__container" action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="buttons form__button" type="submit">Log Purchase</button>
+    </form>
+</section>
+{% endblock content %}

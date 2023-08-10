@@ -2,7 +2,7 @@ from django import forms
 from .models import MenuItem, Ingredient, RecipeRequirement, Purchase
 from django.forms import inlineformset_factory
 
-class MenuCreateForm(forms.ModelForm):
+class MenuItemCreateForm(forms.ModelForm):
     class Meta:
         model = MenuItem
         fields = "__all__"

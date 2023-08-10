@@ -3,31 +3,39 @@
 {% block title %}Purchase Log - Django Delights{% endblock title %}
 
 {% block content %}
-<section class="purchase__container main__container">
-    <h4>Purchase Log</h4>
-    <div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Menu Item</th>
-                    <th>Logged By</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <a href=""><small>Edit</small></a>
-                        <a href=""><small>Delete</small></a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+<section class="content__container">
+    <div class="desciption__container">
+        <h2 class="table__title">Purchase Log</h2>
+        <p>A log of customer purchases, including the date and time a menu item was purchased and which staff member logged the purchase.</p>
+        <p>To add a new purchase to the purchase log, click the 'Log New Purchase' link below.</p>  
     </div>
+
+    <table id="purchase_log" class="table__container">
+        <thead class="table__head">
+            <tr class="table__head--row">
+                <th class="table__row--heading">Date/Time of Purchase</th>
+                <th class="table__row--heading">Menu Item</th>
+                <th class="table__row--heading">Logged By</th>
+                <th class="table__row--heading"></th>
+                <th class="table__row--heading"></th>
+            </tr>
+        </thead>
+        <tbody class="table__body">
+            {% for purchase in purchase_list %}
+            <tr class="table__body--row">
+                <td class="table__row--detail">{{ purchase.menuitem }}</td>
+                <td class="table__row--detail">{{ purchase.purchase_time }}</td>
+                <td class="table__row--detail">{{ purchase.user }}</td>
+                <td class="table__row--detail">
+                    <a href=""><small class="table__edit">Edit</small></a>
+                </td>
+                <td>
+                    <a href=""><small class="table__delete">Delete</small></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'purchase_new' %}"><button class="add__button buttons">Log New Purchase</button></a>
 </section>
 {% endblock content%}
