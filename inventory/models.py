@@ -53,6 +53,12 @@ class MenuItem(models.Model):
         ordering = ["name"]
         verbose_name = "Menu item"
 
+    def get_total_cost(self):
+        total_cost = 0
+        for requirement in self.reciperequirement_set.all():
+            total_cost += requirement.ingredient_quantity * requirement.ingredient.cost_per_unit
+        return round(total_cost, 2)
+
 
 # RecipeRequirement MODEL
 class RecipeRequirement(models.Model):

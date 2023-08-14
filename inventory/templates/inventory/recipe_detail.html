@@ -9,6 +9,7 @@
         <p>{{ menuitem.description }}</p>
     </div>
     <div>
+        <p>Total cost: {{ object.get_total_cost }}</p>
         <p>Sale Price: {{ menuitem.price }}</p>
         <ul>
             {% for reciperequirement in reciperequirement_list %}
