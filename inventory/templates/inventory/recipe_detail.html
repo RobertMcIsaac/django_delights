@@ -3,7 +3,56 @@
 {% block title %}Menu Item Recipe - Pantry Pilot{% endblock title %}
 
 {% block content %}
+
 <section class="content__container">
+    <div class="desciption__container">
+        <h2 class="table__title">Recipe for: {{ object.name }}</h2> 
+        <p>{{ menuitem.description }}</p>
+    </div>
+    <div>
+        <p>Total cost: {{ object.get_total_cost }}</p>
+        <p>Sale Price: {{ menuitem.price }}</p>
+    </div>
+    <table class="table__container">
+        <thead class="table__head">
+            <tr class="table__head--row">
+                <th class="table__row--heading">Ingredient</th>
+                <th class="table__row--heading">Quantity Required</th>
+                <th class="table__row--heading">Unit</th>
+                <th class="table__row--heading">Cost/unit</th>
+                <th class="table__row--heading"></th>
+                <th class="table__row--heading"></th>
+            </tr>
+        </thead>
+        <tbody class="table__body">
+            {% for reciperequirement in reciperequirement_list %}
+            <tr class="table__body--row">
+                <td class="table__row--detail"><a href="">{{ reciperequirement.ingredient }}</a></td>
+                <td class="table__row--detail">{{ reciperequirement.ingredient_quantity }}</td>
+                <td class="table__row--detail">{{ reciperequirement.ingredient.get_measurement_unit_display }}</td>
+                <td class="table__row--detail">{{ reciperequirement.ingredient.cost_per_unit }}</td>
+                <td class="table__row--detail">
+                    <a href=""><small class="table__edit">Edit</small></a>
+                </td>
+                <td>
+                    <a href=""><small class="table__delete">Delete</small></a>
+                </td>
+            </tr>
+            {% empty %}
+            <p>Recipe is currently empty</p>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'ingredient_new' %}"><button class="add__button buttons">Add New Ingredient To Inventory</button></a>
+    <a href=""><button class="add__button buttons">Add Ingredient To Recipe</button></a>
+    <div>
+        <h4>Instructions:</h4>
+        <p>{{ menuitem.recipe_instructions }}</p>
+    </div>
+</section>
+
+
+<!-- <section class="content__container">
     <div class="desciption__container">
         <h2 class="table__title">Recipe for: {{ object.name }}</h2> 
         <p>{{ menuitem.description }}</p>
@@ -16,12 +65,12 @@
             <li>{{ reciperequirement.ingredient.name }}: {{ reciperequirement.ingredient_quantity }}{{ reciperequirement.ingredient.get_measurement_unit_display }}</li>
             {% empty %}
             <li>Recipe is currently empty.</li>
-            <!-- 'add recipe' button -->
+
             {% endfor %}
         </ul>
         <h4>Instructions:</h4>
         <p>{{ menuitem.recipe_instructions }}</p>
     </div>
-</section>
+</section> -->
 
 {% endblock content %}

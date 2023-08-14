@@ -15,6 +15,7 @@
         <thead class="table__head">
             <tr class="table__head--row">
                 <th class="table__row--heading">Menu Item</th>
+                <th class="table__row--heading">Cost</th>
                 <th class="table__row--heading">Sale Price</th>
                 <th class="table__row--heading"></th>
                 <th class="table__row--heading"></th>
@@ -23,8 +24,9 @@
         <tbody class="table__body">
             {% for menuitem in menuitem_list %}
             <tr class="table__body--row">
-                <td class="table__row--detail"><a href="{% url 'menuitem_recipe' menuitem.id %}">{{menuitem.name}}</a></td>
-                <td class="table__row--detail">{{menuitem.price}}</td>
+                <td class="table__row--detail"><a href="{% url 'menuitem_recipe' menuitem.id %}">{{ menuitem.name }}</a></td>
+                <td class="table__row--detail">{{ menuitem.get_total_cost }}</td>
+                <td class="table__row--detail">{{ menuitem.price }}</td>
                 <td class="table__row--detail">
                     <a href="{% url 'menuitem_edit' menuitem.id %}"><small class="table__edit">Edit</small></a>
                 </td>
