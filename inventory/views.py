@@ -133,5 +133,14 @@ class PurchaseCreate(LoginRequiredMixin, CreateView):
     form_class = PurchaseCreateForm
     success_url = reverse_lazy("purchase_log")
 
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        menu_item_id = self.request.POST.get("menu_item", None)
+        if menu_item_id:
+            menu_item = MenuItem.objects.get(id="menu_item_id")
+            context["total_costs"] = menu_item.get_total_cost()
+            context["sale_price"] = menu_item.price
+        return context
+
 
 # REVENUE VIEWS
