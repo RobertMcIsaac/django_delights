@@ -16,16 +16,18 @@
                 </tr>
             </thead>
             <tbody>
+                {% for revenue in daily_revenues %}
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ revenue.date }}</td>
+                    <td>{{ revenue.income }}</td>
+                    <td>{{ revenue.costs }}</td>
+                    <td>{{ revenue.profit }}</td>
                     <td>
                         <a href=""><small>Edit</small></a>
                         <a href=""><small>Delete</small></a>
                     </td>
                 </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>

@@ -10,8 +10,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from .models import Ingredient, MenuItem, RecipeRequirement, Purchase
-from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
+from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView, TemplateView
 from .forms import MenuItemCreateForm, IngredientCreateForm, RecipeRequirementCreateForm, PurchaseCreateForm
+from django.db.models import Sum, DateField
+from django.db.models.functions import TruncDate
+
 
 # LOGIN VIEW (built-in)
 class InventoryLoginView(auth_views.LoginView):
@@ -144,3 +147,17 @@ class PurchaseCreate(LoginRequiredMixin, CreateView):
 
 
 # REVENUE VIEWS
+class RevenueView(LoginRequiredMixin, TemplateView):
+    template_name = "inventory/revenue.html"
+
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        daily_revenues = Purchase.objects.annotate(date=TruncDate("purchase_time"))\
+            .values("date")\
+            .annotate(income=Sum("sale_price"), costs=Sum("total_cost")) \
+            .order_by("-date")
+        for revenue in daily_revenues:
+            revenue["profit"] = revenue["income"] - revenue["costs"]
+        context["daily_revenues"] = daily_revenues
+        return context
+    
