@@ -6,19 +6,20 @@
 <section class="content__container">
     <div class="desciption__container">
         <h2 class="table__title">Recipe for: {{ object.name }}</h2> 
+        <p>{{ menuitem.description }}</p>
     </div>
     <div>
+        <p>Sale Price: {{ menuitem.price }}</p>
         <ul>
-            {% for menuitem in menuitem_list %}
-            <li>Sale Price: {{ menuitem.price }}</li>
-            {% endfor %}
             {% for reciperequirement in reciperequirement_list %}
             <li>{{ reciperequirement.ingredient.name }}: {{ reciperequirement.ingredient_quantity }}{{ reciperequirement.ingredient.get_measurement_unit_display }}</li>
             {% empty %}
             <li>Recipe is currently empty.</li>
+            <!-- 'add recipe' button -->
             {% endfor %}
         </ul>
-        <!-- 'add recipe' button -->
+        <h4>Instructions:</h4>
+        <p>{{ menuitem.recipe_instructions }}</p>
     </div>
 </section>
 

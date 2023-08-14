@@ -75,7 +75,7 @@ class IngredientCreate(LoginRequiredMixin, CreateView):
 class IngredientUpdate(LoginRequiredMixin, UpdateView):
     model = Ingredient
     template_name = "inventory/ingredient_update.html"
-    fields = "__all__"
+    fields = ["cost_per_unit", "quantity_available", "measurement_unit"]
     success_url = reverse_lazy("inventory")
 
 class IngredientDelete(LoginRequiredMixin, DeleteView):
@@ -113,9 +113,11 @@ class RecipeDetail(LoginRequiredMixin, DetailView):
     model = MenuItem
     template_name = "inventory/recipe_detail.html"
 
+
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super().get_context_data(**kwargs)
         context["reciperequirement_list"] = RecipeRequirement.objects.filter(menuitem=self.object)
+        context["menuitem"] = self.object
         return context
 
 
@@ -130,3 +132,6 @@ class PurchaseCreate(LoginRequiredMixin, CreateView):
     template_name = "inventory/purchase_create_form.html"
     form_class = PurchaseCreateForm
     success_url = reverse_lazy("purchase_log")
+
+
+# REVENUE VIEWS

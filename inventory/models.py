@@ -43,6 +43,8 @@ class Ingredient(models.Model):
 class MenuItem(models.Model):
     name = models.CharField(max_length=100, unique=True)
     price = models.DecimalField(max_digits=6, decimal_places=2, default=0)
+    description = models.CharField(max_length=200, blank=True)
+    recipe_instructions = models.TextField(help_text="Instructions for preparing this menu item", blank=True)
 
     def __str__(self):
         return self.name
