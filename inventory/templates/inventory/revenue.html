@@ -19,9 +19,9 @@
                 {% for revenue in daily_revenues %}
                 <tr>
                     <td>{{ revenue.date }}</td>
-                    <td>{{ revenue.income }}</td>
-                    <td>{{ revenue.costs }}</td>
-                    <td>{{ revenue.profit }}</td>
+                    <td>{{ revenue.income|floatformat:2 }}</td>
+                    <td>{{ revenue.costs|floatformat:2 }}</td>
+                    <td>{{ revenue.profit|floatformat:2 }}</td>
                     <td>
                         <a href=""><small>Edit</small></a>
                         <a href=""><small>Delete</small></a>

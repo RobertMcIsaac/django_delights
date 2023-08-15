@@ -136,13 +136,20 @@ class PurchaseCreate(LoginRequiredMixin, CreateView):
     form_class = PurchaseCreateForm
     success_url = reverse_lazy("purchase_log")
 
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        menuitem = form.cleaned_data.get("menuitem")
+        form.instance.total_cost = menuitem.get_total_cost()
+        form.instance.sale_price = menuitem.price
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super().get_context_data(**kwargs)
-        menu_item_id = self.request.POST.get("menu_item", None)
-        if menu_item_id:
-            menu_item = MenuItem.objects.get(id="menu_item_id")
-            context["total_costs"] = menu_item.get_total_cost()
-            context["sale_price"] = menu_item.price
+        menuitem_id = self.request.POST.get("menuitem", None)
+        if menuitem_id:
+            menuitem = MenuItem.objects.get(id=menuitem_id)
+            context["total_cost"] = menuitem.get_total_cost()
+            context["sale_price"] = menuitem.get_price
         return context
 
 
@@ -158,6 +165,6 @@ class RevenueView(LoginRequiredMixin, TemplateView):
             .order_by("-date")
         for revenue in daily_revenues:
             revenue["profit"] = revenue["income"] - revenue["costs"]
-        context["daily_revenues"] = daily_revenues
+            context["daily_revenues"] = daily_revenues
         return context
     
