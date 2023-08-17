@@ -3,15 +3,15 @@
 {% block title %}Inventory - Pantry Pilot{% endblock title %}
 
 {% block content %}
-<section class="content__container">
-    <div class="desciption__container">
+<section id="inventory" class="content__container">
+    <div class="description__container">
         <h2 class="table__title">Inventory</h2>
         <p>A complete list of the available ingredients in your inventory, including the quantity available, it's unit of measurement and the cost-per-unit.</p>
         <p>To add a new ingredient to your inventory, click the 'Add New Ingredient' link below.</p>
         <p></p>  
     </div>
-
-    <table id="inventory" class="table__container">
+    <a href="{% url 'ingredient_new' %}"><button class="add__button buttons">Add New Ingredient</button></a>
+    <table class="table__container">
         <thead class="table__head">
             <tr class="table__head--row">
                 <th class="table__row--heading">Ingredient</th>
@@ -39,6 +39,5 @@
             {% endfor %}
         </tbody>
     </table>
-    <a href="{% url 'ingredient_new' %}"><button class="add__button buttons">Add New Ingredient</button></a>
 </section>
 {% endblock content%}

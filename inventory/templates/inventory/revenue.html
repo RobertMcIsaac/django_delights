@@ -3,33 +3,39 @@
 {% block title %}Revenue - Django Delights{% endblock title %}
 
 {% block content %}
-<section class="revenue__container main__container">
-    <h4>Revenue</h4>
-    <div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Income</th>
-                    <th>Costs</th>
-                    <th>Profit</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for revenue in daily_revenues %}
-                <tr>
-                    <td>{{ revenue.date }}</td>
-                    <td>{{ revenue.income|floatformat:2 }}</td>
-                    <td>{{ revenue.costs|floatformat:2 }}</td>
-                    <td>{{ revenue.profit|floatformat:2 }}</td>
-                    <td>
-                        <a href=""><small>Edit</small></a>
-                        <a href=""><small>Delete</small></a>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+<section id="revenue" class="content__container">
+    <div class="description__container">
+        <h2>Revenue</h2>
+        <p>Some description of the page.</p>
+        <p>Some description of the page.</p>
+        <p>Some description of the page.</p>
     </div>
+    
+    <table class="table__container">
+        <thead class="table__head">
+            <tr class="table__head--row">
+                <th class="table__row--heading">Date</th>
+                <th class="table__row--heading">Income</th>
+                <th class="table__row--heading">Costs</th>
+                <th class="table__row--heading">Profit</th>
+            </tr>
+        </thead>
+        <tbody class="table__body">
+            {% for revenue in daily_revenues %}
+            <tr class="table__body--row">
+                <td class="table__row--detail">{{ revenue.date }}</td>
+                <td class="table__row--detail">{{ revenue.income|floatformat:2 }}</td>
+                <td class="table__row--detail">{{ revenue.costs|floatformat:2 }}</td>
+                <td class="table__row--detail">{{ revenue.profit|floatformat:2 }}</td>
+                <td>
+                    <a href=""><small>Edit</small></a>
+                </td>
+                <td>
+                    <a href=""><small>Delete</small></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </section>
 {% endblock content%}

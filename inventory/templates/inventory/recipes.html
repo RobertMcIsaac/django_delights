@@ -3,17 +3,16 @@
 {% block title %}Recipes - Pantry Pilot{% endblock title %}
 
 {% block content %}
-<section class="content__container">
-    <div class="desciption__container">
-        <h2 class="table__title">Recipes</h2>
-        <p></p>
-        <p></p>
-        <p></p>  
+<section id="recipes" class="content__container">
+    <div class="recipes__container">
+        <h2 class="list__title">Recipes</h2>
+        <p>Some description of the page.</p>
+        <p>Some description of the page.</p>
+        <p>Some description of the page.</p>  
 
-    <div>
-        <ol>
+        <ol class="list__container flex__center">
             {% for menuitem in menuitem_list %}
-            <a href="{% url 'menuitem_detail' menuitem.pk %}"><li>{{ menuitem.name }}</li></a>
+            <a href="{% url 'menuitem_detail' menuitem.pk %}"><li class="list__item">{{ menuitem.name }}</li></a>
             {% endfor %}
         </ol>
     </div>

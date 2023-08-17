@@ -1,11 +1,11 @@
 {% extends 'inventory/base.html' %}
 
-{% block title %}Menu Item Recipe - Pantry Pilot{% endblock title %}
+{% block title %}Menu Item Details - Pantry Pilot{% endblock title %}
 
 {% block content %}
 
-<section class="content__container">
-    <div class="desciption__container">
+<section id="menu-item-details" class="content__container">
+    <div class="description__container">
         <h2 class="table__title">Recipe for: {{ object.name }}</h2> 
         <p>{{ menuitem.description }}</p>
     </div>
@@ -54,7 +54,7 @@
 
 
 <!-- <section class="content__container">
-    <div class="desciption__container">
+    <div class="description__container">
         <h2 class="table__title">Recipe for: {{ object.name }}</h2> 
         <p>{{ menuitem.description }}</p>
     </div>

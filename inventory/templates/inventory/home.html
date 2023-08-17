@@ -3,44 +3,46 @@
 {% block title %}Home - Pantry Pilot{% endblock title %}
 
 {% block content %}
-<div class="title__container flex__center">
-    <h1 class="home__title">Welcome to Pantry Pilot</h1>
-    <small>By Django Delights</small>
-    <p class="title__detail">Pantry Pilot is an inventory and sales tracking application designed to take the hassle out of running your restaurant. Pantry Pilot streamlines administrative tasks so that you can focus on your food and your customers.</p>
-</div>
+<section id="home">
+    <div class="title__container flex__center">
+        <h1 class="home__title">Welcome to Pantry Pilot</h1>
+        <small>By Django Delights</small>
+        <p class="title__detail">Pantry Pilot is an inventory and sales tracking application designed to take the hassle out of running your restaurant. Pantry Pilot streamlines administrative tasks so that you can focus on your food and your customers.</p>
+    </div>
 
-<div class="feat__container flex__center">
-    <div class="feat__item flex__center">
-        <a href="{% url 'menu' %}"><h4 class="feat__item--title">Menu</h4></a>
-        <p class="feat__item--description">List, update and edit your menu items</p>
+    <div class="feat__container flex__center">
+        <div class="feat__item flex__center">
+            <a href="{% url 'menu' %}"><h4 class="feat__item--title">Menu</h4></a>
+            <p class="feat__item--description">List, update and edit your menu items</p>
+        </div>
+        <div class="feat__item flex__center">
+            <a href="{% url 'inventory' %}"><h4 class="feat__item--title">Inventory</h4></a>
+            <p class="feat__item--description">Track, update and edit your inventory</p>
+        </div>
+        <div class="feat__item flex__center">
+            <a href="{% url 'recipes' %}"><h4 class="feat__item--title">Recipes</h4></a>
+            <p class="feat__item--description">Track and update recipes for your menu items</p>
+        </div>
+        <div class="feat__item flex__center">
+            <a href="{% url 'purchase_log' %}"><h4 class="feat__item--title">Purchase Log</h4></a>
+            <p class="feat__item--description">Track your sales history and add customer purchases</p>
+        </div>
+        <div class="feat__item flex__center">
+            <a href="{% url 'revenue' %}"><h4 class="feat__item--title">Revenue</h4></a>
+            <p class="feat__item--description">Track your revenue and costs</p>
+        </div>
     </div>
-    <div class="feat__item flex__center">
-        <a href="{% url 'inventory' %}"><h4 class="feat__item--title">Inventory</h4></a>
-        <p class="feat__item--description">Track, update and edit your inventory</p>
-    </div>
-    <div class="feat__item flex__center">
-        <a href="{% url 'recipes' %}"><h4 class="feat__item--title">Recipes</h4></a>
-        <p class="feat__item--description">Track and update recipes for your menu items</p>
-    </div>
-    <div class="feat__item flex__center">
-        <a href="{% url 'purchase_log' %}"><h4 class="feat__item--title">Purchase Log</h4></a>
-        <p class="feat__item--description">Track your sales history and add customer purchases</p>
-    </div>
-    <div class="feat__item flex__center">
-        <a href="{% url 'revenue' %}"><h4 class="feat__item--title">Revenue</h4></a>
-        <p class="feat__item--description">Track your revenue and costs</p>
-    </div>
-</div>
 
-{% if user.is_authenticated %}
+    {% if user.is_authenticated %}
 
-{% else %}
-<div class="loginprompt__container">
-    <h4 class="login__prompt">Please Login to get started</h4>
-    <a href="{% url 'login' %}"><button class="login__button buttons">LOGIN</button></a>
-</div>
-<div>
-    <small>Don't have an account?<a href="{% url 'signup' %}"> Sign-up here</a></small>
-</div>
+    {% else %}
+    <div class="loginprompt__container">
+        <h4 class="login__prompt">Please Login to get started</h4>
+        <a href="{% url 'login' %}"><button class="login__button buttons">LOGIN</button></a>
+    </div>
+    <div>
+        <small>Don't have an account?<a href="{% url 'signup' %}"> Sign-up here</a></small>
+    </div>
+</section>
 {% endif %}
 {% endblock content %}

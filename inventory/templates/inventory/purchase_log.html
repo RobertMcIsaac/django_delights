@@ -3,14 +3,14 @@
 {% block title %}Purchase Log - Django Delights{% endblock title %}
 
 {% block content %}
-<section class="content__container">
-    <div class="desciption__container">
+<section id="purchase-log" class="content__container">
+    <div class="description__container">
         <h2 class="table__title">Purchase Log</h2>
         <p>A log of customer purchases, including the date and time a menu item was purchased and which staff member logged the purchase.</p>
         <p>To add a new purchase to the purchase log, click the 'Log New Purchase' link below.</p>  
     </div>
-
-    <table id="purchase_log" class="table__container">
+    <a href="{% url 'purchase_new' %}"><button class="add__button buttons">Log New Purchase</button></a>
+    <table class="table__container">
         <thead class="table__head">
             <tr class="table__head--row">
                 <th class="table__row--heading">Date/Time of Purchase</th>
@@ -36,6 +36,5 @@
             {% endfor %}
         </tbody>
     </table>
-    <a href="{% url 'purchase_new' %}"><button class="add__button buttons">Log New Purchase</button></a>
 </section>
 {% endblock content%}

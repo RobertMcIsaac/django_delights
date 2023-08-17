@@ -3,15 +3,15 @@
 {% block title %}Menu - Pantry Pilot{% endblock title %}
 
 {% block content %}
-<section class="content__container">
-    <div class="desciption__container">
+<section id="menu" class="content__container">
+    <div class="description__container">
         <h2 class="table__title">Menu</h2>
         <p>A complete list of menu items and their prices. </p>
         <p>Click on a menu item to see it's recipe details, including ingredients and costs.</p>
         <p>To add a new item to the menu, click the 'Add New Menu Item' link below.</p>  
     </div>
-
-    <table id="menu" class="table__container">
+    <a href="{% url 'menuitem_new' %}"><button class="add__button buttons">Add New Menu Item</button></a>
+    <table class="table__container">
         <thead class="table__head">
             <tr class="table__head--row">
                 <th class="table__row--heading">Menu Item</th>
@@ -37,6 +37,5 @@
             {% endfor %}
         </tbody>
     </table>
-    <a href="{% url 'menuitem_new' %}"><button class="add__button buttons">Add New Menu Item</button></a>
 </section>
 {% endblock content%}
