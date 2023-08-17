@@ -32,7 +32,7 @@
                 <td class="table__row--detail">{{ reciperequirement.ingredient.get_measurement_unit_display }}</td>
                 <td class="table__row--detail">{{ reciperequirement.ingredient.cost_per_unit }}</td>
                 <td class="table__row--detail">
-                    <a href=""><small class="table__edit">Edit</small></a>
+                    <a href="{% url 'recipe_new' menuitem.pk %}"><small class="table__edit">Edit</small></a>
                 </td>
                 <td>
                     <a href=""><small class="table__delete">Delete</small></a>
@@ -49,6 +49,7 @@
         <h4>Instructions:</h4>
         <p>{{ menuitem.recipe_instructions }}</p>
     </div>
+    <a href="{% url 'recipes' %}">Return to Recipes</a>
 </section>
 
 

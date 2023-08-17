@@ -50,6 +50,10 @@ class MenuItemCreate(LoginRequiredMixin ,CreateView):
     
     def get_success_url(self):
         return reverse_lazy('recipe_new', kwargs={'pk': self.object.pk})
+
+class MenuItemDetail(LoginRequiredMixin, DetailView):
+    model = MenuItem
+    template_name = "inventory/menuitem_detail.html"
     
 class MenuItemUpdate(UpdateView):
     model = MenuItem
@@ -111,11 +115,6 @@ class RecipeRequirementCreate(LoginRequiredMixin, CreateView):
     
     def get_success_url(self):
         return reverse_lazy("recipe_new", kwargs={"pk": self.object.menuitem.pk})
-    
-class RecipeDetail(LoginRequiredMixin, DetailView):
-    model = MenuItem
-    template_name = "inventory/recipe_detail.html"
-
 
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super().get_context_data(**kwargs)

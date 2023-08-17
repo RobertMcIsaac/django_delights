@@ -13,7 +13,7 @@
     <div>
         <ol>
             {% for menuitem in menuitem_list %}
-            <a href="{% url 'menuitem_recipe' menuitem.pk %}"><li>{{ menuitem.name }}</li></a>
+            <a href="{% url 'menuitem_detail' menuitem.pk %}"><li>{{ menuitem.name }}</li></a>
             {% endfor %}
         </ol>
     </div>
