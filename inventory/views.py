@@ -1,4 +1,5 @@
-from typing import Any, Dict
+from typing import Any, Dict, Sequence
+from django.db.models.query import QuerySet
 from django.forms.models import BaseModelForm
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -13,7 +14,7 @@ from .models import Ingredient, MenuItem, RecipeRequirement, Purchase
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView, TemplateView
 from .forms import MenuItemCreateForm, IngredientCreateForm, RecipeRequirementCreateForm, PurchaseCreateForm
 from django.db.models import Sum, DateField
-from django.db.models.functions import TruncDate
+from django.db.models.functions import TruncDate, Lower
 
 
 # LOGIN VIEW (built-in)
@@ -37,6 +38,11 @@ class MenuItemList(LoginRequiredMixin ,ListView):
     model = MenuItem
     template_name = "inventory/menu.html"
     context_object_name = "menuitem_list"
+
+    # order list by 'name' field, treating all characters as lowercase in temporary field
+    def get_queryset(self) -> QuerySet[Any]:
+        return MenuItem.objects.annotate(lower_name=Lower("name")).order_by("lower_name")
+
 
 class MenuItemCreate(LoginRequiredMixin ,CreateView):
     model= MenuItem
@@ -72,6 +78,10 @@ class IngredientList(LoginRequiredMixin ,ListView):
     model = Ingredient
     template_name = "inventory/inventory.html"
     context_object_name = "ingredient_list"
+
+    # order list by 'name' field, treating all characters as lowercase in temporary field
+    def get_queryset(self) -> QuerySet[Any]:
+        return Ingredient.objects.annotate(lower_name=Lower("name")).order_by("lower_name")
 
 class IngredientCreate(LoginRequiredMixin, CreateView):
     model = Ingredient
