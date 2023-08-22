@@ -39,7 +39,7 @@ class MenuItemList(LoginRequiredMixin ,ListView):
     template_name = "inventory/menu.html"
     context_object_name = "menuitem_list"
 
-    # order list by 'name' field, treating all characters as lowercase in temporary field
+    # order list by 'name' field, treating all characters as lowercase in annotated field
     def get_queryset(self) -> QuerySet[Any]:
         return MenuItem.objects.annotate(lower_name=Lower("name")).order_by("lower_name")
 
@@ -60,6 +60,11 @@ class MenuItemCreate(LoginRequiredMixin ,CreateView):
 class MenuItemDetail(LoginRequiredMixin, DetailView):
     model = MenuItem
     template_name = "inventory/menuitem_detail.html"
+
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context["reciperequirement_list"] = RecipeRequirement.objects.filter(menuitem=self.object)
+        return context
     
 class MenuItemUpdate(UpdateView):
     model = MenuItem
@@ -79,7 +84,7 @@ class IngredientList(LoginRequiredMixin ,ListView):
     template_name = "inventory/inventory.html"
     context_object_name = "ingredient_list"
 
-    # order list by 'name' field, treating all characters as lowercase in temporary field
+    # order list by 'name' field, treating all characters as lowercase in annotated field
     def get_queryset(self) -> QuerySet[Any]:
         return Ingredient.objects.annotate(lower_name=Lower("name")).order_by("lower_name")
 
@@ -117,6 +122,7 @@ class RecipeRequirementCreate(LoginRequiredMixin, CreateView):
         context = super().get_context_data(**kwargs)
         context["menuitem"] = MenuItem.objects.get(pk=self.kwargs["pk"])
         context["recipe_requirement"] = RecipeRequirement.objects.filter(menuitem=context["menuitem"]).exists()
+        context["reciperequirement_list"] = RecipeRequirement.objects.filter(menuitem=self.object)
         return context
     
     def form_valid(self, form):
@@ -125,12 +131,18 @@ class RecipeRequirementCreate(LoginRequiredMixin, CreateView):
     
     def get_success_url(self):
         return reverse_lazy("recipe_new", kwargs={"pk": self.object.menuitem.pk})
+    
+class RecipeRequirementDelete(LoginRequiredMixin, DeleteView):
+    model = RecipeRequirement
+    template_name = "inventory/recipe_requirement_delete.html"
 
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super().get_context_data(**kwargs)
-        context["reciperequirement_list"] = RecipeRequirement.objects.filter(menuitem=self.object)
-        context["menuitem"] = self.object
+        context["menuitem"] = self.object.menuitem
         return context
+    
+    def get_success_url(self):
+        return reverse_lazy("menuitem_detail", kwargs={"pk": self.object.menuitem.pk})
 
 
 # PURCHASE VIEWS
@@ -138,6 +150,7 @@ class PurchaseList(LoginRequiredMixin, ListView):
     model = Purchase
     template_name = "inventory/purchase_log.html"
     context_object_name = "purchase_list"
+    ordering = ["-purchase_time"]
 
 class PurchaseCreate(LoginRequiredMixin, CreateView):
     model = Purchase

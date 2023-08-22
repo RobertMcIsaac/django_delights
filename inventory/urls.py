@@ -17,8 +17,9 @@ urlpatterns = [
     path('ingredient/edit/<int:pk>/', views.IngredientUpdate.as_view(), name="ingredient_edit"),
     path('ingredient/delete/<int:pk>/', views.IngredientDelete.as_view(), name="ingredient_delete"),
     path('recipes/', views.RecipeRequirementList.as_view(), name="recipes"),
-    path('<int:pk>/add-recipe', views.RecipeRequirementCreate.as_view(), name="recipe_new"),
+    path('<int:pk>/add-recipe/', views.RecipeRequirementCreate.as_view(), name="recipe_new"),
+    path('<int:pk>/delete-recipe-requirement/', views.RecipeRequirementDelete.as_view(), name="reciperequirement_delete"),
     path('purchase-log/', views.PurchaseList.as_view(), name="purchase_log"),
-    path('purchase-log/add', views.PurchaseCreate.as_view(), name="purchase_new"),
+    path('purchase-log/add/', views.PurchaseCreate.as_view(), name="purchase_new"),
     path('revenue/', views.RevenueView.as_view(), name="revenue"),
 ]
