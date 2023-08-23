@@ -7,10 +7,18 @@
     <div>
         <h2>Log New Purchase</h2>
     </div>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+
     <form class="form__container" action="" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <!-- NEED TO HAVE USER SET AS CURRENT USER -->
         <button class="buttons form__button" type="submit">Log Purchase</button>
     </form>
     <a href="{% url 'purchase_log' %}">Return to Purchase Log</a>

@@ -13,8 +13,10 @@ from django.urls import reverse_lazy
 from .models import Ingredient, MenuItem, RecipeRequirement, Purchase
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView, TemplateView
 from .forms import MenuItemCreateForm, IngredientCreateForm, RecipeRequirementCreateForm, PurchaseCreateForm
-from django.db.models import Sum, DateField
+from django.db.models import Sum, DateField, F
 from django.db.models.functions import TruncDate, Lower
+from django.db import transaction
+from django.contrib import messages
 
 
 # LOGIN VIEW (built-in)
@@ -158,21 +160,35 @@ class PurchaseCreate(LoginRequiredMixin, CreateView):
     form_class = PurchaseCreateForm
     success_url = reverse_lazy("purchase_log")
 
+    @transaction.atomic
     def form_valid(self, form: BaseModelForm) -> HttpResponse:
         menuitem = form.cleaned_data.get("menuitem")
         form.instance.total_cost = menuitem.get_total_cost()
         form.instance.sale_price = menuitem.price
         form.instance.user = self.request.user
+        recipe_requirements = RecipeRequirement.objects.filter(menuitem=menuitem)
+        for requirement in recipe_requirements:
+            ingredient = requirement.ingredient
+            if ingredient.quantity_available < requirement.ingredient_quantity:
+                messages.error(self.request, f"Not enough {ingredient.name} to make this menu item.")
+                return super().form_invalid(form)
+            else:
+                ingredient.quantity_available = F("quantity_available") - requirement.ingredient_quantity
+                ingredient.save()
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super().get_context_data(**kwargs)
-        menuitem_id = self.request.POST.get("menuitem", None)
-        if menuitem_id:
-            menuitem = MenuItem.objects.get(id=menuitem_id)
-            context["total_cost"] = menuitem.get_total_cost()
-            context["sale_price"] = menuitem.get_price
+        form = context.get("form")
+        if form.is_bound and form.is_valid():
+            menuitem = form.cleaned_data.get("menuitem")
+            if menuitem:
+                context["menuitem"] = menuitem
+                context["total_cost"] = menuitem.get_total_cost()
+                context["sale_price"] = menuitem.price
         return context
+
+
 
 
 # REVENUE VIEWS
