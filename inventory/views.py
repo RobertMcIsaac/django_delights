@@ -14,7 +14,7 @@ from .models import Ingredient, MenuItem, RecipeRequirement, Purchase
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView, TemplateView
 from .forms import MenuItemCreateForm, IngredientCreateForm, RecipeRequirementCreateForm, PurchaseCreateForm
 from django.db.models import Sum, DateField, F
-from django.db.models.functions import TruncDate, Lower
+from django.db.models.functions import TruncDate, TruncMonth, Lower
 from django.db import transaction
 from django.contrib import messages
 
@@ -217,15 +217,31 @@ class PurchaseCreate(LoginRequiredMixin, CreateView):
 class RevenueView(LoginRequiredMixin, TemplateView):
     template_name = "inventory/revenue.html"
 
-    # Calculate and allow access to income, costs and profit. Order by date.
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super().get_context_data(**kwargs)
+        # Calculate and allow access to income, costs and profit. Order by date.
         daily_revenues = Purchase.objects.annotate(date=TruncDate("purchase_time"))\
             .values("date")\
             .annotate(income=Sum("sale_price"), costs=Sum("total_cost")) \
             .order_by("-date")
         for revenue in daily_revenues:
             revenue["profit"] = revenue["income"] - revenue["costs"]
-            context["daily_revenues"] = daily_revenues
+        context["daily_revenues"] = daily_revenues
+        # Calculate and allow access to income, costs and profit. Order by month.
+        monthly_revenues = Purchase.objects.annotate(month=TruncMonth("purchase_time"))\
+            .values("month")\
+            .annotate(income=Sum("sale_price"), costs=Sum("total_cost")) \
+            .order_by("-month")
+        for revenue in monthly_revenues:
+            revenue["profit"] = revenue["income"] - revenue["costs"]
+        context["monthly_revenues"] = monthly_revenues
+        # Calculate and allow access to totals for income, costs and profit. Order by date.
+        total_sales = Purchase.objects.aggregate(income=Sum("sale_price"))["income"]
+        total_costs = Purchase.objects.aggregate(costs=Sum("total_cost"))["costs"]
+        total_profit = total_sales - total_costs
+        context["total_sales"] = total_sales
+        context["total_costs"] = total_costs
+        context["total_profit"] = total_profit
+
         return context
     

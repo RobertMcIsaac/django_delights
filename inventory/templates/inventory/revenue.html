@@ -10,7 +10,34 @@
         <p>Some description of the page.</p>
         <p>Some description of the page.</p>
     </div>
-    
+    <ul>
+        <li>Total sales: {{total_sales|floatformat:2}}</li>
+        <li>Total costs: {{total_costs|floatformat:2}}</li>
+        <li>Total profit: {{total_profit|floatformat:2}}</li>
+    </ul>
+    <h3>Monthly Revenue</h3>
+    <table class="table__container">
+        <thead class="table__head">
+            <tr class="table__head--row">
+                <th class="table__row--heading">Date</th>
+                <th class="table__row--heading">Income</th>
+                <th class="table__row--heading">Costs</th>
+                <th class="table__row--heading">Profit</th>
+            </tr>
+        </thead>
+        <tbody class="table__body">
+            {% for revenue in monthly_revenues %}
+            <tr class="table__body--row">
+                <td class="table__row--detail">{{ revenue.month|date:"F Y" }}</td>
+                <td class="table__row--detail">{{ revenue.income|floatformat:2 }}</td>
+                <td class="table__row--detail">{{ revenue.costs|floatformat:2 }}</td>
+                <td class="table__row--detail">{{ revenue.profit|floatformat:2 }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+     </table>
+     
+     <h3>Daily Revenue</h3>
     <table class="table__container">
         <thead class="table__head">
             <tr class="table__head--row">
