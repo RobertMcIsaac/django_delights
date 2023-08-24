@@ -89,6 +89,19 @@ class IngredientList(LoginRequiredMixin ,ListView):
     # order list by 'name' field, treating all characters as lowercase in annotated field
     def get_queryset(self) -> QuerySet[Any]:
         return Ingredient.objects.annotate(lower_name=Lower("name")).order_by("lower_name")
+    
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        ingredient_list = context["ingredient_list"]
+        restock_dict = {}
+        for ingredient in ingredient_list:
+            requirements = ingredient.reciperequirement_set.all()
+            total_requirements = sum([requirement.ingredient_quantity for requirement in requirements])
+            defecit = total_requirements - ingredient.quantity_available
+            if defecit > 0:
+                restock_dict[ingredient] = defecit * ingredient.cost_per_unit
+        context["restock_dict"] = restock_dict
+        return context
 
 class IngredientCreate(LoginRequiredMixin, CreateView):
     model = Ingredient
