@@ -2,8 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse 
 
-# Create your models here.
-
 # Ingredient MODEL
 class Ingredient(models.Model):
     name = models.CharField(max_length=100, unique=True)
@@ -48,7 +46,7 @@ class MenuItem(models.Model):
     recipe_instructions = models.TextField(help_text="Instructions for preparing this menu item", blank=True)
 
     def __str__(self):
-        return self.name
+        return f"{self.name}: £{self.price}"
     
     def get_absolute_url(self):
         return reverse('menuitem_detail', args=[str(self.id)])
@@ -57,6 +55,7 @@ class MenuItem(models.Model):
         ordering = ["name"]
         verbose_name = "Menu item"
 
+    # Calculate total cost of all RecipeRequirements
     def get_total_cost(self):
         total_cost = 0
         for requirement in self.reciperequirement_set.all():

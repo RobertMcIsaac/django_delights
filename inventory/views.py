@@ -86,10 +86,11 @@ class IngredientList(LoginRequiredMixin ,ListView):
     template_name = "inventory/inventory.html"
     context_object_name = "ingredient_list"
 
-    # order list by 'name' field, treating all characters as lowercase in annotated field
+    # order list by 'name' field, treating all characters as lowercase in annotated field.
     def get_queryset(self) -> QuerySet[Any]:
         return Ingredient.objects.annotate(lower_name=Lower("name")).order_by("lower_name")
     
+    # Calculate which ingredients need to be restocked and how much restocking each will cost.
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super().get_context_data(**kwargs)
         ingredient_list = context["ingredient_list"]
@@ -133,6 +134,8 @@ class RecipeRequirementCreate(LoginRequiredMixin, CreateView):
     form_class = RecipeRequirementCreateForm
     success_url = reverse_lazy("menu")
     
+    # Fetch the MenuItem instance, check if it has an existing RecipeRequirement instance, get a list of it's RecipeRequirement instances. 
+    # Purpose: allow different templates to be displayed if the MenuItem already has a RecipeRequirement
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super().get_context_data(**kwargs)
         context["menuitem"] = MenuItem.objects.get(pk=self.kwargs["pk"])
@@ -140,10 +143,12 @@ class RecipeRequirementCreate(LoginRequiredMixin, CreateView):
         context["reciperequirement_list"] = RecipeRequirement.objects.filter(menuitem=self.object)
         return context
     
+    # Associate the RecipeRequirement with the specific MenuItem
     def form_valid(self, form):
         form.instance.menuitem = MenuItem.objects.get(pk=self.kwargs['pk'])
         return super().form_valid(form)
     
+    # Redirect user back to the recipe_create page specific to the associated MenuItem
     def get_success_url(self):
         return reverse_lazy("recipe_new", kwargs={"pk": self.object.menuitem.pk})
     
@@ -151,6 +156,7 @@ class RecipeRequirementDelete(LoginRequiredMixin, DeleteView):
     model = RecipeRequirement
     template_name = "inventory/recipe_requirement_delete.html"
 
+    # Allow access to MenuItem instance
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super().get_context_data(**kwargs)
         context["menuitem"] = self.object.menuitem
@@ -173,6 +179,8 @@ class PurchaseCreate(LoginRequiredMixin, CreateView):
     form_class = PurchaseCreateForm
     success_url = reverse_lazy("purchase_log")
 
+    # Prevent users from logging purchases of Menuitems when it's RecipeRequirements cannot be met by Ingredient stock level
+    # Adjust Ingredient stock level when MenuItem is logged
     @transaction.atomic
     def form_valid(self, form: BaseModelForm) -> HttpResponse:
         menuitem = form.cleaned_data.get("menuitem")
@@ -190,6 +198,7 @@ class PurchaseCreate(LoginRequiredMixin, CreateView):
                 ingredient.save()
         return super().form_valid(form)
 
+    # Allow access to MenuItem instance and associated attributes 
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super().get_context_data(**kwargs)
         form = context.get("form")
@@ -208,6 +217,7 @@ class PurchaseCreate(LoginRequiredMixin, CreateView):
 class RevenueView(LoginRequiredMixin, TemplateView):
     template_name = "inventory/revenue.html"
 
+    # Calculate and allow access to income, costs and profit. Order by date.
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super().get_context_data(**kwargs)
         daily_revenues = Purchase.objects.annotate(date=TruncDate("purchase_time"))\
