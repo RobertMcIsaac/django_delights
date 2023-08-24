@@ -10,6 +10,17 @@
         <p class="title__detail">Pantry Pilot is an inventory and sales tracking application designed to take the hassle out of running your restaurant. Pantry Pilot streamlines administrative tasks so that you can focus on your food and your customers.</p>
     </div>
 
+    {% if user.is_authenticated %}
+
+    {% else %}
+    <div class="loginprompt__container">
+        <a href="{% url 'login' %}"><button class="login__button buttons">LOGIN</button></a>
+    </div>
+    <div>
+        <small>Don't have an account?<a href="{% url 'signup' %}"> Sign-up here</a></small>
+    </div>
+    {% endif %}
+    
     <div class="feat__container flex__center">
         <div class="feat__item flex__center">
             <a href="{% url 'menu' %}"><h4 class="feat__item--title">Menu</h4></a>
@@ -33,16 +44,5 @@
         </div>
     </div>
 
-    {% if user.is_authenticated %}
-
-    {% else %}
-    <div class="loginprompt__container">
-        <h4 class="login__prompt">Please Login to get started</h4>
-        <a href="{% url 'login' %}"><button class="login__button buttons">LOGIN</button></a>
-    </div>
-    <div>
-        <small>Don't have an account?<a href="{% url 'signup' %}"> Sign-up here</a></small>
-    </div>
 </section>
-{% endif %}
 {% endblock content %}

@@ -31,7 +31,7 @@ class Ingredient(models.Model):
     )
 
     def __str__(self):
-        return self.name
+        return f"{self.name} ({self.get_measurement_unit_display()})"
 
     class Meta:
         ordering = ["name"]

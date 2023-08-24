@@ -58,6 +58,11 @@ class MenuItemCreate(LoginRequiredMixin ,CreateView):
     
     def get_success_url(self):
         return reverse_lazy('recipe_new', kwargs={'pk': self.object.pk})
+    
+    # def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+    #     context = super().get_context_data(**kwargs)
+    #     measurement_unit = RecipeRequirement.objects.annotate(measurement_unit=Ingredient.measurement_unit)
+    #     context["measurement_unit"] = measurement_unit
 
 class MenuItemDetail(LoginRequiredMixin, DetailView):
     model = MenuItem
