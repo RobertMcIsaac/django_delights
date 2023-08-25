@@ -33,7 +33,10 @@ class SignUpView(CreateView):
 # HOME VIEW
 def home_view(request):
     context = {}
-    return render(request, "inventory/home.html", context)
+    if request.user.is_authenticated:
+        return render(request, "inventory/home_authenticated.html", context)
+    else:
+        return render(request, "inventory/home_unauthenticated.html", context)
 
 # MENU VIEWS
 class MenuItemList(LoginRequiredMixin ,ListView):

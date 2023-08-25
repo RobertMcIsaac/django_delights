@@ -1,0 +1,36 @@
+{% extends "inventory/base.html" %}
+
+{% block title %}Home - Pantry Pilot{% endblock title %}
+
+{% block content %}
+
+<section>
+    <div>
+        <a href="{% url 'menu' %}"><h3>Menu</h3></a>
+        <p>Current number of menu items: </p>
+        <p>Recently added: </p>
+        <a href="{% url 'recipes' %}"><p>Recipes</p></a>
+        <a href="{% url 'menuitem_new' %}"><button>Add New Menu Item</button></a>
+    </div>
+    <div>
+        <a href="{% url 'inventory' %}"><h3>Inventory</h3></a>
+        <p>Current number of inventory items: </p>
+        <p>Recently added: </p>
+        <a href="{% url 'ingredient_new' %}"><button>Add New Ingredient</button></a>
+    </div>
+    <div>
+        <a href="{% url 'purchase_log' %}"><h3>Purchase Log</h3></a>
+        <p>Last purchase: </p>
+        <p></p>
+        <a href="{% url 'purchase_new' %}"><button>Log New Purchase</button></a>
+    </div>
+    <div>
+        <a href="{% url 'revenue' %}"><h3>Revenue</h3></a>
+        <p>Total sales: </p>
+        <p>Total costs: </p>
+        <p>Profit for previous day: </p>
+        <p>Profit for previous momnth: </p>
+    </div>
+</section>
+
+{% endblock content %}

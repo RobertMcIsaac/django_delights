@@ -4,22 +4,19 @@
 
 {% block content %}
 <section id="home">
+    
     <div class="title__container flex__center">
         <h1 class="home__title">Welcome to Pantry Pilot</h1>
         <small>By Django Delights</small>
         <p class="title__detail">Pantry Pilot is an inventory and sales tracking application designed to take the hassle out of running your restaurant. Pantry Pilot streamlines administrative tasks so that you can focus on your food and your customers.</p>
     </div>
 
-    {% if user.is_authenticated %}
-
-    {% else %}
     <div class="loginprompt__container">
         <a href="{% url 'login' %}"><button class="login__button buttons">LOGIN</button></a>
     </div>
     <div>
         <small>Don't have an account?<a href="{% url 'signup' %}"> Sign-up here</a></small>
     </div>
-    {% endif %}
     
     <div class="feat__container flex__center">
         <div class="feat__item flex__center">
