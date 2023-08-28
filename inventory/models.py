@@ -7,6 +7,7 @@ class Ingredient(models.Model):
     name = models.CharField(max_length=100, unique=True)
     cost_per_unit = models.DecimalField(max_digits=8, decimal_places=2, default=0)
     quantity_available = models.DecimalField(max_digits=8, decimal_places=2, default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
     # Define constants at class level for MEASUREMENT_UNIT_CHOICES
     GRAMS = "GR"
     KILOGRAMS = "KG"
@@ -44,6 +45,7 @@ class MenuItem(models.Model):
     price = models.DecimalField(max_digits=6, decimal_places=2, default=0)
     description = models.CharField(max_length=200, blank=True)
     recipe_instructions = models.TextField(help_text="Instructions for preparing this menu item", blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"{self.name}: £{self.price}"

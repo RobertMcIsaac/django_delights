@@ -34,6 +34,28 @@ class SignUpView(CreateView):
 def home_view(request):
     context = {}
     if request.user.is_authenticated:
+
+        num_menuitems = MenuItem.objects.all().count
+        context["num_menuitems"] = num_menuitems
+        try:
+            latest_menuitem = MenuItem.objects.latest("created_at")
+        except MenuItem.DoesNotExist:
+            latest_menuitem = None
+        context["latest_menuitem"] = latest_menuitem
+
+        num_ingredients = Ingredient.objects.all().count
+        context["num_ingredients"] = num_ingredients
+        try:
+            latest_ingredient = Ingredient.objects.latest("created_at")
+        except Ingredient.DoesNotExist:
+            latest_ingredient = None
+        context["latest_ingredient"] = latest_ingredient
+
+        num_purchases = Purchase.objects.all().count
+        context["num_purchases"] = num_purchases
+        latest_purchase = Purchase.objects.latest("purchase_time")
+        context["latest_purchase"] = latest_purchase
+
         return render(request, "inventory/home_authenticated.html", context)
     else:
         return render(request, "inventory/home_unauthenticated.html", context)

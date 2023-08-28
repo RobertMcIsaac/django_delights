@@ -7,29 +7,36 @@
 <section>
     <div>
         <a href="{% url 'menu' %}"><h3>Menu</h3></a>
-        <p>Current number of menu items: </p>
-        <p>Recently added: </p>
-        <a href="{% url 'recipes' %}"><p>Recipes</p></a>
+        <p>Current number of menu items: {{num_menuitems}}</p>
+        {% if latest_menuitem %}
+        <p>Recently added: {{latest_menuitem}}</p>
+        {% else %}
+        <p>Recently added: There are currently no menu items.</p>
+        {% endif %}
+        <a href="{% url 'recipes' %}"><p>See Recipes</p></a>
         <a href="{% url 'menuitem_new' %}"><button>Add New Menu Item</button></a>
     </div>
     <div>
         <a href="{% url 'inventory' %}"><h3>Inventory</h3></a>
-        <p>Current number of inventory items: </p>
-        <p>Recently added: </p>
+        <p>Current number of inventory items: {{num_ingredients}}</p>
+        {% if latest_ingredient %}
+        <p>Recently added: {{latest_ingredient}}</p>
+        {% else %}
+        <p>Recently added: There are currently no ingredients.</p>
+        {% endif %}
         <a href="{% url 'ingredient_new' %}"><button>Add New Ingredient</button></a>
     </div>
     <div>
         <a href="{% url 'purchase_log' %}"><h3>Purchase Log</h3></a>
-        <p>Last purchase: </p>
+        <p>Number of purchases made: {{num_purchases}}</p>
+        <p>Last purchase: {{latest_purchase}}</p>
         <p></p>
         <a href="{% url 'purchase_new' %}"><button>Log New Purchase</button></a>
     </div>
     <div>
         <a href="{% url 'revenue' %}"><h3>Revenue</h3></a>
-        <p>Total sales: </p>
-        <p>Total costs: </p>
         <p>Profit for previous day: </p>
-        <p>Profit for previous momnth: </p>
+        <p>Profit for previous month: </p>
     </div>
 </section>
 
