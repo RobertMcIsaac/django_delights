@@ -18,6 +18,9 @@ from django.db.models.functions import TruncDate, TruncMonth, Lower
 from django.db import transaction
 from django.contrib import messages
 
+# HELPER METHODS
+
+
 
 # LOGIN VIEW (built-in)
 class InventoryLoginView(auth_views.LoginView):
@@ -34,27 +37,37 @@ class SignUpView(CreateView):
 def home_view(request):
     context = {}
     if request.user.is_authenticated:
-
-        num_menuitems = MenuItem.objects.all().count
+        # Display total number of menu items
+        num_menuitems = MenuItem.objects.all().count()
         context["num_menuitems"] = num_menuitems
+        # Display most recent menu item added
         try:
             latest_menuitem = MenuItem.objects.latest("created_at")
         except MenuItem.DoesNotExist:
             latest_menuitem = None
         context["latest_menuitem"] = latest_menuitem
-
-        num_ingredients = Ingredient.objects.all().count
+        # Display total number of ingredients
+        num_ingredients = Ingredient.objects.all().count()
         context["num_ingredients"] = num_ingredients
+        # Display most recent ingredient added
         try:
             latest_ingredient = Ingredient.objects.latest("created_at")
         except Ingredient.DoesNotExist:
             latest_ingredient = None
         context["latest_ingredient"] = latest_ingredient
-
-        num_purchases = Purchase.objects.all().count
+        # Display total number of purchases
+        num_purchases = Purchase.objects.all().count()
         context["num_purchases"] = num_purchases
-        latest_purchase = Purchase.objects.latest("purchase_time")
+        # Display most recent purchase logged
+        try: 
+            latest_purchase = Purchase.objects.latest("purchase_time")
+        except Purchase.DoesNotExist:
+            latest_purchase = None
         context["latest_purchase"] = latest_purchase
+        # Calculate and display previous day's profit
+
+        # Calculate and display previous month's profit
+
 
         return render(request, "inventory/home_authenticated.html", context)
     else:
@@ -83,11 +96,6 @@ class MenuItemCreate(LoginRequiredMixin ,CreateView):
     
     def get_success_url(self):
         return reverse_lazy('recipe_new', kwargs={'pk': self.object.pk})
-    
-    # def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
-    #     context = super().get_context_data(**kwargs)
-    #     measurement_unit = RecipeRequirement.objects.annotate(measurement_unit=Ingredient.measurement_unit)
-    #     context["measurement_unit"] = measurement_unit
 
 class MenuItemDetail(LoginRequiredMixin, DetailView):
     model = MenuItem
