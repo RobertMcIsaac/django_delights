@@ -11,9 +11,9 @@
         <p>Some description of the page.</p>
     </div>
     <ul>
-        <li>Total sales: {{total_sales|floatformat:2}}</li>
-        <li>Total costs: {{total_costs|floatformat:2}}</li>
-        <li>Total profit: {{total_profit|floatformat:2}}</li>
+        <li>Total sales: {{total_revenue.total_sales|floatformat:2}}</li>
+        <li>Total costs: {{total_revenue.total_costs|floatformat:2}}</li>
+        <li>Total profit: {{total_revenue.total_profit|floatformat:2}}</li>
     </ul>
     <h3>Monthly Revenue</h3>
     <table class="table__container">
@@ -26,9 +26,9 @@
             </tr>
         </thead>
         <tbody class="table__body">
-            {% for revenue in monthly_revenues %}
+            {% for month, revenue in monthly_revenue.items %}
             <tr class="table__body--row">
-                <td class="table__row--detail">{{ revenue.month|date:"F Y" }}</td>
+                <td class="table__row--detail">{{ month|date:"F Y" }}</td>
                 <td class="table__row--detail">{{ revenue.income|floatformat:2 }}</td>
                 <td class="table__row--detail">{{ revenue.costs|floatformat:2 }}</td>
                 <td class="table__row--detail">{{ revenue.profit|floatformat:2 }}</td>
@@ -48,9 +48,9 @@
             </tr>
         </thead>
         <tbody class="table__body">
-            {% for revenue in daily_revenues %}
+            {% for date, revenue in daily_revenue.items %}
             <tr class="table__body--row">
-                <td class="table__row--detail">{{ revenue.date }}</td>
+                <td class="table__row--detail">{{ date }}</td>
                 <td class="table__row--detail">{{ revenue.income|floatformat:2 }}</td>
                 <td class="table__row--detail">{{ revenue.costs|floatformat:2 }}</td>
                 <td class="table__row--detail">{{ revenue.profit|floatformat:2 }}</td>

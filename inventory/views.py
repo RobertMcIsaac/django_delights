@@ -17,10 +17,30 @@ from django.db.models import Sum, DateField, F
 from django.db.models.functions import TruncDate, TruncMonth, Lower
 from django.db import transaction
 from django.contrib import messages
+import datetime
 
 # HELPER METHODS
+def calculate_daily_revenue(target_date):
+    daily_revenue = Purchase.objects.filter(purchase_time__date=target_date)\
+        .aggregate(income=Sum("sale_price"), costs=Sum("total_cost"))
+    daily_revenue["income"] = daily_revenue["income"] or 0
+    daily_revenue["costs"] = daily_revenue["costs"] or 0
+    daily_revenue["profit"] = (daily_revenue["income"] or 0) - (daily_revenue["costs"] or 0)
+    return daily_revenue
 
+def calculate_monthly_revenue(target_month):
+    monthly_revenue = Purchase.objects.filter(purchase_time__month=target_month.month, purchase_time__year=target_month.year)\
+        .aggregate(income=Sum("sale_price"), costs=Sum("total_cost"))
+    monthly_revenue["income"] = monthly_revenue["income"] or 0
+    monthly_revenue["costs"] = monthly_revenue["costs"] or 0
+    monthly_revenue["profit"] = (monthly_revenue["income"] or 0) - (monthly_revenue["costs"] or 0)
+    return monthly_revenue
 
+def calculate_total_revenue():
+    total_sales = Purchase.objects.aggregate(income=Sum("sale_price"))["income"] or 0
+    total_costs = Purchase.objects.aggregate(costs=Sum("total_cost"))["costs"] or 0
+    total_profit = total_sales - total_costs
+    return {"total_sales": total_sales, "total_costs": total_costs, "total_profit": total_profit}
 
 # LOGIN VIEW (built-in)
 class InventoryLoginView(auth_views.LoginView):
@@ -64,9 +84,10 @@ def home_view(request):
         except Purchase.DoesNotExist:
             latest_purchase = None
         context["latest_purchase"] = latest_purchase
-        # Calculate and display previous day's profit
-
-        # Calculate and display previous month's profit
+        # Calculateprevious day's profit
+        yesterday = datetime.date.today - datetime.timedelta(days=1)
+        profit = calculate_daily_revenue["yesterday"]
+        # Calculate previous month's profit
 
 
         return render(request, "inventory/home_authenticated.html", context)
@@ -257,29 +278,15 @@ class RevenueView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super().get_context_data(**kwargs)
-        # Calculate and allow access to income, costs and profit. Order by date.
-        daily_revenues = Purchase.objects.annotate(date=TruncDate("purchase_time"))\
-            .values("date")\
-            .annotate(income=Sum("sale_price"), costs=Sum("total_cost")) \
-            .order_by("-date")
-        for revenue in daily_revenues:
-            revenue["profit"] = revenue["income"] - revenue["costs"]
-        context["daily_revenues"] = daily_revenues
-        # Calculate and allow access to income, costs and profit. Order by month.
-        monthly_revenues = Purchase.objects.annotate(month=TruncMonth("purchase_time"))\
-            .values("month")\
-            .annotate(income=Sum("sale_price"), costs=Sum("total_cost")) \
-            .order_by("-month")
-        for revenue in monthly_revenues:
-            revenue["profit"] = revenue["income"] - revenue["costs"]
-        context["monthly_revenues"] = monthly_revenues
-        # Calculate and allow access to totals for income, costs and profit. Order by date.
-        total_sales = Purchase.objects.aggregate(income=Sum("sale_price"))["income"]
-        total_costs = Purchase.objects.aggregate(costs=Sum("total_cost"))["costs"]
-        total_profit = total_sales - total_costs
-        context["total_sales"] = total_sales
-        context["total_costs"] = total_costs
-        context["total_profit"] = total_profit
-
+        # Daily revenue using helper method
+        daily_revenue_dates = Purchase.objects.annotate(date=TruncDate("purchase_time")).values("date").order_by("-date").distinct()
+        daily_revenue = {date["date"]: calculate_daily_revenue(date["date"]) for date in daily_revenue_dates}
+        context["daily_revenue"] = daily_revenue
+        # Monthly revenue using helper method
+        monthly_revenue_months = Purchase.objects.annotate(month=TruncMonth("purchase_time")).values("month").order_by("-month").distinct()
+        monthly_revenue = {month["month"]: calculate_monthly_revenue(month["month"]) for month in monthly_revenue_months}
+        context["monthly_revenue"] = monthly_revenue
+        # Total revenue using helper method 
+        total_revenue = calculate_total_revenue()
+        context["total_revenue"] = total_revenue
         return context
-    
