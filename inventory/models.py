@@ -48,7 +48,7 @@ class MenuItem(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.name}: £{self.price}"
+        return self.name
     
     def get_absolute_url(self):
         return reverse('menuitem_detail', args=[str(self.id)])
@@ -89,7 +89,7 @@ class Purchase(models.Model):
 
     def __str__(self):
         formatted_time = self.purchase_time.strftime("%Y-%m-%d %I:%M%p")
-        return str(self.menuitem.name) + " purchased " + formatted_time
+        return str(self.menuitem) + " purchased " + formatted_time
 
     class Meta:
         ordering = ["purchase_time"]

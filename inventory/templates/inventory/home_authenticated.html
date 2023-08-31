@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<section>
+<section id="home">
     <div>
         <a href="{% url 'menu' %}"><h3>Menu</h3></a>
         <p>Current number of menu items: {{num_menuitems}}</p>
@@ -28,7 +28,7 @@
     </div>
     <div>
         <a href="{% url 'purchase_log' %}"><h3>Purchase Log</h3></a>
-        <p>Number of purchases made: {{num_purchases}}</p>
+        <p>Total purchases: {{num_purchases}}</p>
         <p>Last purchase: {{latest_purchase}}</p>
         <p></p>
         <a href="{% url 'purchase_new' %}"><button>Log New Purchase</button></a>
@@ -36,12 +36,12 @@
     <div>
         <a href="{% url 'revenue' %}"><h3>Revenue</h3></a>
         {% if yesterday_revenue %}
-        <p>Profit for yesterday: £{{yesterday_revenue.profit}}</p>
+        <p>Profit for yesterday: £{{yesterday_revenue.profit|floatformat:2}}</p>
         {% else %}
         <p>Profit for yesterday: None</p>
         {% endif %}
         {% if previous_month_revenue %}
-        <p>Profit for last month: £{{previous_month_revenue.profit}}</p>
+        <p>Profit for last month: £{{previous_month_revenue.profit|floatformat:2}}</p>
         {% else %}
         <p>Profit for last month: None</p>
         {% endif %}
