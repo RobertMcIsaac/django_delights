@@ -18,6 +18,7 @@ from django.db.models.functions import TruncDate, TruncMonth, Lower
 from django.db import transaction
 from django.contrib import messages
 import datetime
+from dateutil.relativedelta import relativedelta
 
 # HELPER METHODS
 def calculate_daily_revenue(target_date):
@@ -42,6 +43,12 @@ def calculate_total_revenue():
     total_profit = total_sales - total_costs
     return {"total_sales": total_sales, "total_costs": total_costs, "total_profit": total_profit}
 
+def get_previous_month_dates(today):
+    first_day_this_month = today.replace(day=1)
+    last_day_previous_month = first_day_this_month - datetime.timedelta(days=1)
+    first_day_previous_month = last_day_previous_month.replace(day=1)
+    return first_day_previous_month, last_day_previous_month
+
 # LOGIN VIEW (built-in)
 class InventoryLoginView(auth_views.LoginView):
     template_name = "registration/login.html"
@@ -57,38 +64,42 @@ class SignUpView(CreateView):
 def home_view(request):
     context = {}
     if request.user.is_authenticated:
-        # Display total number of menu items
+        # Get total number of menu items
         num_menuitems = MenuItem.objects.all().count()
         context["num_menuitems"] = num_menuitems
-        # Display most recent menu item added
+        # Get most recent menu item added
         try:
             latest_menuitem = MenuItem.objects.latest("created_at")
         except MenuItem.DoesNotExist:
             latest_menuitem = None
         context["latest_menuitem"] = latest_menuitem
-        # Display total number of ingredients
+        # Get total number of ingredients
         num_ingredients = Ingredient.objects.all().count()
         context["num_ingredients"] = num_ingredients
-        # Display most recent ingredient added
+        # Get most recent ingredient added
         try:
             latest_ingredient = Ingredient.objects.latest("created_at")
         except Ingredient.DoesNotExist:
             latest_ingredient = None
         context["latest_ingredient"] = latest_ingredient
-        # Display total number of purchases
+        # Get total number of purchases
         num_purchases = Purchase.objects.all().count()
         context["num_purchases"] = num_purchases
-        # Display most recent purchase logged
+        # Get most recent purchase logged
         try: 
             latest_purchase = Purchase.objects.latest("purchase_time")
         except Purchase.DoesNotExist:
             latest_purchase = None
         context["latest_purchase"] = latest_purchase
-        # Calculateprevious day's profit
-        yesterday = datetime.date.today - datetime.timedelta(days=1)
-        profit = calculate_daily_revenue["yesterday"]
-        # Calculate previous month's profit
-
+        # Calculate previous day's revenue
+        yesterday = datetime.date.today() - datetime.timedelta(days=1)
+        yesterday_revenue = calculate_daily_revenue(yesterday)
+        context["yesterday_revenue"] = yesterday_revenue
+        # Calculate previous month's revenue
+        today = datetime.date.today()
+        first_day_previous_month, _ = get_previous_month_dates(today)
+        previous_month_revenue = calculate_monthly_revenue(first_day_previous_month)
+        context["previous_month_revenue"] = previous_month_revenue
 
         return render(request, "inventory/home_authenticated.html", context)
     else:

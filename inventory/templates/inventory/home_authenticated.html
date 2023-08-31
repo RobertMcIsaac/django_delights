@@ -35,8 +35,16 @@
     </div>
     <div>
         <a href="{% url 'revenue' %}"><h3>Revenue</h3></a>
-        <p>Profit for previous day: </p>
-        <p>Profit for previous month: </p>
+        {% if yesterday_revenue %}
+        <p>Profit for yesterday: £{{yesterday_revenue.profit}}</p>
+        {% else %}
+        <p>Profit for yesterday: None</p>
+        {% endif %}
+        {% if previous_month_revenue %}
+        <p>Profit for last month: £{{previous_month_revenue.profit}}</p>
+        {% else %}
+        <p>Profit for last month: None</p>
+        {% endif %}
     </div>
 </section>
 
