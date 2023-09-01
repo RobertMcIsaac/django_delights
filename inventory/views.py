@@ -280,6 +280,16 @@ class PurchaseCreate(LoginRequiredMixin, CreateView):
                 context["sale_price"] = menuitem.price
         return context
 
+class PurchaseUpdate(LoginRequiredMixin, UpdateView):
+    model = Purchase
+    template_name = "inventory/purchase_update.html"
+    fields = ["menuitem"]
+    success_url = reverse_lazy("purchase_log")
+
+class PurchaseDelete(LoginRequiredMixin, DeleteView):
+    model = Purchase
+    template_name = "inventory/purchase_delete.html"
+    success_url = reverse_lazy("purchase_log")
 
 
 

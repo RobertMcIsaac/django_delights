@@ -1,17 +1,17 @@
 {% extends "inventory/base.html" %}
 
-{% block title %}Delete Ingredient - Pantry Pilot{% endblock title %}
+{% block title %}Delete Purchase - Pantry Pilot{% endblock title %}
 
 {% block content %}
-<section id="delete-ingredient" class="formpage__container">
+<section id="delete-purchase" class="formpage__container">
     <div>
         <h2>Delete:</h2>
-        <h3>{{ingredient.name}}</h3>
+        <h3>{{purchase.menuitem}}</h3>
     </div>
     <form class="form__container" action="" method="POST">
         {% csrf_token %}
         <button class="buttons form__button" type="submit">Confirm</button>
     </form>
-    <a href=" {% url 'inventory' %}">Cancel</a>
+    <a href=" {% url 'purchase_log' %}">Cancel</a>
 </section>
 {% endblock content %}

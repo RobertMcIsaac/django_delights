@@ -27,10 +27,10 @@
                 <td class="table__row--detail">{{ purchase.menuitem }}</td>
                 <td class="table__row--detail">{{ purchase.user }}</td>
                 <td class="table__row--detail">
-                    <a href=""><small class="table__edit">Edit</small></a>
+                    <a href="{% url 'purchase_edit' purchase.id %}"><small class="table__edit">Edit</small></a>
                 </td>
                 <td>
-                    <a href=""><small class="table__delete">Delete</small></a>
+                    <a href="{% url 'purchase_delete' purchase.id %}"><small class="table__delete">Delete</small></a>
                 </td>
             </tr>
             {% endfor %}
