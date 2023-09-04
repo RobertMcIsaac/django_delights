@@ -23,9 +23,9 @@
         <tbody class="table__body">
             {% for purchase in purchase_list %}
             <tr class="table__body--row">
-                <td class="table__row--detail">{{ purchase.purchase_time }}</td>
-                <td class="table__row--detail">{{ purchase.menuitem }}</td>
-                <td class="table__row--detail">{{ purchase.user }}</td>
+                <td class="table__row--detail">{{purchase.purchase_time}}</td>
+                <td class="table__row--detail">{{purchase.menuitem}}</td>
+                <td class="table__row--detail">{{purchase.user}}</td>
                 <td class="table__row--detail">
                     <a href="{% url 'purchase_edit' purchase.id %}"><small class="table__edit">Edit</small></a>
                 </td>

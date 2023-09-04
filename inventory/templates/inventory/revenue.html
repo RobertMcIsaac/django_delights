@@ -5,17 +5,17 @@
 {% block content %}
 <section id="revenue" class="content__container">
     <div class="description__container">
-        <h2>Revenue</h2>
-        <p>Some description of the page.</p>
-        <p>Some description of the page.</p>
-        <p>Some description of the page.</p>
+        <h2>Finances</h2>
+        <p>Important data on your business's finances, both daily and monthly. </p>
+        <p>Track your overall sales, costs and profit.</p>
+        <p>Track both daily and monthly figures.</p>
     </div>
     <ul>
         <li>Total sales: £{{total_revenue.total_sales|floatformat:2}}</li>
         <li>Total costs: £{{total_revenue.total_costs|floatformat:2}}</li>
         <li>Total profit: £{{total_revenue.total_profit|floatformat:2}}</li>
     </ul>
-    <h3>Monthly Revenue</h3>
+    <h3>Monthly</h3>
     <table class="table__container">
         <thead class="table__head">
             <tr class="table__head--row">
@@ -37,7 +37,7 @@
         </tbody>
      </table>
      
-     <h3>Daily Revenue</h3>
+     <h3>Daily</h3>
     <table class="table__container">
         <thead class="table__head">
             <tr class="table__head--row">

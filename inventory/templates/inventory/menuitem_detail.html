@@ -6,12 +6,12 @@
 
 <section id="menu-item-details" class="content__container">
     <div class="description__container">
-        <h2 class="table__title">Recipe for: {{ object.name }}</h2> 
-        <p>{{ menuitem.description }}</p>
+        <h2 class="table__title">Recipe for: {{object.name}}</h2> 
+        <p>{{menuitem.description}}</p>
     </div>
     <div>
-        <p>Total cost: {{ object.get_total_cost }}</p>
-        <p>Sale Price: {{ menuitem.price }}</p>
+        <p>Total cost: £{{object.get_total_cost}}</p>
+        <p>Sale Price: £{{menuitem.price}}</p>
     </div>
     <a href="{% url 'menuitem_edit' menuitem.id %}"><button>Edit Menu Item</button></a>
     <table class="table__container">
@@ -25,19 +25,19 @@
                 <th class="table__row--heading"></th>
             </tr>
         </thead>
+        {% for reciperequirement in reciperequirement_list %}
         <tbody class="table__body">
-            {% for reciperequirement in reciperequirement_list %}
             <tr class="table__body--row">
-                <td class="table__row--detail"><a href="">{{ reciperequirement.ingredient }}</a></td>
-                <td class="table__row--detail">{{ reciperequirement.ingredient_quantity }}</td>
-                <td class="table__row--detail">{{ reciperequirement.ingredient.get_measurement_unit_display }}</td>
-                <td class="table__row--detail">{{ reciperequirement.ingredient.cost_per_unit }}</td>
+                <td class="table__row--detail"><a href="">{{reciperequirement.ingredient}}</a></td>
+                <td class="table__row--detail">{{reciperequirement.ingredient_quantity}}</td>
+                <td class="table__row--detail">{{reciperequirement.ingredient.get_measurement_unit_display}}</td>
+                <td class="table__row--detail">£{{reciperequirement.ingredient.cost_per_unit}}</td>
                 <td>
                     <a href="{% url 'reciperequirement_delete' reciperequirement.pk %}"><small class="table__delete">Delete</small></a>
                 </td>
             </tr>
             {% empty %}
-            <p>Recipe is currently empty</p>
+            <p>No ingredients have been added to this recipe</p>
             {% endfor %}
         </tbody>
     </table>
@@ -45,7 +45,7 @@
     <div>
         <h4>Instructions:</h4>
         {% if menuitem.recipe_instructions %}
-            <p>{{ menuitem.recipe_instructions }}</p>
+            <p>{{menuitem.recipe_instructions}}</p>
         {% else %}
             <p>No instructions currently</p>
         {% endif %}

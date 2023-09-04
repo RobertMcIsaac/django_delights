@@ -10,6 +10,7 @@
     </div>
     <form class="form__container" action="" method="POST">
         {% csrf_token %}
+        {{ form.as_p }}
         <button class="buttons form__button" type="submit">Confirm</button>
     </form>
     <a href=" {% url 'purchase_log' %}">Cancel</a>

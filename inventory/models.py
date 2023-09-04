@@ -75,7 +75,7 @@ class RecipeRequirement(models.Model):
         return str(self.menuitem) + " Recipe"
     
     class Meta:
-        ordering = ["menuitem"]
+        ordering = ["ingredient"]
         verbose_name = "Recipe requirement"
 
 

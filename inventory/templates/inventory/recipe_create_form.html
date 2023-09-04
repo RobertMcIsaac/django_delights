@@ -9,7 +9,7 @@
      <div>
         <a href="{% url 'menuitem_detail' menuitem.pk %}"><button class="buttons form__button" type="">Recipe Complete</button></a>
         <h4>Or</h4>
-        <h3>Continue Recipe for '{{ menuitem.name }}':</h3>
+        <h3>Continue Recipe for '{{menuitem.name}}':</h3>
     </div>
     <form class="form__container" action="{% url 'recipe_new' menuitem.pk %}" method="POST">
         {% csrf_token %}
@@ -19,7 +19,7 @@
 
     {% else %}
     <div>
-        <h3>Create recipe for {{ menuitem.name }}:</h3>
+        <h3>Create recipe for {{menuitem.name}}:</h3>
     </div>
     <form class="form__container" action="{% url 'recipe_new' menuitem.pk %}" method="POST">
         {% csrf_token %}

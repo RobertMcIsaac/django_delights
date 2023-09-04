@@ -7,7 +7,7 @@
     <div class="description__container">
         <h2 class="table__title">Inventory</h2>
         <p>A complete list of the available ingredients in your inventory, including the quantity available, it's unit of measurement and the cost-per-unit.</p>
-        <p>To add a new ingredient to your inventory, click the 'Add New Ingredient' link below.</p>
+        <p>To add a new ingredient to your inventory, click 'Add New Ingredient' below.</p>
         <p></p>  
     </div>
     <a href="{% url 'ingredient_new' %}"><button class="add__button buttons">Add New Ingredient</button></a>
@@ -23,12 +23,13 @@
             </tr>
         </thead>
         <tbody class="table__body">
+            {% if ingredient_list %}
             {% for ingredient in ingredient_list %}
             <tr class="table__body--row">
                 <td class="table__row--detail">{{ingredient.name}}</td>
                 <td class="table__row--detail">{{ingredient.quantity_available}}</td>
                 <td class="table__row--detail">{{ingredient.get_measurement_unit_display}}</td>
-                <td class="table__row--detail">{{ingredient.cost_per_unit}}</td>
+                <td class="table__row--detail">£{{ingredient.cost_per_unit}}</td>
                 <td class="table__row--detail">
                     <a href="{% url 'ingredient_edit' ingredient.id %}"><small class="table__edit">Edit</small></a>
                 </td>
@@ -37,6 +38,9 @@
                 </td>
             </tr>
             {% endfor %}
+            {% else %}
+            <p>Your inventory is currently empty</p>
+            {% endif %}
         </tbody>
     </table>
     <h3>Items to restock:</h3>
@@ -44,16 +48,20 @@
         <thead class="table__head">
             <tr class="table__head--row">
                 <th class="table__row--heading">Ingredient</th>
+                <th class="table__row--heading">Quantity to restock</th>
+                <th class="table__row--heading">Unit</th>
                 <th class="table__row--heading">Cost to restock</th>
                 <th class="table__row--heading"></th>
                 <th class="table__row--heading"></th>
             </tr>
         </thead>
         <tbody class="table__body">
-            {% for ingredient, cost in restock_dict.items %}
+            {% for ingredient, restock_info in restock_dict.items %}
             <tr class="table__body--row">
                 <td class="table__row--detail">{{ingredient.name}}</td>
-                <td class="table__row--detail">{{cost|floatformat:2}}</td>
+                <td class="table__row--detail">{{restock_info.restock_quantity}}</td>
+                <td class="table__row--detail">{{ingredient.get_measurement_unit_display}}</td>
+                <td class="table__row--detail">£{{restock_info.restock_cost|floatformat:2}}</td>
                 <td class="table__row--detail">
                     <a href="{% url 'ingredient_edit' ingredient.id %}"><small class="table__edit">Edit</small></a>
                 </td>

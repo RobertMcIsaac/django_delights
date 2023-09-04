@@ -34,7 +34,7 @@
         <a href="{% url 'purchase_new' %}"><button>Log New Purchase</button></a>
     </div>
     <div>
-        <a href="{% url 'revenue' %}"><h3>Revenue</h3></a>
+        <a href="{% url 'revenue' %}"><h3>Finances</h3></a>
         {% if yesterday_revenue %}
         <p>Profit for yesterday: £{{yesterday_revenue.profit|floatformat:2}}</p>
         {% else %}

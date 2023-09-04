@@ -170,7 +170,8 @@ class IngredientList(LoginRequiredMixin ,ListView):
             total_requirements = sum([requirement.ingredient_quantity for requirement in requirements])
             defecit = total_requirements - ingredient.quantity_available
             if defecit > 0:
-                restock_dict[ingredient] = defecit * ingredient.cost_per_unit
+                restock_cost = defecit * ingredient.cost_per_unit
+                restock_dict[ingredient] = {"restock_quantity": defecit, "restock_cost": restock_cost}
         context["restock_dict"] = restock_dict
         return context
 
@@ -197,6 +198,9 @@ class RecipeRequirementList(LoginRequiredMixin, ListView):
     model = MenuItem
     template_name = "inventory/recipes.html"
     context_object_name = "menuitem_list"
+
+    def get_queryset(self) -> QuerySet[Any]:
+        return MenuItem.objects.annotate(lower_name=Lower("name")).order_by("lower_name")
 
 class RecipeRequirementCreate(LoginRequiredMixin, CreateView):
     model = RecipeRequirement
