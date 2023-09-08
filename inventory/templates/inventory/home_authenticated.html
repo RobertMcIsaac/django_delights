@@ -4,46 +4,57 @@
 
 {% block content %}
 
-<section id="home">
-    <div>
+<section id="home" class="home__container">
+    <div class="home__card">
         <a href="{% url 'menu' %}"><h3>Menu</h3></a>
-        <p>Current number of menu items: {{num_menuitems}}</p>
+        <p>Current number of menu items:</p>
+        <p>{{num_menuitems}}</p>
         {% if latest_menuitem %}
-        <p>Recently added: {{latest_menuitem}}</p>
+        <p>Recently added:</p>
+        <p>{{latest_menuitem}}</p>
         {% else %}
-        <p>Recently added: There are currently no menu items.</p>
+        <p>Recently added:</p>
+        <p>There are currently no menu items.</p>
         {% endif %}
         <a href="{% url 'recipes' %}"><p>See Recipes</p></a>
         <a href="{% url 'menuitem_new' %}"><button>Add New Menu Item</button></a>
     </div>
-    <div>
+    <div class="home__card">
         <a href="{% url 'inventory' %}"><h3>Inventory</h3></a>
-        <p>Current number of inventory items: {{num_ingredients}}</p>
+        <p>Current number of inventory items:</p>
+        <p>{{num_ingredients}}</p>
         {% if latest_ingredient %}
-        <p>Recently added: {{latest_ingredient}}</p>
+        <p>Recently added:</p>
+        <p>{{latest_ingredient}}</p>
         {% else %}
-        <p>Recently added: There are currently no ingredients.</p>
+        <p>Recently added:</p>
+        <p>There are currently no ingredients.</p>
         {% endif %}
         <a href="{% url 'ingredient_new' %}"><button>Add New Ingredient</button></a>
     </div>
-    <div>
+    <div class="home__card">
         <a href="{% url 'purchase_log' %}"><h3>Purchase Log</h3></a>
-        <p>Total purchases: {{num_purchases}}</p>
-        <p>Last purchase: {{latest_purchase}}</p>
-        <p></p>
+        <p>Total purchases:</p>
+        <p>{{num_purchases}}</p>
+        <p>Last purchase:</p>
+        <p>{{latest_purchase}}</p>
         <a href="{% url 'purchase_new' %}"><button>Log New Purchase</button></a>
     </div>
-    <div>
+    <div class="home__card">
         <a href="{% url 'revenue' %}"><h3>Finances</h3></a>
         {% if yesterday_revenue %}
-        <p>Profit for yesterday: £{{yesterday_revenue.profit|floatformat:2}}</p>
+        <p>Profit for yesterday:</p>
+        <p>£{{yesterday_revenue.profit|floatformat:2}}</p>
         {% else %}
-        <p>Profit for yesterday: None</p>
+        <p>Profit for yesterday:</p>
+        <p>None</p>
         {% endif %}
         {% if previous_month_revenue %}
-        <p>Profit for last month: £{{previous_month_revenue.profit|floatformat:2}}</p>
+        <p>Profit for last month:</p>
+        <p>£{{previous_month_revenue.profit|floatformat:2}}</p>
         {% else %}
-        <p>Profit for last month: None</p>
+        <p>Profit for last month:</p>
+        <p>None</p>
         {% endif %}
     </div>
 </section>

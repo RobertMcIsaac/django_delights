@@ -1,0 +1,127 @@
+* {
+    /* border: 1px solid red !important; */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+html {
+    font-size: 100%;
+    font-family: "Sofia Sans", sans-serif;
+    color: black;
+}
+
+/* body {
+    background-color: black;
+} */
+
+ol,ul {
+	list-style: none;
+	}
+
+    /* HEADER */
+
+.header__container {
+    width: 100%;
+    height: 10%;
+    position: fixed;
+    display: flex;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    background-color: white;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid blue;
+    }
+
+.header__logo {
+    padding: 0 2rem;
+}
+
+.nav__navlist {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0 2rem;
+}
+
+    /* MAIN */
+
+.main__container {
+    padding: 2rem 0;
+    margin-top: 9.8vh;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+
+    /* HOME_UNAUTHENTICATED */
+
+.title__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* margin-bottom: 1rem; */
+}
+
+.title__container h1 {
+    margin: 0;
+}
+
+.title__container * {
+    padding-bottom: 1rem;
+}
+
+.title__detail {
+    width: 50%;
+}
+
+.loginprompt__container {
+    display: flex;
+    flex-direction: column;
+}
+
+.loginprompt__container small {
+    padding-top: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.feat__item--title {
+    margin-top: 1.25rem;
+}
+
+
+     /* HOME_AUTHENTICATED */
+
+.home__container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.home__card {
+    border: 1px solid blue;
+    display: flex;
+    flex-direction: column;
+    flex-basis: 30%;
+    margin: 2rem;
+    padding: 2rem 1rem;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.home__card h3 {
+    padding-bottom: 1rem;
+}
+
+.home__card button {
+    margin-top: 1rem;
+}
+
