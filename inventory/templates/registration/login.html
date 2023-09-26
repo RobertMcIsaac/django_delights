@@ -10,19 +10,19 @@
 
 {% block content %} 
 <section id="login-page">
-    <div>
+    <div class="login__container">
         <h3>Login</h3>
-    </div>
-    <div>
-        <form class="login" action="{% url 'login' %}" method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Login</button>    
-        </form>
-    </div>
-    <div>
-        <p>Don't have an account? Sign up here:</p>
-        <a href="{% url 'signup' %}"><button>Create new account</button></a>
+        <div class="login__form">
+            <form class="login" action="{% url 'login' %}" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Login</button>    
+            </form>
+        </div>
+        <div>
+            <p>Don't have an account? Sign up here:</p>
+            <a href="{% url 'signup' %}"><button>Create new account</button></a>
+        </div>
     </div>
 </section>
 {% endblock content %}

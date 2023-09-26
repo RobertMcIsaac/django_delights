@@ -12,7 +12,7 @@
     </div>
 
     <div class="loginprompt__container">
-        <a href="{% url 'login' %}"><button class="login__button buttons">LOGIN</button></a>
+        <button onclick="location.href='{% url 'login' %}'" class="login__button buttons">LOGIN</button>
         <small>Don't have an account?<a href="{% url 'signup' %}"> Sign-up here</a></small>
     </div>
     

@@ -1,14 +1,22 @@
-* {
-    /* border: 1px solid red !important; */
+/* * {
+    border: 1px solid red !important;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
+  } */
 
 html {
     font-size: 100%;
     font-family: "Sofia Sans", sans-serif;
     color: black;
+}
+
+h1 h2 h3 h4 h5 h6 {
+    margin: .75rem;
+}
+
+p {
+    margin: .5rem;
 }
 
 /* body {
@@ -50,7 +58,7 @@ ol,ul {
     /* MAIN */
 
 .main__container {
-    padding: 2rem 0;
+    /* padding: 2rem 0; */
     margin-top: 9.8vh;
     min-height: 90vh;
     display: flex;
@@ -63,38 +71,63 @@ ol,ul {
 
     /* HOME_UNAUTHENTICATED */
 
+        /* Title/ description */
+
 .title__container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* margin-bottom: 1rem; */
+    margin-bottom: 1rem;
 }
 
 .title__container h1 {
-    margin: 0;
-}
-
-.title__container * {
-    padding-bottom: 1rem;
+    margin-bottom: .5rem;
 }
 
 .title__detail {
-    width: 50%;
+    width: 60%;
 }
+
+        /* Login/ sign-up prompt */
 
 .loginprompt__container {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .loginprompt__container small {
-    padding-top: 0.5rem;
-    margin-bottom: 1rem;
+    margin: .5rem 0;
+}
+
+        /* Features */
+.feat__container {
+    display: flex;
+    flex-direction: column;
+}
+
+.feat__item {
+    flex-direction: column;
 }
 
 .feat__item--title {
-    margin-top: 1.25rem;
+    margin: 1.25rem 0 0 0;
+}
+
+
+    /* LOGIN */
+
+.login__container {
+    margin: 2rem 0;
+}
+
+.login__container * {
+    margin: .5rem 0;
+}
+
+.login__form {
+    margin-bottom: 2rem;
 }
 
 
@@ -111,17 +144,25 @@ ol,ul {
     display: flex;
     flex-direction: column;
     flex-basis: 30%;
-    margin: 2rem;
-    padding: 2rem 1rem;
+    margin: 2rem 1rem;
+    padding: 1rem;
     align-items: center;
     justify-content: space-around;
 }
 
-.home__card h3 {
+.home__card * {
+    margin: .25rem;
+}
+
+/* .home__card h3 {
     padding-bottom: 1rem;
+}
+
+.home__card p {
+    padding: .5rem;
 }
 
 .home__card button {
     margin-top: 1rem;
-}
+} */
 
