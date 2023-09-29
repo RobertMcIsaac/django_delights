@@ -27,7 +27,33 @@ ol,ul {
 	list-style: none;
 	}
 
-    /* HEADER */
+/* BUTTONS/ LINKS */
+
+/* .button__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: .5rem;
+}
+
+.buttons {
+    margin: 0.5rem;
+    padding: 0;
+    align-self: center;
+} */
+
+.navbuttons {
+    align-self: center;
+    margin: 0.5rem;
+}
+
+.navlinks {
+    align-self: center;
+    margin: 0.5rem;
+}
+
+
+/* HEADER */
 
 .header__container {
     width: 100%;
@@ -55,7 +81,7 @@ ol,ul {
     padding: 0 2rem;
 }
 
-    /* MAIN */
+/* MAIN */
 
 .main__container {
     /* padding: 2rem 0; */
@@ -69,7 +95,7 @@ ol,ul {
 }
 
 
-    /* HOME_UNAUTHENTICATED */
+/* HOME_UNAUTHENTICATED */
 
         /* Title/ description */
 
@@ -116,27 +142,35 @@ ol,ul {
 }
 
 
-    /* LOGIN */
+/* LOGIN/ SIGN-UP */
 
-.login__container {
+.form__container {
     margin: 2rem 0;
+    display: flex;
+    flex-direction: column;
 }
 
-.login__container * {
+.form__container h2 {
+    margin-bottom: 2rem;
+}
+
+.form__content * {
     margin: .5rem 0;
 }
 
-.login__form {
+.form__content{
     margin-bottom: 2rem;
 }
 
 
-     /* HOME_AUTHENTICATED */
+/* HOME_AUTHENTICATED */
 
 .home__container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    align-items: stretch;
+    height: 100%;
 }
 
 .home__card {
@@ -145,24 +179,76 @@ ol,ul {
     flex-direction: column;
     flex-basis: 30%;
     margin: 2rem 1rem;
-    padding: 1rem;
+    padding: 2.5rem;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 
 .home__card * {
-    margin: .25rem;
+    margin: .25rem 0;
 }
 
-/* .home__card h3 {
-    padding-bottom: 1rem;
+
+/* PAGE CONTENT (menu, Inventory, Purchase Log, Finaances) */
+
+.content__container {
+    display: flex;
+    flex-direction: column;
 }
 
-.home__card p {
+.content__title {
+    text-align: left;
+    margin: 1.5rem;
+}
+
+.description__container {
+    text-align: left;
+    margin: 1rem 0;
+}
+
+.description__container p {
+    margin: .5rem 0;
+}
+
+.detail__container {
+    text-align: left;
+    margin: .5rem 0;
+}
+
+.detail__container h4 {
+    margin-bottom: 0;
+}
+
+/* TABLES */
+
+.table__container {
+    margin: 1.5rem 2.5rem;
+}
+
+.table__title {
+    text-align: left;
+    margin: 1rem 1.5rem 0 1.5rem;
+}
+
+.table__row--heading {
+    text-align: left;
+    margin: .5rem .25rem;
     padding: .5rem;
 }
 
-.home__card button {
-    margin-top: 1rem;
-} */
+.table__row--detail {
+    padding: 0.5rem;
+    text-align: left;
+}
 
+/* LISTS */
+
+.list__container {
+    text-align: left;
+    padding: 0;
+    margin: 2rem 2.5rem;
+}
+
+.list__container * {
+    padding: .5rem 0;
+}

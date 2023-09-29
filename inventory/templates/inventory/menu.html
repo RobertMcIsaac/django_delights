@@ -5,12 +5,14 @@
 {% block content %}
 <section id="menu" class="content__container">
     <div class="description__container">
-        <h2 class="table__title">Menu</h2>
+        <h2 class="content__title">Menu</h2>
         <p>Track the items on your menu, their individual cost and their sale prices. </p>
         <p>Click on a menu item to see its recipe details, including ingredients and instruction for making it.</p>
         <p>To add a new item to the menu, click 'Add New Menu Item' below.</p>  
     </div>
-    <a href="{% url 'menuitem_new' %}"><button class="add__button buttons">Add New Menu Item</button></a>
+    <div class="button__container">
+        <button onclick="location.href='{% url 'menuitem_new' %}'" class="add__button buttons">Add New Menu Item</button>
+    </div>
     <table class="table__container">
         <thead class="table__head">
             <tr class="table__head--row">

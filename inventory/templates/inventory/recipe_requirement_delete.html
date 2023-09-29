@@ -3,14 +3,14 @@
 {% block title %}Delete Recipe Requirement - Pantry Pilot{% endblock title %}
 
 {% block content %}
-<section id="delete-recipe-requirement" class="formpage__container">
+<section id="delete-recipe-requirement" class="form__container">
     <div>
         <h2>Delete:</h2>
         <h3>{{reciperequirement.ingredient}}</h3>
         <h3>from</h3>
         <h3>{{reciperequirement.menuitem}}</h3>
     </div>
-    <form class="form__container" action="" method="POST">
+    <form class="form__content" action="" method="POST">
         {% csrf_token %}
         <button class="buttons form__button" type="submit">Confirm</button>
     </form>

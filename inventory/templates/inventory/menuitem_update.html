@@ -3,12 +3,12 @@
 {% block title %}Menu Item Edit - Pantry Pilot{% endblock title %}
 
 {% block content %}
-<section id="edit-menu-item" class="formpage__container">
+<section id="edit-menu-item" class="form__container">
     <div>
         <h2>Edit:</h2>
         <h3>{{menuitem.name}}</h3>
     </div>
-    <form class="form__container" action="" method="POST">
+    <form class="form__content" action="" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         <button class="buttons form__button" type="submit">Confirm Changes</button>

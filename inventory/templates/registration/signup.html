@@ -11,15 +11,15 @@
 {% block content %}
 
 <section id="signup-page">
-    <div>
-        <h3>Create New Account</h3>
-    </div>
-    <div>
-        <form class="signup" action="{% url 'signup' %}" method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Create Account</button>
-        </form>
+    <div class="form__container">
+        <h2>Create New Account</h2>
+        <div class="form__content">
+            <form class="signup" action="{% url 'signup' %}" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Create Account</button>
+            </form>
+        </div>
     </div>
 </section>
 

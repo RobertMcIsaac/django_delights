@@ -3,11 +3,11 @@
 {% block title %}Add Menu Item - Pantry Pilot{% endblock title %}
 
 {% block content %}
-<section id="add-menu-item" class="formpage__container">
+<section id="add-menu-item" class="form__container">
     <div>
         <h2>Add New Menu Item</h2>
     </div>
-    <form class="form__container" action="" method="POST">
+    <form class="form__content" action="" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         <button class="buttons form__button" type="submit">Add The Recipe</button>

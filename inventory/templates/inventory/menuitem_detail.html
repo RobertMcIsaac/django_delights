@@ -5,15 +5,18 @@
 {% block content %}
 
 <section id="menu-item-details" class="content__container">
-    <div class="description__container">
-        <h2 class="table__title">Recipe for: {{object.name}}</h2> 
+    <div class="detail__container">
+        <h2 class="content__title">{{object.name}}</h2> 
+        <h4>Description:</h4>
         <p>{{menuitem.description}}</p>
     </div>
-    <div>
-        <p>Total cost: £{{object.get_total_cost}}</p>
-        <p>Sale Price: £{{menuitem.price}}</p>
+    <div class="detail__container">
+        <h4>Total Cost:</h4>
+        <p>£{{object.get_total_cost}}</p>
+        <h4>Sale Price:</h4>
+        <p>£{{menuitem.price}}</p>
     </div>
-    <a href="{% url 'menuitem_edit' menuitem.id %}"><button>Edit Menu Item</button></a>
+    <a href="{% url 'menuitem_edit' menuitem.id %}" class="navbuttons">Edit Menu Item Details</a>
     <table class="table__container">
         <thead class="table__head">
             <tr class="table__head--row">
@@ -33,6 +36,9 @@
                 <td class="table__row--detail">{{reciperequirement.ingredient.get_measurement_unit_display}}</td>
                 <td class="table__row--detail">£{{reciperequirement.ingredient.cost_per_unit}}</td>
                 <td>
+                    <a href=""><small class="table__edit">Edit</small></a>
+                </td>
+                <td>
                     <a href="{% url 'reciperequirement_delete' reciperequirement.pk %}"><small class="table__delete">Delete</small></a>
                 </td>
             </tr>
@@ -41,8 +47,8 @@
             {% endfor %}
         </tbody>
     </table>
-    <a href="{% url 'recipe_new' menuitem.pk %}"><button>Add Ingredient</button></a>
-    <div>
+    <a href="{% url 'recipe_new' menuitem.pk %}" class="navbuttons">Add New Ingredient</a>
+    <div class="detail__container">
         <h4>Instructions:</h4>
         {% if menuitem.recipe_instructions %}
             <p>{{menuitem.recipe_instructions}}</p>
@@ -50,7 +56,8 @@
             <p>No instructions currently</p>
         {% endif %}
     </div>
-    <a href="{% url 'recipes' %}">Return to Recipes</a>
+    <a href="{% url 'recipes' %}" class="navlinks">Go to Recipes</a>
+    <a href="{% url 'menu' %}" class="navlinks">Go To Menu</a>
 </section>
 
 

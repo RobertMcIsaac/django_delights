@@ -3,7 +3,7 @@
 {% block title %}Add Recipe To Menu Item - Pantry Pilot{% endblock title %}
 
 {% block content %}
-<section id="add-recipe" class="formpage__container">
+<section id="add-recipe" class="form__container">
     
      {% if recipe_requirement %}
      <div>
@@ -11,7 +11,7 @@
         <h4>Or</h4>
         <h3>Continue Recipe for '{{menuitem.name}}':</h3>
     </div>
-    <form class="form__container" action="{% url 'recipe_new' menuitem.pk %}" method="POST">
+    <form class="form__content" action="{% url 'recipe_new' menuitem.pk %}" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         <button class="buttons form__button" type="submit">Add To Recipe</button>

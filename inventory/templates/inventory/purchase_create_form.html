@@ -3,7 +3,7 @@
 {% block title %}Log new purchase - Pantry Pilot{% endblock title %}
 
 {% block content %}
-<section id="log-purchase" class="formpage__container">
+<section id="log-purchase" class="form__container">
     <div>
         <h2>Log New Purchase</h2>
     </div>
@@ -16,7 +16,7 @@
     {% endif %}
 
 
-    <form class="form__container" action="" method="POST">
+    <form class="form__content" action="" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         <button class="buttons form__button" type="submit">Log Purchase</button>
