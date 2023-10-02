@@ -9,9 +9,7 @@
         <p>Track customer purchases, including the date and time a menu item was purchased and which staff member logged the purchase.</p>
         <p>To add a new purchase to the purchase log, click the 'Log New Purchase' link below.</p>  
     </div>
-    <div class="button__container">
-        <button onclick="location.href='{% url 'purchase_new' %}'" class="buttons">Log New Purchase</button>
-    </div>
+    <a href="{% url 'purchase_new' %}" class="navbuttons">Log New Purchase</a>
     <table class="table__container">
         <thead class="table__head">
             <tr class="table__head--row">

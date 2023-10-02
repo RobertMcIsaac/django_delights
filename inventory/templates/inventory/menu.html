@@ -10,9 +10,7 @@
         <p>Click on a menu item to see its recipe details, including ingredients and instruction for making it.</p>
         <p>To add a new item to the menu, click 'Add New Menu Item' below.</p>  
     </div>
-    <div class="button__container">
-        <button onclick="location.href='{% url 'menuitem_new' %}'" class="add__button buttons">Add New Menu Item</button>
-    </div>
+    <a href="{% url 'menuitem_new' %}" class="navbuttons">Add New Menu Item</a>
     <table class="table__container">
         <thead class="table__head">
             <tr class="table__head--row">

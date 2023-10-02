@@ -16,7 +16,7 @@
         <p>Recently added:</p>
         <p>There are currently no menu items.</p>
         {% endif %}
-        <a href="{% url 'menuitem_new' %}"><button>Add New Menu Item</button></a>
+        <a href="{% url 'menuitem_new' %}">Add New Menu Item</a>
     </div>
     <div class="home__card">
         <a href="{% url 'inventory' %}"><h3>Inventory</h3></a>
@@ -29,7 +29,7 @@
         <p>Recently added:</p>
         <p>There are currently no ingredients.</p>
         {% endif %}
-        <a href="{% url 'ingredient_new' %}"><button>Add New Ingredient</button></a>
+        <a href="{% url 'ingredient_new' %}">Add New Ingredient</a>
     </div>
     <div class="home__card">
         <a href="{% url 'purchase_log' %}"><h3>Purchase Log</h3></a>
@@ -37,7 +37,7 @@
         <p>{{num_purchases}}</p>
         <p>Last purchase:</p>
         <p>{{latest_purchase}}</p>
-        <a href="{% url 'purchase_new' %}"><button>Log New Purchase</button></a>
+        <a href="{% url 'purchase_new' %}">Log New Purchase</a>
     </div>
     <div class="home__card">
         <a href="{% url 'revenue' %}"><h3>Finances</h3></a>

@@ -10,9 +10,7 @@
         <p>To add a new ingredient to your inventory, click 'Add New Ingredient' below.</p>
         <p></p>  
     </div>
-    <div class="button__container">
-        <button onclick="location.href='{% url 'ingredient_new' %}'" class="login__button buttons">Add To Inventory</button>
-    </div>
+    <a href="{% url 'ingredient_new' %}" class="navbuttons">Add To Inventory</a>
     <table class="table__container">
         <thead class="table__head">
             <tr class="table__head--row">
