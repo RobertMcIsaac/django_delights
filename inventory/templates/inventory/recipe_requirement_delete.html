@@ -12,7 +12,7 @@
     </div>
     <form class="form__content" action="" method="POST">
         {% csrf_token %}
-        <button class="buttons form__button" type="submit">Confirm</button>
+        <button type="submit">Confirm</button>
     </form>
     <a href=" {% url 'menuitem_detail' pk=object.menuitem.pk %}">Cancel</a>
 </section>

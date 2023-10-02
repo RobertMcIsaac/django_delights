@@ -1,9 +1,9 @@
 {% extends "inventory/base.html" %}
 
-{% block title %}Revenue - Django Delights{% endblock title %}
+{% block title %}Finances - Django Delights{% endblock title %}
 
 {% block content %}
-<section id="revenue" class="content__container">
+<section id="finances" class="content__container">
     <div class="description__container">
         <h2 class="content__title">Finances</h2>
         <p>Important data on your business's finances, both daily and monthly. </p>
@@ -18,17 +18,17 @@
     </ul>
     <h3 class="table__title">Monthly</h3>
     <table class="table__container">
-        <thead class="table__head">
-            <tr class="table__head--row">
+        <thead>
+            <tr>
                 <th class="table__row--heading">Date</th>
                 <th class="table__row--heading">Income</th>
                 <th class="table__row--heading">Costs</th>
                 <th class="table__row--heading">Profit</th>
             </tr>
         </thead>
-        <tbody class="table__body">
+        <tbody>
             {% for month, revenue in monthly_revenue.items %}
-            <tr class="table__body--row">
+            <tr>
                 <td class="table__row--detail">{{month|date:"F Y" }}</td>
                 <td class="table__row--detail">£{{revenue.income|floatformat:2 }}</td>
                 <td class="table__row--detail">£{{revenue.costs|floatformat:2 }}</td>
@@ -40,17 +40,17 @@
      
      <h3 class="table__title">Daily</h3>
     <table class="table__container">
-        <thead class="table__head">
-            <tr class="table__head--row">
+        <thead>
+            <tr>
                 <th class="table__row--heading">Date</th>
                 <th class="table__row--heading">Income</th>
                 <th class="table__row--heading">Costs</th>
                 <th class="table__row--heading">Profit</th>
             </tr>
         </thead>
-        <tbody class="table__body">
+        <tbody>
             {% for date, revenue in daily_revenue.items %}
-            <tr class="table__body--row">
+            <tr>
                 <td class="table__row--detail">{{date}}</td>
                 <td class="table__row--detail">£{{revenue.income|floatformat:2 }}</td>
                 <td class="table__row--detail">£{{revenue.costs|floatformat:2 }}</td>

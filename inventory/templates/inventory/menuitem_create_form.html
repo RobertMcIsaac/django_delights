@@ -10,7 +10,7 @@
     <form class="form__content" action="" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <button class="buttons form__button" type="submit">Add The Recipe</button>
+        <button type="submit">Add The Recipe</button>
     </form>
     <a href="{% url 'menu' %}">Return to Menu</a>
 </section>

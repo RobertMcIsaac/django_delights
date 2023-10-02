@@ -18,8 +18,8 @@
     </div>
     <a href="{% url 'menuitem_edit' menuitem.id %}" class="navbuttons">Edit Menu Item Details</a>
     <table class="table__container">
-        <thead class="table__head">
-            <tr class="table__head--row">
+        <thead>
+            <tr>
                 <th class="table__row--heading">Ingredient</th>
                 <th class="table__row--heading">Quantity Required</th>
                 <th class="table__row--heading">Unit</th>
@@ -29,17 +29,17 @@
             </tr>
         </thead>
         {% for reciperequirement in reciperequirement_list %}
-        <tbody class="table__body">
-            <tr class="table__body--row">
-                <td class="table__row--detail"><a href="">{{reciperequirement.ingredient}}</a></td>
+        <tbody>
+            <tr>
+                <td class="table__row--detail">{{reciperequirement.ingredient}}</td>
                 <td class="table__row--detail">{{reciperequirement.ingredient_quantity}}</td>
                 <td class="table__row--detail">{{reciperequirement.ingredient.get_measurement_unit_display}}</td>
                 <td class="table__row--detail">£{{reciperequirement.ingredient.cost_per_unit}}</td>
                 <td>
-                    <a href=""><small class="table__edit">Edit</small></a>
+                    <a href=""><small>Edit</small></a>
                 </td>
                 <td>
-                    <a href="{% url 'reciperequirement_delete' reciperequirement.pk %}"><small class="table__delete">Delete</small></a>
+                    <a href="{% url 'reciperequirement_delete' reciperequirement.pk %}"><small>Delete</small></a>
                 </td>
             </tr>
             {% empty %}
@@ -59,27 +59,5 @@
     <a href="{% url 'recipes' %}" class="navlinks">Go to Recipes</a>
     <a href="{% url 'menu' %}" class="navlinks">Go To Menu</a>
 </section>
-
-
-<!-- <section class="content__container">
-    <div class="description__container">
-        <h2 class="table__title">Recipe for: {{ object.name }}</h2> 
-        <p>{{ menuitem.description }}</p>
-    </div>
-    <div>
-        <p>Total cost: {{ object.get_total_cost }}</p>
-        <p>Sale Price: {{ menuitem.price }}</p>
-        <ul>
-            {% for reciperequirement in reciperequirement_list %}
-            <li>{{ reciperequirement.ingredient.name }}: {{ reciperequirement.ingredient_quantity }}{{ reciperequirement.ingredient.get_measurement_unit_display }}</li>
-            {% empty %}
-            <li>Recipe is currently empty.</li>
-
-            {% endfor %}
-        </ul>
-        <h4>Instructions:</h4>
-        <p>{{ menuitem.recipe_instructions }}</p>
-    </div>
-</section> -->
 
 {% endblock content %}

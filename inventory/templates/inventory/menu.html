@@ -12,8 +12,8 @@
     </div>
     <a href="{% url 'menuitem_new' %}" class="navbuttons">Add New Menu Item</a>
     <table class="table__container">
-        <thead class="table__head">
-            <tr class="table__head--row">
+        <thead>
+            <tr>
                 <th class="table__row--heading">Menu Item</th>
                 <th class="table__row--heading">Cost</th>
                 <th class="table__row--heading">Sale Price</th>
@@ -21,18 +21,18 @@
                 <th class="table__row--heading"></th>
             </tr>
         </thead>
-        <tbody class="table__body">
+        <tbody>
             {% if menuitem_list %}
             {% for menuitem in menuitem_list %}
-            <tr class="table__body--row">
+            <tr>
                 <td class="table__row--detail"><a href="{% url 'menuitem_detail' menuitem.id %}">{{menuitem.name}}</a></td>
                 <td class="table__row--detail">£{{menuitem.get_total_cost}}</td>
                 <td class="table__row--detail">£{{menuitem.price}}</td>
                 <td class="table__row--detail">
-                    <a href="{% url 'menuitem_edit' menuitem.id %}"><small class="table__edit">Edit</small></a>
+                    <a href="{% url 'menuitem_edit' menuitem.id %}"><small>Edit</small></a>
                 </td>
                 <td>
-                    <a href="{% url 'menuitem_delete' menuitem.id %}"><small class="table__delete">Delete</small></a>
+                    <a href="{% url 'menuitem_delete' menuitem.id %}"><small>Delete</small></a>
                 </td>
             </tr>
             {% endfor %}

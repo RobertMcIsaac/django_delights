@@ -15,11 +15,10 @@
     </ul>
     {% endif %}
 
-
     <form class="form__content" action="" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <button class="buttons form__button" type="submit">Log Purchase</button>
+        <button type="submit">Log Purchase</button>
     </form>
     <a href="{% url 'purchase_log' %}">Return to Purchase Log</a>
 </section>

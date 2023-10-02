@@ -22,7 +22,7 @@
             <div class="header__logo">
                 <span>Pantry Pilot</span>
             </div>
-            <nav id="navigation" class="header__nav">
+            <nav id="navigation">
                 <ul class="nav__navlist">
                     <a href="{% url 'home' %}"><li>Home</li></a>
                     <a href="{% url 'menu' %}"><li>Menu</li></a>
@@ -37,7 +37,7 @@
             <div class="header__logo">
                 <span>Pantry Pilot</span>
             </div>
-            <nav id="navigation" class="header__nav">
+            <nav id="navigation">
                 <ul class="nav__navlist">
                     <a href="{% url 'login' %}"><li>Login</li></a>
                     <a href="{% url 'signup' %}"><li>Sign Up</li></a>
@@ -47,7 +47,7 @@
             {% endblock header %}
         </header>
 
-        <main class="main__container flex__center">
+        <main class="main__container">
             {% block content %}
             {% endblock content %}
         </main> 

@@ -11,8 +11,8 @@
     </div>
     <a href="{% url 'purchase_new' %}" class="navbuttons">Log New Purchase</a>
     <table class="table__container">
-        <thead class="table__head">
-            <tr class="table__head--row">
+        <thead>
+            <tr>
                 <th class="table__row--heading">Date/Time of Purchase</th>
                 <th class="table__row--heading">Menu Item</th>
                 <th class="table__row--heading">Logged By</th>
@@ -20,17 +20,17 @@
                 <th class="table__row--heading"></th>
             </tr>
         </thead>
-        <tbody class="table__body">
+        <tbody>
             {% for purchase in purchase_list %}
-            <tr class="table__body--row">
+            <tr>
                 <td class="table__row--detail">{{purchase.purchase_time}}</td>
                 <td class="table__row--detail">{{purchase.menuitem}}</td>
                 <td class="table__row--detail">{{purchase.user}}</td>
                 <td class="table__row--detail">
-                    <a href="{% url 'purchase_edit' purchase.id %}"><small class="table__edit">Edit</small></a>
+                    <a href="{% url 'purchase_edit' purchase.id %}"><small>Edit</small></a>
                 </td>
                 <td>
-                    <a href="{% url 'purchase_delete' purchase.id %}"><small class="table__delete">Delete</small></a>
+                    <a href="{% url 'purchase_delete' purchase.id %}"><small>Delete</small></a>
                 </td>
             </tr>
             {% endfor %}
