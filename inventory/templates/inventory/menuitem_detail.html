@@ -36,7 +36,7 @@
                 <td class="table__row--detail">{{reciperequirement.ingredient.get_measurement_unit_display}}</td>
                 <td class="table__row--detail">£{{reciperequirement.ingredient.cost_per_unit}}</td>
                 <td>
-                    <a href=""><small>Edit</small></a>
+                    <a href="{% url 'recipe_edit' reciperequirement.pk %}"><small>Edit</small></a>
                 </td>
                 <td>
                     <a href="{% url 'reciperequirement_delete' reciperequirement.pk %}"><small>Delete</small></a>

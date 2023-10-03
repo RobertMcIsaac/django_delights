@@ -226,6 +226,14 @@ class RecipeRequirementCreate(LoginRequiredMixin, CreateView):
     def get_success_url(self):
         return reverse_lazy("recipe_new", kwargs={"pk": self.object.menuitem.pk})
     
+class RecipeRequirementUpdate(LoginRequiredMixin, UpdateView):
+    model = RecipeRequirement
+    template_name = 'inventory/recipe_requirement_update.html'
+    fields = ["ingredient_quantity"]
+
+    def get_success_url(self):
+        return reverse_lazy("menuitem_detail", kwargs={"pk": self.object.menuitem.pk})
+
 class RecipeRequirementDelete(LoginRequiredMixin, DeleteView):
     model = RecipeRequirement
     template_name = "inventory/recipe_requirement_delete.html"
