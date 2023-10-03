@@ -24,13 +24,13 @@
             </div>
             <nav id="navigation">
                 <ul class="nav__navlist">
-                    <a href="{% url 'home' %}"><li>Home</li></a>
-                    <a href="{% url 'menu' %}"><li>Menu</li></a>
-                    <a href="{% url 'inventory' %}"><li>Inventory</li></a>
-                    <a href="{% url 'recipes' %}"><li>Recipes</li></a>
-                    <a href="{% url 'purchase_log' %}"><li>Purchase Log</li></a>
-                    <a href="{% url 'revenue' %}"><li>Finances</li></a>
-                    <a href="{% url 'logout' %}"><li>Logout</li></a>
+                    <a href="{% url 'home' %}" class="nav__navlist--link"><li>Home</li></a>
+                    <a href="{% url 'menu' %}" class="nav__navlist--link"><li>Menu</li></a>
+                    <a href="{% url 'inventory' %}" class="nav__navlist--link"><li>Inventory</li></a>
+                    <a href="{% url 'recipes' %}" class="nav__navlist--link"><li>Recipes</li></a>
+                    <a href="{% url 'purchase_log' %}" class="nav__navlist--link"><li>Purchase Log</li></a>
+                    <a href="{% url 'revenue' %}" class="nav__navlist--link"><li>Finances</li></a>
+                    <a href="{% url 'logout' %}" class="nav__navlist--link"><li>Logout</li></a>
                 </ul>
             </nav>
             {% else %}
