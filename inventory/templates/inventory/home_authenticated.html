@@ -6,7 +6,7 @@
 
 <section id="home" class="home__container">
     <div class="home__card">
-        <a href="{% url 'menu' %}"><h3>Menu</h3></a>
+        <a href="{% url 'menu' %}" class="home__card--title"><h2>MENU</h2></a>
         <p>Current number of menu items:</p>
         <p>{{num_menuitems}}</p>
         {% if latest_menuitem %}
@@ -16,10 +16,10 @@
         <p>Recently added:</p>
         <p>There are currently no menu items.</p>
         {% endif %}
-        <a href="{% url 'menuitem_new' %}">Add New Menu Item</a>
+        <a href="{% url 'menuitem_new' %}" class="navbuttons">ADD MENU ITEM</a>
     </div>
     <div class="home__card">
-        <a href="{% url 'inventory' %}"><h3>Inventory</h3></a>
+        <a href="{% url 'inventory' %}" class="home__card--title"><h2>INVENTORY</h2></a>
         <p>Current number of inventory items:</p>
         <p>{{num_ingredients}}</p>
         {% if latest_ingredient %}
@@ -29,18 +29,18 @@
         <p>Recently added:</p>
         <p>There are currently no ingredients.</p>
         {% endif %}
-        <a href="{% url 'ingredient_new' %}">Add New Ingredient</a>
+        <a href="{% url 'ingredient_new' %}" class="navbuttons">ADD INVENTORY ITEM</a>
     </div>
     <div class="home__card">
-        <a href="{% url 'purchase_log' %}"><h3>Purchase Log</h3></a>
+        <a href="{% url 'purchase_log' %}" class="home__card--title"><h2>PURCHASE LOG</h2></a>
         <p>Total purchases:</p>
         <p>{{num_purchases}}</p>
         <p>Last purchase:</p>
         <p>{{latest_purchase}}</p>
-        <a href="{% url 'purchase_new' %}">Log New Purchase</a>
+        <a href="{% url 'purchase_new' %}" class="navbuttons">LOG A PURCHASE</a>
     </div>
     <div class="home__card">
-        <a href="{% url 'revenue' %}"><h3>Finances</h3></a>
+        <a href="{% url 'revenue' %}" class="home__card--title"><h2>FINANCES</h2></a>
         {% if yesterday_revenue %}
         <p>Profit for yesterday:</p>
         <p>£{{yesterday_revenue.profit|floatformat:2}}</p>

@@ -5,18 +5,18 @@
 {% block content %}
 <section id="menu" class="content__container">
     <div class="description__container">
-        <h2 class="content__title">Menu</h2>
+        <h1 class="content__title">MENU</h1>
         <p>Track the items on your menu, their individual cost and their sale prices. </p>
         <p>Click on a menu item to see its recipe details, including ingredients and instruction for making it.</p>
         <p>To add a new item to the menu, click 'Add New Menu Item' below.</p>  
     </div>
-    <a href="{% url 'menuitem_new' %}" class="navbuttons">Add New Menu Item</a>
+    <a href="{% url 'menuitem_new' %}" class="navbuttons">ADD TO MENU</a>
     <table class="table__container">
         <thead>
             <tr>
-                <th class="table__row--heading">Menu Item</th>
-                <th class="table__row--heading">Cost</th>
-                <th class="table__row--heading">Sale Price</th>
+                <th class="table__row--heading">MENU ITEM</th>
+                <th class="table__row--heading">COST</th>
+                <th class="table__row--heading">SALE PRICE</th>
                 <th class="table__row--heading"></th>
                 <th class="table__row--heading"></th>
             </tr>
@@ -25,14 +25,14 @@
             {% if menuitem_list %}
             {% for menuitem in menuitem_list %}
             <tr>
-                <td class="table__row--detail"><a href="{% url 'menuitem_detail' menuitem.id %}">{{menuitem.name}}</a></td>
+                <td class="table__row--detail"><a href="{% url 'menuitem_detail' menuitem.id %}" class="table__row--detail">{{menuitem.name}}</a></td>
                 <td class="table__row--detail">£{{menuitem.get_total_cost}}</td>
                 <td class="table__row--detail">£{{menuitem.price}}</td>
                 <td class="table__row--detail">
-                    <a href="{% url 'menuitem_edit' menuitem.id %}"><small>Edit</small></a>
+                    <a href="{% url 'menuitem_edit' menuitem.id %}" class="table__link"><small>Edit</small></a>
                 </td>
                 <td>
-                    <a href="{% url 'menuitem_delete' menuitem.id %}"><small>Delete</small></a>
+                    <a href="{% url 'menuitem_delete' menuitem.id %}" class="table__link"><small>Delete</small></a>
                 </td>
             </tr>
             {% endfor %}

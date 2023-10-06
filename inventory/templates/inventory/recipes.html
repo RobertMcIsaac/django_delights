@@ -5,16 +5,16 @@
 {% block content %}
 <section id="recipes" class="content__container">
     <div class="description__container">
-        <h2 class="content__title">Recipes</h2>
-        <p>Click on each menu item below to see its description, its recipe and instructions for making it. </p> 
-        <ol class="list__container">
-            {% if menuitem_list %}
-            {% for menuitem in menuitem_list %}
-            <a href="{% url 'menuitem_detail' menuitem.pk %}"><li class="list__item">{{menuitem.name}}</li></a>
-            {% endfor %}
-            {% endif %}
-        </ol>
-    </div>
+        <h1 class="content__title">RECIPES</h1>
+        <p>Click on each menu item below to see its description, its recipe and instructions for making it. </p>
+    </div> 
+    <ol class="list__container">
+        {% if menuitem_list %}
+        {% for menuitem in menuitem_list %}
+        <a href="{% url 'menuitem_detail' menuitem.pk %}"><li class="list__item">{{menuitem.name}}</li></a>
+        {% endfor %}
+        {% endif %}
+    </ol>
     
 </section>
 {% endblock content%}

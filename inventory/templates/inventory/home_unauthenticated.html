@@ -3,41 +3,44 @@
 {% block title %}Home - Pantry Pilot{% endblock title %}
 
 {% block content %}
-<section id="home">
-    
-    <div class="title__container">
-        <h1>Welcome to Pantry Pilot</h1>
-        <small>By Django Delights</small>
-        <p class="title__detail">Pantry Pilot is an inventory and sales tracking application designed to take the hassle out of running your restaurant. Pantry Pilot streamlines administrative tasks so that you can focus on your food and your customers.</p>
+<section id="home" class="landing__container">
+    <div class="landing__container--left">
+        <div class="title__container">
+            <h1>Welcome to Pantry Pilot</h1>
+            <small>By Django Delights</small>
+            <p class="title__detail">Pantry Pilot is an inventory and sales tracking application designed to take the hassle out of running your restaurant. Pantry Pilot streamlines administrative tasks so that you can focus on your food and your customers.</p>
+        </div>
+        <div class="loginprompt__container">
+            <a href="{% url 'login' %}" class="navbuttons">LOGIN</a>
+            <small>Don't have an account?<a href="{% url 'signup' %}"> Sign-up here</a></small>
+        </div>
+        <div>
+            <img src="static/inventory/images/kitchen3.jpeg" alt="" class="landing__img">
+        </div>
+        
     </div>
 
-    <div class="loginprompt__container">
-        <a href="{% url 'login' %}">LOGIN</a>
-        <small>Don't have an account?<a href="{% url 'signup' %}"> Sign-up here</a></small>
-    </div>
-    
     <div class="feat__container">
         <div class="feat__item">
-            <a href="{% url 'menu' %}"><h4 class="feat__item--title">Menu</h4></a>
+            <a href="{% url 'menu' %}"><h3 class="feat__item--title">MENU</h3></a>
             <p class="feat__item--description">Track, update and edit your menu items</p>
         </div>
         <div class="feat__item">
-            <a href="{% url 'inventory' %}"><h4 class="feat__item--title">Inventory</h4></a>
+            <a href="{% url 'inventory' %}"><h3 class="feat__item--title">INVENTORY</h3></a>
             <p class="feat__item--description">Track, update and edit your inventory</p>
         </div>
         <div class="feat__item">
-            <a href="{% url 'recipes' %}"><h4 class="feat__item--title">Recipes</h4></a>
+            <a href="{% url 'recipes' %}"><h3 class="feat__item--title">RECIPES</h3></a>
             <p class="feat__item--description">Track and update recipes for your menu items</p>
         </div>
         <div class="feat__item">
-            <a href="{% url 'purchase_log' %}"><h4 class="feat__item--title">Purchase Log</h4></a>
+            <a href="{% url 'purchase_log' %}"><h3 class="feat__item--title">PURCHASE LOG</h3></a>
             <p class="feat__item--description">Track your sales history and add customer purchases</p>
         </div>
         <div class="feat__item">
-            <a href="{% url 'revenue' %}"><h4 class="feat__item--title">Finances</h4></a>
+            <a href="{% url 'revenue' %}"><h3 class="feat__item--title">FINANCES</h3></a>
             <p class="feat__item--description">Track your income, costs and profit</p>
         </div>
     </div>
-
 </section>
 {% endblock content %}
