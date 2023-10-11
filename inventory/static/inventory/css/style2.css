@@ -8,6 +8,7 @@
 html {
     font-size: 100%;
     font-family: "Roboto", sans-serif;
+    /* font-family: 'Montserrat', sans-serif; */
     color: black;
 }
 
@@ -111,7 +112,6 @@ ol,ul {
     top: 0;
     left: 0;
     z-index: 100;
-    background-color: white;
     justify-content: space-between;
     align-items: center;
     background-color: #1561ad;
@@ -222,6 +222,7 @@ ol,ul {
 }
 
 .feat__item {
+    display: flex;
     flex-direction: column;
     margin: .5rem 0;
     background-color: #1c77ac;
