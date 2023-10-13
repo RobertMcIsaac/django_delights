@@ -1,25 +1,25 @@
 {% extends "inventory/base.html" %}
 
-{% block title %}Signup - Django Delights{% endblock title %}
+{% block title %}Signup - Pantry Pilot{% endblock title %}
 
 {% block header %}
 <div>
-    <span>Django Delights</span>
+    <span>Pantry Pilot</span>
 </div>
 {% endblock header %}
 
 {% block content %}
 
-<section id="signup-page">
-    <div class="form__container">
-        <h2>Create New Account</h2>
-        <div class="form__content">
-            <form class="signup" action="{% url 'signup' %}" method="POST">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit" class="navbuttons">Create Account</button>
-            </form>
-        </div>
+<section id="signup-page" class="form">
+    <div class="card card--form">
+        <h2 class="card__title card__title--form">CREATE NEW ACCOUNT</h2>
+        <form class="card__form card__form--signup" action="{% url 'signup' %}" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="btn__container--centered">
+                <button type="submit" class="btn btn--signup">CREATE ACCOUNT</button>
+            </div>
+        </form>
     </div>
 </section>
 

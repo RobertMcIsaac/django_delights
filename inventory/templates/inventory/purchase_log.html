@@ -3,38 +3,41 @@
 {% block title %}Purchase Log - Django Delights{% endblock title %}
 
 {% block content %}
-<section id="purchase-log" class="content__container">
-    <div class="description__container">
+<section id="purchase-log" class="content">
+    <div class="card card--content">
         <h1 class="content__title">PURCHASE LOG</h1>
         <p>Track customer purchases, including the date and time a menu item was purchased and which staff member logged the purchase.</p>
         <p>To add a new purchase to the purchase log, click the 'Log New Purchase' link below.</p>  
+        <a href="{% url 'purchase_new' %}" class="btn btn--add">LOG PURCHASE</a>
     </div>
-    <a href="{% url 'purchase_new' %}" class="navbuttons">Log New Purchase</a>
-    <table class="table__container">
-        <thead>
-            <tr>
-                <th class="table__row--heading">Date/Time of Purchase</th>
-                <th class="table__row--heading">Menu Item</th>
-                <th class="table__row--heading">Logged By</th>
-                <th class="table__row--heading"></th>
-                <th class="table__row--heading"></th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for purchase in purchase_list %}
-            <tr>
-                <td class="table__row--detail">{{purchase.purchase_time}}</td>
-                <td class="table__row--detail">{{purchase.menuitem}}</td>
-                <td class="table__row--detail">{{purchase.user}}</td>
-                <td class="table__row--detail">
-                    <a href="{% url 'purchase_edit' purchase.id %}"><small>Edit</small></a>
-                </td>
-                <td>
-                    <a href="{% url 'purchase_delete' purchase.id %}"><small>Delete</small></a>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div class="content__right">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="table__row__heading">DATE/TIME OF PURCHASE</th>
+                    <th class="table__row__heading">MENU ITEM</th>
+                    <th class="table__row__heading">USER</th>
+                    <th class="table__row__heading"></th>
+                    <th class="table__row__heading"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for purchase in purchase_list %}
+                <tr>
+                    <td class="table__row__detail">{{purchase.purchase_time}}</td>
+                    <td class="table__row__detail">{{purchase.menuitem}}</td>
+                    <td class="table__row__detail">{{purchase.user}}</td>
+                    <td class="table__row__detail">
+                        <a href="{% url 'purchase_edit' purchase.id %}" class="table__link"><small>Edit</small></a>
+                    </td>
+                    <td>
+                        <a href="{% url 'purchase_delete' purchase.id %}" class="table__link"><small>Delete</small></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
 </section>
 {% endblock content%}

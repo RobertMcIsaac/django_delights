@@ -24,4 +24,3 @@ class PurchaseCreateForm(forms.ModelForm):
 
 
 
-# RecipeRequirementFormSet = inlineformset_factory(MenuItem, RecipeRequirement, form=RecipeRequirementForm, extra=10, can_delete=False)

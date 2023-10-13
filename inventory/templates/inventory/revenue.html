@@ -1,63 +1,66 @@
 {% extends "inventory/base.html" %}
 
-{% block title %}Finances - Django Delights{% endblock title %}
+{% block title %}Finances - Pantry Pilot{% endblock title %}
 
 {% block content %}
-<section id="finances" class="content__container">
-    <div class="description__container">
+<section id="finances" class="content">
+    <div class="card card--content">
         <h1 class="content__title">FINANCES</h1>
         <p>Important data on your business's finances, both daily and monthly. </p>
         <p>Track your overall sales, costs and profit.</p>
         <p>Track both daily and monthly figures.</p>
     </div>
-    <h3 class="table__title">Overview</h3>
-    <ul class="list__container">
-        <li><strong>Total Sales:</strong> £{{total_revenue.total_sales|floatformat:2}}</li>
-        <li><strong>Total Costs:</strong> £{{total_revenue.total_costs|floatformat:2}}</li>
-        <li><strong>Total Profit:</strong> £{{total_revenue.total_profit|floatformat:2}}</li>
-    </ul>
-    <h3 class="table__title">Monthly</h3>
-    <table class="table__container">
-        <thead>
-            <tr>
-                <th class="table__row--heading">Date</th>
-                <th class="table__row--heading">Income</th>
-                <th class="table__row--heading">Costs</th>
-                <th class="table__row--heading">Profit</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for month, revenue in monthly_revenue.items %}
-            <tr>
-                <td class="table__row--detail">{{month|date:"F Y" }}</td>
-                <td class="table__row--detail">£{{revenue.income|floatformat:2 }}</td>
-                <td class="table__row--detail">£{{revenue.costs|floatformat:2 }}</td>
-                <td class="table__row--detail">£{{revenue.profit|floatformat:2 }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-     </table>
-     
-     <h3 class="table__title">Daily</h3>
-    <table class="table__container">
-        <thead>
-            <tr>
-                <th class="table__row--heading">Date</th>
-                <th class="table__row--heading">Income</th>
-                <th class="table__row--heading">Costs</th>
-                <th class="table__row--heading">Profit</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for date, revenue in daily_revenue.items %}
-            <tr>
-                <td class="table__row--detail">{{date}}</td>
-                <td class="table__row--detail">£{{revenue.income|floatformat:2 }}</td>
-                <td class="table__row--detail">£{{revenue.costs|floatformat:2 }}</td>
-                <td class="table__row--detail">£{{revenue.profit|floatformat:2 }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div class="content__right">
+        <h2 class="table__title">OVERVIEW</h2>
+        <ul class="list">
+            <li class="list__item"><strong>Total Sales:</strong> £{{total_revenue.total_sales|floatformat:2}}</li>
+            <li class="list__item"><strong>Total Costs:</strong> £{{total_revenue.total_costs|floatformat:2}}</li>
+            <li class="list__item"><strong>Total Profit:</strong> £{{total_revenue.total_profit|floatformat:2}}</li>
+        </ul>
+        <h2 class="table__title">MONTHLY</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="table__row__heading">DATE</th>
+                    <th class="table__row__heading">INCOME</th>
+                    <th class="table__row__heading">COSTS</th>
+                    <th class="table__row__heading">PROFITS</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for month, revenue in monthly_revenue.items %}
+                <tr>
+                    <td class="table__row__detail">{{month|date:"F Y" }}</td>
+                    <td class="table__row__detail">£{{revenue.income|floatformat:2 }}</td>
+                    <td class="table__row__detail">£{{revenue.costs|floatformat:2 }}</td>
+                    <td class="table__row__detail">£{{revenue.profit|floatformat:2 }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+         </table>
+         
+         <h2 class="table__title">DAILY</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="table__row__heading">DATE</th>
+                    <th class="table__row__heading">INCOME</th>
+                    <th class="table__row__heading">COSTS</th>
+                    <th class="table__row__heading">PROFIT</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for date, revenue in daily_revenue.items %}
+                <tr>
+                    <td class="table__row__detail">{{date}}</td>
+                    <td class="table__row__detail">£{{revenue.income|floatformat:2 }}</td>
+                    <td class="table__row__detail">£{{revenue.costs|floatformat:2 }}</td>
+                    <td class="table__row__detail">£{{revenue.profit|floatformat:2 }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
 </section>
 {% endblock content%}

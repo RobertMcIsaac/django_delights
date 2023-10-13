@@ -4,25 +4,21 @@
 
 {% block header %}
 <div>
-    <span>Django Delights</span>
+    <span>Pantry Pilot</span>
 </div>
 {% endblock header %}
 
 {% block content %} 
-<section id="login-page">
-    <div class="form__container">
-        <h2>Login</h2>
-        <div class="form__content">
-            <form class="login" action="{% url 'login' %}" method="POST">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit" class="navbuttons">Login</button>    
-            </form>
-        </div>
-        <div>
-            <p>Don't have an account? Sign up here:</p>
-            <a href="{% url 'signup' %}" class="navbuttons">Create new account</a>
-        </div>
+<section id="login-page" class="form">
+    <div class="card card--form">
+        <h2 class="card__title card__title--form">LOGIN</h2>
+        <form class="card__form" action="{% url 'login' %}" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn--login">LOGIN</button>    
+        </form>
+        <p>Don't have an account?</p>
+        <a href="{% url 'signup' %}" class="btn">CREATE NEW ACCOUNT</a>
     </div>
 </section>
 {% endblock content %}

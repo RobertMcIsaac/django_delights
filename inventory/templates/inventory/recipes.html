@@ -3,12 +3,12 @@
 {% block title %}Recipes - Pantry Pilot{% endblock title %}
 
 {% block content %}
-<section id="recipes" class="content__container">
-    <div class="description__container">
+<section id="recipes" class="content">
+    <div class="card card--content">
         <h1 class="content__title">RECIPES</h1>
         <p>Click on each menu item below to see its description, its recipe and instructions for making it. </p>
     </div> 
-    <ol class="list__container">
+    <ol class="content__right list">
         {% if menuitem_list %}
         {% for menuitem in menuitem_list %}
         <a href="{% url 'menuitem_detail' menuitem.pk %}"><li class="list__item">{{menuitem.name}}</li></a>

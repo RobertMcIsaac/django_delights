@@ -5,55 +5,56 @@
 {% block content %}
 
 <section id="home" class="home__container">
-    <div class="home__card">
-        <a href="{% url 'menu' %}" class="home__card--title"><h2>MENU</h2></a>
-        <p>Current number of menu items:</p>
-        <p>{{num_menuitems}}</p>
+    <div class="card card--home">
+        <a href="{% url 'menu' %}"><h2 class="card__title card__title--home">MENU</h2></a>
+        <h4 class="card__info--home">Current number of menu items:</h4>
+        <p class="card__data--home">{{num_menuitems}}</p>
         {% if latest_menuitem %}
-        <p>Recently added:</p>
-        <p>{{latest_menuitem}}</p>
+        <h4 class="card__info--home">Recently added:</h4>
+        <p class="card__data--home">{{latest_menuitem}}</p>
         {% else %}
-        <p>Recently added:</p>
-        <p>There are currently no menu items.</p>
+        <h4 class="card__info--home">Recently added:</h4>
+        <p class="card__data--home">There are currently no menu items.</p>
         {% endif %}
-        <a href="{% url 'menuitem_new' %}" class="navbuttons">ADD MENU ITEM</a>
+        <a href="{% url 'menuitem_new' %}" class="btn btn--home">ADD MENU ITEM</a>
     </div>
-    <div class="home__card">
-        <a href="{% url 'inventory' %}" class="home__card--title"><h2>INVENTORY</h2></a>
-        <p>Current number of inventory items:</p>
-        <p>{{num_ingredients}}</p>
+    <div class="card card--home">
+        <a href="{% url 'inventory' %}"><h2 class="card__title card__title--home">INVENTORY</h2></a>
+        <h4 class="card__info--home">Current number of inventory items:</h4>
+        <p class="card__data--home">{{num_ingredients}}</p>
         {% if latest_ingredient %}
-        <p>Recently added:</p>
-        <p>{{latest_ingredient}}</p>
+        <h4 class="card__info--home">Recently added:</h4>
+        <p class="card__data--home">{{latest_ingredient}}</p>
         {% else %}
-        <p>Recently added:</p>
-        <p>There are currently no ingredients.</p>
+        <h4 class="card__info--home">Recently added:</h4>
+        <p class="card__data--home">There are currently no ingredients.</p>
         {% endif %}
-        <a href="{% url 'ingredient_new' %}" class="navbuttons">ADD INVENTORY ITEM</a>
+        <a href="{% url 'ingredient_new' %}" class="btn btn--home">ADD INVENTORY ITEM</a>
     </div>
-    <div class="home__card">
-        <a href="{% url 'purchase_log' %}" class="home__card--title"><h2>PURCHASE LOG</h2></a>
-        <p>Total purchases:</p>
-        <p>{{num_purchases}}</p>
-        <p>Last purchase:</p>
-        <p>{{latest_purchase}}</p>
-        <a href="{% url 'purchase_new' %}" class="navbuttons">LOG A PURCHASE</a>
+    <div class="card card--home">
+        <a href="{% url 'purchase_log' %}"><h2 class="card__title card__title--home">PURCHASE LOG</h2></a>
+        <h4 class="card__info--home">Total purchases:</h4>
+        <p class="card__data--home">{{num_purchases}}</p>
+        <h4 class="card__info--home">Last purchase:</h4>
+        <p class="card__data--home">{{latest_purchase}}</p>
+        <a href="{% url 'purchase_new' %}" class="btn btn--home">LOG A PURCHASE</a>
     </div>
-    <div class="home__card">
-        <a href="{% url 'revenue' %}" class="home__card--title"><h2>FINANCES</h2></a>
+    <div class="card card--home">
+        <a href="{% url 'revenue' %}"><h2 class="card__title card__title--home">FINANCES</h2></a>
         {% if yesterday_revenue %}
-        <p>Profit for yesterday:</p>
-        <p>£{{yesterday_revenue.profit|floatformat:2}}</p>
+        <h4 class="card__info--home">Profit for yesterday:</h4>
+        <p class="card__data--home">£{{yesterday_revenue.profit|floatformat:2}}</p>
         {% else %}
-        <p>Profit for yesterday:</p>
-        <p>None</p>
+        <h4 class="card__info--home">Profit for yesterday:</h4>
+        <p class="card__data--home">None</p>
         {% endif %}
+        <p></p>
         {% if previous_month_revenue %}
-        <p>Profit for last month:</p>
-        <p>£{{previous_month_revenue.profit|floatformat:2}}</p>
+        <h4 class="card__info--home">Profit for last month:</h4>
+        <p class="card__data--home">£{{previous_month_revenue.profit|floatformat:2}}</p>
         {% else %}
-        <p>Profit for last month:</p>
-        <p>None</p>
+        <h4 class="card__info--home">Profit for last month:</h4>
+        <p class="card__data--home">None</p>
         {% endif %}
     </div>
 </section>
