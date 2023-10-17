@@ -13,11 +13,11 @@
 <section id="signup-page" class="form">
     <div class="card card--form">
         <h2 class="card__title card__title--form">CREATE NEW ACCOUNT</h2>
-        <form class="card__form card__form--signup" action="{% url 'signup' %}" method="POST">
+        <form class="card__form card__form--start" action="{% url 'signup' %}" method="POST">
             {% csrf_token %}
             {{ form.as_p }}
             <div class="btn__container--centered">
-                <button type="submit" class="btn btn--signup">CREATE ACCOUNT</button>
+                <button type="submit" class="btn btn--submit">CREATE ACCOUNT</button>
             </div>
         </form>
     </div>

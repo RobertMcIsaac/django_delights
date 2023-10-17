@@ -3,16 +3,16 @@
 {% block title %}Add ingredient - Pantry Pilot{% endblock title %}
 
 {% block content %}
-<section id="add-ingredient" class="form__container">
-    <div>
-        <h2>Add Ingredient To Inventory</h2>
+<section id="add-ingredient" class="form">
+    <div class="card card--form">
+        <h2 class="card__title card__title--form">Add Ingredient To Inventory</h2>
+        <form class="card__form card__form--start" action="{% url 'ingredient_new' %}" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn--submit">Add Ingredient</button>
+        </form>
+        <a href="{% url 'inventory' %}" class="navlinks">Return to Inventory</a>
     </div>
-    <form class="form__content" action="{% url 'ingredient_new' %}" method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Add Ingredient</button>
-    </form>
-    <a href="{% url 'inventory' %}">Return to Inventory</a>
 </section>
 {% endblock content %}
 

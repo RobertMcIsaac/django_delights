@@ -4,60 +4,91 @@
 
 {% block content %}
 
-<section id="menu-item-details" class="content__container">
-    <div class="detail__container">
-        <h2 class="content__title">{{object.name}}</h2> 
-        <h4>Description:</h4>
-        <p>{{menuitem.description}}</p>
+<section id="menu-item-details" class="page">
+    <h2 class="page__title">{{object.name}}</h2> 
+    <div class="card">
+        <div class="content__item content__item--column">
+            <h4 class="content__title">DESCRIPTION:</h4>
+            <p class="content__description">{{menuitem.description}}</p>
+        </div> 
+        <div class="content__item content__item--column">
+            <h4 class="content__title">INSTRUCTIONS:</h4>
+            {% if menuitem.recipe_instructions %}
+                <p class="content__description">{{menuitem.recipe_instructions}}</p>
+            {% else %}
+                <p class="content__description">No instructions currently.</p>
+            {% endif %}
+        </div>
+        <div class="content__item">
+            <h4 class="content__title">TOTAL COST: </h4>
+            <p class="content__description">£{{object.get_total_cost}}</p>
+        </div>
+        <div class="content__item">
+            <h4 class="content__title">SALE PRICE:</h4>
+            <p class="content__description">£{{menuitem.price}}</p>
+        </div>
+
+        <div class="btn__container--centered">
+            <a href="{% url 'menuitem_edit' menuitem.id %}" class="btn">EDIT MENU ITEM DETAILS</a>
+        </div>
     </div>
-    <div class="detail__container">
-        <h4>Total Cost:</h4>
-        <p>£{{object.get_total_cost}}</p>
-        <h4>Sale Price:</h4>
-        <p>£{{menuitem.price}}</p>
+    <div class="card card--table">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="table__row__heading">INGREDIENT</th>
+                    <th class="table__row__heading">QUANTITY REQUIRED</th>
+                    <th class="table__row__heading">UNIT</th>
+                    <th class="table__row__heading">COST/UNIT</th>
+                    <th class="table__row__heading"></th>
+                    <th class="table__row__heading"></th>
+                </tr>
+            </thead>
+            {% for reciperequirement in reciperequirement_list %}
+            <tbody>
+                <tr>
+                    <td class="table__row__detail">{{reciperequirement.ingredient}}</td>
+                    <td class="table__row__detail">{{reciperequirement.ingredient_quantity}}</td>
+                    <td class="table__row__detail">{{reciperequirement.ingredient.get_measurement_unit_display}}</td>
+                    <td class="table__row__detail">£{{reciperequirement.ingredient.cost_per_unit}}</td>
+                    <td>
+                        <a href="{% url 'recipe_edit' reciperequirement.pk %}" class="table__link table__row__detail"><small>Edit</small></a>
+                    </td>
+                    <td>
+                        <a href="{% url 'reciperequirement_delete' reciperequirement.pk %}" class="table__link table__row__detail"><small>Delete</small></a>
+                    </td>
+                </tr>
+                {% empty %}
+                <p>No ingredients have been added to this recipe.</p>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'recipe_new' menuitem.pk %}" class="btn">ADD NEW INGREDIENT</a>
     </div>
-    <a href="{% url 'menuitem_edit' menuitem.id %}" class="navbuttons">Edit Menu Item Details</a>
-    <table class="table__container">
-        <thead>
-            <tr>
-                <th class="table__row--heading">Ingredient</th>
-                <th class="table__row--heading">Quantity Required</th>
-                <th class="table__row--heading">Unit</th>
-                <th class="table__row--heading">Cost/unit</th>
-                <th class="table__row--heading"></th>
-                <th class="table__row--heading"></th>
-            </tr>
-        </thead>
-        {% for reciperequirement in reciperequirement_list %}
-        <tbody>
-            <tr>
-                <td class="table__row--detail">{{reciperequirement.ingredient}}</td>
-                <td class="table__row--detail">{{reciperequirement.ingredient_quantity}}</td>
-                <td class="table__row--detail">{{reciperequirement.ingredient.get_measurement_unit_display}}</td>
-                <td class="table__row--detail">£{{reciperequirement.ingredient.cost_per_unit}}</td>
-                <td>
-                    <a href="{% url 'recipe_edit' reciperequirement.pk %}"><small>Edit</small></a>
-                </td>
-                <td>
-                    <a href="{% url 'reciperequirement_delete' reciperequirement.pk %}"><small>Delete</small></a>
-                </td>
-            </tr>
-            {% empty %}
-            <p>No ingredients have been added to this recipe</p>
-            {% endfor %}
-        </tbody>
-    </table>
-    <a href="{% url 'recipe_new' menuitem.pk %}" class="navbuttons">Add New Ingredient</a>
-    <div class="detail__container">
-        <h4>Instructions:</h4>
-        {% if menuitem.recipe_instructions %}
-            <p>{{menuitem.recipe_instructions}}</p>
-        {% else %}
-            <p>No instructions currently</p>
-        {% endif %}
-    </div>
-    <a href="{% url 'menu' %}" class="navlinks">Go To Menu</a>
-    <a href="{% url 'recipes' %}" class="navlinks">Go to Recipes</a>
+    <a href="{% url 'menu' %}" class="navlinks navlinks--multiple">Go To Menu</a>
+    <a href="{% url 'recipes' %}" class="navlinks navlinks--multiple">Go to Recipes</a>
+
+
+
 </section>
+
+
+        <!-- <div class="card table--card">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="table__row__heading">TOTAL COST</th>
+                        <th class="table__row__heading">SALE PRICE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="table__row__detail">£{{object.get_total_cost}}</td>
+                        <td class="table__row__detail">£{{menuitem.price}}</td>
+                    </tr>
+                </tbody>
+             </table>
+        </div>
+        <a href="{% url 'menuitem_edit' menuitem.id %}" class="btn">Edit Menu Item Details</a> -->
 
 {% endblock content %}

@@ -3,63 +3,81 @@
 {% block title %}Finances - Pantry Pilot{% endblock title %}
 
 {% block content %}
-<section id="finances" class="content">
-    <div class="card card--content">
+<section id="finances" class="page">
+    <div class="content">
         <h1 class="content__title">FINANCES</h1>
-        <p>Important data on your business's finances, both daily and monthly. </p>
-        <p>Track your overall sales, costs and profit.</p>
-        <p>Track both daily and monthly figures.</p>
+        <p class="content__description">Important data on your business's finances, both daily and monthly. </p>
+        <p class="content__description">Track your overall sales, costs and profit.</p>
+        <p class="content__description">Track both daily and monthly figures.</p>
     </div>
-    <div class="content__right">
+    <div class="content__bottom">
         <h2 class="table__title">OVERVIEW</h2>
-        <ul class="list">
-            <li class="list__item"><strong>Total Sales:</strong> £{{total_revenue.total_sales|floatformat:2}}</li>
-            <li class="list__item"><strong>Total Costs:</strong> £{{total_revenue.total_costs|floatformat:2}}</li>
-            <li class="list__item"><strong>Total Profit:</strong> £{{total_revenue.total_profit|floatformat:2}}</li>
-        </ul>
+        <div class="card table--card">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="table__row__heading">TOTAL SALES</th>
+                        <th class="table__row__heading">TOTAL COSTS</th>
+                        <th class="table__row__heading">TOTAL PROFIT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="table__row__detail">£{{total_revenue.total_sales|floatformat:2}}</td>
+                        <td class="table__row__detail">£{{total_revenue.total_costs|floatformat:2}}</td>
+                        <td class="table__row__detail">£{{total_revenue.total_profit|floatformat:2}}</td>
+                    </tr>
+                </tbody>
+             </table>
+        </div>
+
         <h2 class="table__title">MONTHLY</h2>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th class="table__row__heading">DATE</th>
-                    <th class="table__row__heading">INCOME</th>
-                    <th class="table__row__heading">COSTS</th>
-                    <th class="table__row__heading">PROFITS</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for month, revenue in monthly_revenue.items %}
-                <tr>
-                    <td class="table__row__detail">{{month|date:"F Y" }}</td>
-                    <td class="table__row__detail">£{{revenue.income|floatformat:2 }}</td>
-                    <td class="table__row__detail">£{{revenue.costs|floatformat:2 }}</td>
-                    <td class="table__row__detail">£{{revenue.profit|floatformat:2 }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-         </table>
+        <div class="card card--table">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="table__row__heading">DATE</th>
+                        <th class="table__row__heading">INCOME</th>
+                        <th class="table__row__heading">COSTS</th>
+                        <th class="table__row__heading">PROFITS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for month, revenue in monthly_revenue.items %}
+                    <tr>
+                        <td class="table__row__detail">{{month|date:"F Y" }}</td>
+                        <td class="table__row__detail">£{{revenue.income|floatformat:2 }}</td>
+                        <td class="table__row__detail">£{{revenue.costs|floatformat:2 }}</td>
+                        <td class="table__row__detail">£{{revenue.profit|floatformat:2 }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+             </table>
+        </div>
          
          <h2 class="table__title">DAILY</h2>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th class="table__row__heading">DATE</th>
-                    <th class="table__row__heading">INCOME</th>
-                    <th class="table__row__heading">COSTS</th>
-                    <th class="table__row__heading">PROFIT</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for date, revenue in daily_revenue.items %}
-                <tr>
-                    <td class="table__row__detail">{{date}}</td>
-                    <td class="table__row__detail">£{{revenue.income|floatformat:2 }}</td>
-                    <td class="table__row__detail">£{{revenue.costs|floatformat:2 }}</td>
-                    <td class="table__row__detail">£{{revenue.profit|floatformat:2 }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+         <div class="card card--table">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="table__row__heading">DATE</th>
+                        <th class="table__row__heading">INCOME</th>
+                        <th class="table__row__heading">COSTS</th>
+                        <th class="table__row__heading">PROFIT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for date, revenue in daily_revenue.items %}
+                    <tr>
+                        <td class="table__row__detail">{{date}}</td>
+                        <td class="table__row__detail">£{{revenue.income|floatformat:2 }}</td>
+                        <td class="table__row__detail">£{{revenue.costs|floatformat:2 }}</td>
+                        <td class="table__row__detail">£{{revenue.profit|floatformat:2 }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+         </div>
     </div>
 
 </section>

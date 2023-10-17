@@ -3,16 +3,16 @@
 {% block title %}Edit Ingredient - Pantry Pilot{% endblock title %}
 
 {% block content %}
-<section id="edit-ingredient" class="form__container">
-    <div>
-        <h2>Edit:</h2>
-        <h3>{{ingredient.name}}</h3>
-    </div>
-    <form class="form__content" action="" method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Confirm Changes</button>
-    </form>
-    <a href=" {% url 'inventory' %}">Cancel</a>
+<section id="edit-ingredient" class="form">
+    <div class="card card--form">
+        <h2 class="form__title card__title--form">Edit:</h2>
+        <h3 class="card__title card__title--form">'{{ingredient.name}}'</h3>
+        <form class="card__form card__form--start" action="" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn--submit">Confirm Changes</button>
+        </form>
+        <a href=" {% url 'inventory' %}" class="navlinks">Cancel</a>
+    </div>    
 </section>
 {% endblock content %}

@@ -3,30 +3,31 @@
 {% block title %}Add Recipe To Menu Item - Pantry Pilot{% endblock title %}
 
 {% block content %}
-<section id="add-recipe" class="form__container">
+<section id="add-recipe" class="form">
     
      {% if recipe_requirement %}
-     <div>
-        <a href="{% url 'menuitem_detail' menuitem.pk %}">Recipe Complete</a>
+     <div class="card card--form">
+        <h2 class="card__title card__title--form">Recipe Complete?</h2>
+        <a href="{% url 'menuitem_detail' menuitem.pk %}" class="btn btn--submit">SUBMIT</a>
         <h4>Or</h4>
-        <h3>Continue Recipe for '{{menuitem.name}}':</h3>
+        <h2 class="card__title card__title--form">Continue Recipe for:</h2>
+        <h3 class="card__title card__title--form">'{{menuitem.name}}'</h3>
+        <form class="card__form card__form--start" action="{% url 'recipe_new' menuitem.pk %}" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn--submit">ADD TO RECIPE</button>
+        </form>  
     </div>
-    <form class="form__content" action="{% url 'recipe_new' menuitem.pk %}" method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Add To Recipe</button>
-    </form>  
-
     {% else %}
-    <div>
-        <h3>Create recipe for {{menuitem.name}}:</h3>
+    <div class="card card--form">
+        <h2 class="card__title card__title--form">Create recipe for:</h2>
+        <h3 class="card__title card__title--form">'{{menuitem.name}}'</h3>
+        <form class="card__form card__form--start" action="{% url 'recipe_new' menuitem.pk %}" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn--submit">ADD TO RECIPE</button>
+        </form>
     </div>
-    <form class="form__container" action="{% url 'recipe_new' menuitem.pk %}" method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Add To Recipe</button>
-    </form>
-
     {% endif %}
 </section>
 {% endblock content %}

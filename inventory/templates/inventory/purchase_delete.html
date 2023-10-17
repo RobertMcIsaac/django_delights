@@ -3,16 +3,16 @@
 {% block title %}Delete Purchase - Pantry Pilot{% endblock title %}
 
 {% block content %}
-<section id="delete-purchase" class="form__container">
-    <div>
-        <h2>Delete this purchase of:</h2>
-        <h3>{{purchase.menuitem}}</h3>
+<section id="delete-purchase" class="form">
+    <div class="card card--form card--form--delete">
+        <h2 class="card__title card__title--delete">DELETE PURCHASE OF:</h2>
+        <h3 class="card__title card__title--delete">'{{purchase.menuitem}}'</h3>
+        <form class="card__form" action="" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn--submit">CONFIRM</button>
+        </form>
+        <a href=" {% url 'purchase_log' %}" class="navlinks">Cancel</a>
     </div>
-    <form class="form__content" action="" method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Confirm</button>
-    </form>
-    <a href=" {% url 'purchase_log' %}">Cancel</a>
 </section>
 {% endblock content %}

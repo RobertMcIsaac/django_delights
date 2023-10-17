@@ -3,44 +3,45 @@
 {% block title %}Menu - Pantry Pilot{% endblock title %}
 
 {% block content %}
-<section id="menu" class="content">
-    <div class="card card--content">
+<section id="menu" class="page">
+    <div class="content">
         <h1 class="content__title">MENU</h1>
-        <p>Track the items on your menu, their individual cost and their sale prices. </p>
-        <p>Click on a menu item to see its recipe details, including ingredients and instruction for making it.</p>
-        <p>To add a new item to the menu, click 'Add New Menu Item' below.</p>
-        <a href="{% url 'menuitem_new' %}" class="btn btn--add">ADD TO MENU</a>  
+        <p class="content__description">Track the items on your menu, their individual cost and their sale prices. </p>
+        <p class="content__description">Click on a menu item to see its recipe details, including ingredients and instruction for making it.</p>
+        <p class="content__description">To add a new item to the menu, click 'Add New Menu Item' below.</p> 
     </div>
-
-    <div class="content__right">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th class="table__row__heading">MENU ITEM</th>
-                    <th class="table__row__heading">COST</th>
-                    <th class="table__row__heading">SALE PRICE</th>
-                    <th class="table__row__heading"></th>
-                    <th class="table__row__heading"></th>
-                </tr>
-            </thead>
-            <tbody>
-                {% if menuitem_list %}
-                {% for menuitem in menuitem_list %}
-                <tr>
-                    <td><a href="{% url 'menuitem_detail' menuitem.id %}" class="table__row__detail table__row__detail--link">{{menuitem.name}}</a></td>
-                    <td class="table__row__detail">£{{menuitem.get_total_cost}}</td>
-                    <td class="table__row__detail">£{{menuitem.price}}</td>
-                    <td class="table__row__detail">
-                        <a href="{% url 'menuitem_edit' menuitem.id %}" class="table__link"><small>Edit</small></a>
-                    </td>
-                    <td>
-                        <a href="{% url 'menuitem_delete' menuitem.id %}" class="table__link"><small>Delete</small></a>
-                    </td>
-                </tr>
-                {% endfor %}
-                {% endif %}
-            </tbody>
-        </table>
+    <a href="{% url 'menuitem_new' %}" class="btn btn--add">ADD TO MENU</a> 
+    <div class="content__bottom">
+        <div class="card card--table">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="table__row__heading">MENU ITEM</th>
+                        <th class="table__row__heading">COST</th>
+                        <th class="table__row__heading">SALE PRICE</th>
+                        <th class="table__row__heading"></th>
+                        <th class="table__row__heading"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if menuitem_list %}
+                    {% for menuitem in menuitem_list %}
+                    <tr>
+                        <td><a href="{% url 'menuitem_detail' menuitem.id %}" class="table__row__detail table__row__detail--link">{{menuitem.name}}</a></td>
+                        <td class="table__row__detail">£{{menuitem.get_total_cost}}</td>
+                        <td class="table__row__detail">£{{menuitem.price}}</td>
+                        <td class="table__row__detail">
+                            <a href="{% url 'menuitem_edit' menuitem.id %}" class="table__link"><small>Edit</small></a>
+                        </td>
+                        <td>
+                            <a href="{% url 'menuitem_delete' menuitem.id %}" class="table__link"><small>Delete</small></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
     </div>
 
 </section>
