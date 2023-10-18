@@ -13,14 +13,25 @@ class Ingredient(models.Model):
     KILOGRAMS = "KG"
     MILILITRES = "ML"
     LITRES = "LI"
+    OUNCES = "OU"
+    LBS = "LB"
+    TEASPOON = "TS"
+    TABLESPOON = "TB"
+    CUPS = "CU"
     NUMBER = "NU"
+
     
     # Define MEASUREMENT_UNIT_CHOICES for measurement_unit field
     MEASUREMENT_UNIT_CHOICES = [
-        (GRAMS, "g"),
-        (KILOGRAMS, "kg"),
-        (MILILITRES, "ml"),
-        (LITRES, "l"),
+        (GRAMS, "grams"),
+        (KILOGRAMS, "kilograms"),
+        (MILILITRES, "mililitres"),
+        (LITRES, "litres"),
+        (OUNCES, "ounces"),
+        (LBS, "lbs"),
+        (TEASPOON, "tsp"),
+        (TABLESPOON, "tbsp"),
+        (CUPS, "cups"),
         (NUMBER, "count"),
     ]
 

@@ -16,7 +16,7 @@
         <h4 class="card__info--home">Recently added:</h4>
         <p class="card__data--home">There are currently no menu items.</p>
         {% endif %}
-        <a href="{% url 'menuitem_new' %}" class="btn btn--home">ADD MENU ITEM</a>
+        <!-- <a href="{% url 'menuitem_new' %}" class="btn btn--home">ADD MENU ITEM</a> -->
     </div>
     <div class="card card--home">
         <a href="{% url 'inventory' %}"><h2 class="card__title card__title--home">INVENTORY</h2></a>
@@ -29,7 +29,7 @@
         <h4 class="card__info--home">Recently added:</h4>
         <p class="card__data--home">There are currently no ingredients.</p>
         {% endif %}
-        <a href="{% url 'ingredient_new' %}" class="btn btn--home">ADD INVENTORY ITEM</a>
+        <!-- <a href="{% url 'ingredient_new' %}" class="btn btn--home">ADD INVENTORY ITEM</a> -->
     </div>
     <div class="card card--home">
         <a href="{% url 'purchase_log' %}"><h2 class="card__title card__title--home">PURCHASE LOG</h2></a>
@@ -37,7 +37,7 @@
         <p class="card__data--home">{{num_purchases}}</p>
         <h4 class="card__info--home">Last purchase:</h4>
         <p class="card__data--home">{{latest_purchase}}</p>
-        <a href="{% url 'purchase_new' %}" class="btn btn--home">LOG A PURCHASE</a>
+        <!-- <a href="{% url 'purchase_new' %}" class="btn btn--home">LOG A PURCHASE</a> -->
     </div>
     <div class="card card--home">
         <a href="{% url 'revenue' %}"><h2 class="card__title card__title--home">FINANCES</h2></a>
@@ -48,7 +48,7 @@
         <h4 class="card__info--home">Profit for yesterday:</h4>
         <p class="card__data--home">None</p>
         {% endif %}
-        <p></p>
+        <!-- <p></p> -->
         {% if previous_month_revenue %}
         <h4 class="card__info--home">Profit for last month:</h4>
         <p class="card__data--home">£{{previous_month_revenue.profit|floatformat:2}}</p>

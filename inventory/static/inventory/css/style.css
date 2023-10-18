@@ -7,7 +7,7 @@
 html {
 font-size: 16px;
 font-family: "Roboto", sans-serif;
-background-color: #21253b;
+background-color: #c6dbe8;
 /* font-family: 'Montserrat', sans-serif; */
 }
 
@@ -201,7 +201,7 @@ ol,ul {
     /* top: 0; */
     /* left: 0; */
     z-index: 100;
-    background-color: #c6dbe8;
+    background-color: #21253b;
     justify-content: space-between;
     align-items: center;
     }
@@ -225,7 +225,7 @@ ol,ul {
 
 .navlist__link {
     text-decoration: none;
-    color: #21253b;
+    color: white;
     font-weight: bold;
 }
 
@@ -249,8 +249,8 @@ ol,ul {
     /* align-items: center; */
     justify-content: center;
     /* text-align: center; */
-    background-color: #21253b;
-    color: white;
+    background-color: #c6dbe8;
+    color: #21253b;
 }
 
 
@@ -328,7 +328,7 @@ ol,ul {
 }
 
 .signupprompt__link {
-    color: white;
+    color: #21253b;
     text-decoration: underline;
     /* margin: .5rem 0; */
 }
@@ -437,7 +437,8 @@ ol,ul {
 }
 
 .card__title--home {
-    color: #21253b;
+    color: white;
+    text-decoration: underline;
 }
 
 .card__title--home:hover {
@@ -452,6 +453,9 @@ ol,ul {
 .card__data--home {
     padding: .25rem;
     margin: 0 .25rem .5rem .25rem;
+    /* color: #8691d0; */
+    /* font-weight: bolder; */
+    /* font-size: larger; */
 }
 
 .btn--home {
