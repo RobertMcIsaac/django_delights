@@ -184,7 +184,7 @@ class IngredientCreate(LoginRequiredMixin, CreateView):
 class IngredientUpdate(LoginRequiredMixin, UpdateView):
     model = Ingredient
     template_name = "inventory/ingredient_update.html"
-    fields = ["cost_per_unit", "quantity_available", "measurement_unit"]
+    fields = ["measurement_unit", "cost_per_unit", "quantity_available"]
     success_url = reverse_lazy("inventory")
 
 class IngredientDelete(LoginRequiredMixin, DeleteView):
