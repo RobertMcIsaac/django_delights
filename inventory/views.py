@@ -138,13 +138,13 @@ class MenuItemDetail(LoginRequiredMixin, DetailView):
         context["reciperequirement_list"] = RecipeRequirement.objects.filter(menuitem=self.object)
         return context
     
-class MenuItemUpdate(UpdateView):
+class MenuItemUpdate(LoginRequiredMixin, UpdateView):
     model = MenuItem
     template_name = "inventory/menuitem_update.html"
     fields = "__all__"
     success_url = reverse_lazy("menu")
 
-class MenuItemDelete(DeleteView):
+class MenuItemDelete(LoginRequiredMixin, DeleteView):
     model = MenuItem
     template_name = "inventory/menuitem_delete.html"
     success_url = reverse_lazy("menu")
