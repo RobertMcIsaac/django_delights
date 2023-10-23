@@ -1,13 +1,14 @@
 {% extends "inventory/base.html" %}
 
-{% block title %}Purchase Log - Django Delights{% endblock title %}
+{% block title %}Purchase Log - Pantry Pilot{% endblock title %}
 
 {% block content %}
 <section id="purchase-log" class="page">
     <div class="content">
         <h1 class="content__title">PURCHASE LOG</h1>
-        <p class="content__description">Track customer purchases, including the date and time a menu item was purchased and which staff member logged the purchase.</p>
-        <p class="content__description">To add a new purchase to the purchase log, click the 'Log New Purchase' link below.</p>  
+        <p class="content__description">Maintain a detailed record of all customer transactions. Capture essential details like purchase timing, menu item sold, and the staff member responsible for the transaction.</p>
+        <p class="content__description">To log a new transaction, simply click on the 'LOG PURCHASE' button below.</p>
+        <p class="content__description">Ensure accurate accounting and streamline revenue tracking.</p>
     </div>
     <a href="{% url 'purchase_new' %}" class="btn btn--add">LOG PURCHASE</a>
     <div class="content__bottom">
@@ -24,7 +25,7 @@
                 </thead>
                 <tbody>
                     {% for purchase in purchase_list %}
-                    <tr>
+                    <tr class="table__row--alternating">
                         <td class="table__row__detail">{{purchase.purchase_time}}</td>
                         <td class="table__row__detail">{{purchase.menuitem}}</td>
                         <td class="table__row__detail">{{purchase.user}}</td>

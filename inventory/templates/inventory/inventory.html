@@ -6,9 +6,9 @@
 <section id="inventory" class="page">
     <div class="content">
         <h1 class="content__title">INVENTORY</h1>
-        <p class="content__description">Track the ingredients in your inventory, including the quantity available, the unit of measurement and the cost-per-unit.</p>
-        <p class="content__description">To add a new ingredient to your inventory, click 'Add New Ingredient' below.</p>
-        <p class="content__description">When an inventory item needs to be restocked, it will be displayed below your inventory, along with the qauntity needed and the cost of restocking.</p>  
+        <p class="content__description">Organise your kitchen's essentials. Monitor quantity, measurement units, and cost metrics seamlessly.</p>
+        <p class="content__description">Easily expand your inventory by adding new ingredients with a click on the 'ADD TO INVENTORY' button.</p>
+        <p class="content__description">Never run out of stock! Items needing replenishment are highlighted in the 'Restock' table below, complete with quantity and restocking costs.</p>  
     </div>
     <a href="{% url 'ingredient_new' %}" class="btn btn--add">ADD TO INVENTORY</a>
     <div class="content__bottom">
@@ -27,16 +27,16 @@
                 <tbody>
                     {% if ingredient_list %}
                     {% for ingredient in ingredient_list %}
-                    <tr>
+                    <tr class="table__row--alternating">
                         <td class="table__row__detail">{{ingredient.name}}</td>
                         <td class="table__row__detail">{{ingredient.quantity_available}}</td>
                         <td class="table__row__detail">{{ingredient.get_measurement_unit_display}}</td>
                         <td class="table__row__detail">£{{ingredient.cost_per_unit}}</td>
                         <td class="table__row__detail">
-                            <a href="{% url 'ingredient_edit' ingredient.id %}" class="table__link"><small>Edit</small></a>
+                            <a href="{% url 'ingredient_edit' ingredient.id %}" class="table__row__detail table__link"><small>Edit</small></a>
                         </td>
                         <td>
-                            <a href="{% url 'ingredient_delete' ingredient.id %}" class="table__link"><small>Delete</small></a>
+                            <a href="{% url 'ingredient_delete' ingredient.id %}" class="table__row__detail table__link"><small>Delete</small></a>
                         </td>
                     </tr>
                     {% endfor %}
@@ -47,7 +47,7 @@
             </table>
         </div>
 
-        <h2 class="table__title">ITEMS TO RESTOCK:</h2>
+        <h2 class="table__title">RESTOCK:</h2>
         <div class="card card--table">
             <table class="table">
                 <thead>
@@ -61,13 +61,13 @@
                 </thead>
                 <tbody>
                     {% for ingredient, restock_info in restock_dict.items %}
-                    <tr>
+                    <tr class="table__row--alternating">
                         <td class="table__row__detail">{{ingredient.name}}</td>
                         <td class="table__row__detail">{{restock_info.restock_quantity}}</td>
                         <td class="table__row__detail">{{ingredient.get_measurement_unit_display}}</td>
                         <td class="table__row__detail">£{{restock_info.restock_cost|floatformat:2}}</td>
                         <td class="table__row__detail">
-                            <a href="{% url 'ingredient_edit' ingredient.id %}" class="table__link"><small>Update</small></a>
+                            <a href="{% url 'ingredient_edit' ingredient.id %}" class="table__row__detail table__link"><small>Update</small></a>
                         </td>
                     </tr>
                     {% empty %} 

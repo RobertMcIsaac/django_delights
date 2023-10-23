@@ -33,37 +33,39 @@
         </div>
     </div>
     <div class="card card--table">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th class="table__row__heading">INGREDIENT</th>
-                    <th class="table__row__heading">QUANTITY REQUIRED</th>
-                    <th class="table__row__heading">UNIT</th>
-                    <th class="table__row__heading">COST/UNIT</th>
-                    <th class="table__row__heading"></th>
-                    <th class="table__row__heading"></th>
-                </tr>
-            </thead>
-            {% for reciperequirement in reciperequirement_list %}
-            <tbody>
-                <tr>
-                    <td class="table__row__detail">{{reciperequirement.ingredient}}</td>
-                    <td class="table__row__detail">{{reciperequirement.ingredient_quantity}}</td>
-                    <td class="table__row__detail">{{reciperequirement.ingredient.get_measurement_unit_display}}</td>
-                    <td class="table__row__detail">£{{reciperequirement.ingredient.cost_per_unit}}</td>
-                    <td>
-                        <a href="{% url 'recipe_edit' reciperequirement.pk %}" class="table__link table__row__detail"><small>Edit</small></a>
-                    </td>
-                    <td>
-                        <a href="{% url 'reciperequirement_delete' reciperequirement.pk %}" class="table__link table__row__detail"><small>Delete</small></a>
-                    </td>
-                </tr>
-                {% empty %}
-                <p>No ingredients have been added to this recipe.</p>
-                {% endfor %}
+        {% if reciperequirement_list %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="table__row__heading">INGREDIENT</th>
+                        <th class="table__row__heading">QUANTITY REQUIRED</th>
+                        <th class="table__row__heading">UNIT</th>
+                        <th class="table__row__heading">COST/UNIT</th>
+                        <th class="table__row__heading"></th>
+                        <th class="table__row__heading"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for reciperequirement in reciperequirement_list %}
+                    <tr class="table__row--alternating">
+                        <td class="table__row__detail">{{reciperequirement.ingredient}}</td>
+                        <td class="table__row__detail">{{reciperequirement.ingredient_quantity}}</td>
+                        <td class="table__row__detail">{{reciperequirement.ingredient.get_measurement_unit_display}}</td>
+                        <td class="table__row__detail">£{{reciperequirement.ingredient.cost_per_unit}}</td>
+                        <td>
+                            <a href="{% url 'recipe_edit' reciperequirement.pk %}" class="table__link"><small>Edit</small></a>
+                        </td>
+                        <td>
+                            <a href="{% url 'reciperequirement_delete' reciperequirement.pk %}" class="table__link"><small>Delete</small></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
             </tbody>
         </table>
-        <a href="{% url 'recipe_new' menuitem.pk %}" class="btn">ADD NEW INGREDIENT</a>
+        {% else %}
+        <p>No ingredients have been added to this recipe.</p>
+        {% endif %}
+        <a href="{% url 'recipe_new' menuitem.pk %}" class="btn">ADD INGREDIENT</a>
     </div>
     <a href="{% url 'menu' %}" class="navlinks navlinks--multiple">Go To Menu</a>
     <a href="{% url 'recipes' %}" class="navlinks navlinks--multiple">Go to Recipes</a>

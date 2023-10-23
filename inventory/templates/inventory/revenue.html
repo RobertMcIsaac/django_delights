@@ -6,9 +6,9 @@
 <section id="finances" class="page">
     <div class="content">
         <h1 class="content__title">FINANCES</h1>
-        <p class="content__description">Important data on your business's finances, both daily and monthly. </p>
-        <p class="content__description">Track your overall sales, costs and profit.</p>
-        <p class="content__description">Track both daily and monthly figures.</p>
+        <p class="content__description">A comprehensive overview of your business's financial health.</p>
+        <p class="content__description">Monitor sales, expenses, and profit margins with daily and monthly breakdowns.</p>
+        <p class="content__description">Stay informed and make data-driven decisions to ensure the profitability of your enterprise.</p>
     </div>
     <div class="content__bottom">
         <h2 class="table__title">OVERVIEW</h2>
@@ -22,7 +22,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr class="table__row--alternating">
                         <td class="table__row__detail">£{{total_revenue.total_sales|floatformat:2}}</td>
                         <td class="table__row__detail">£{{total_revenue.total_costs|floatformat:2}}</td>
                         <td class="table__row__detail">£{{total_revenue.total_profit|floatformat:2}}</td>
@@ -44,7 +44,7 @@
                 </thead>
                 <tbody>
                     {% for month, revenue in monthly_revenue.items %}
-                    <tr>
+                    <tr class="table__row--alternating">
                         <td class="table__row__detail">{{month|date:"F Y" }}</td>
                         <td class="table__row__detail">£{{revenue.income|floatformat:2 }}</td>
                         <td class="table__row__detail">£{{revenue.costs|floatformat:2 }}</td>
@@ -68,7 +68,7 @@
                 </thead>
                 <tbody>
                     {% for date, revenue in daily_revenue.items %}
-                    <tr>
+                    <tr class="table__row--alternating">
                         <td class="table__row__detail">{{date}}</td>
                         <td class="table__row__detail">£{{revenue.income|floatformat:2 }}</td>
                         <td class="table__row__detail">£{{revenue.costs|floatformat:2 }}</td>

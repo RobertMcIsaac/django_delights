@@ -6,9 +6,9 @@
 <section id="menu" class="page">
     <div class="content">
         <h1 class="content__title">MENU</h1>
-        <p class="content__description">Track the items on your menu, their individual cost and their sale prices. </p>
-        <p class="content__description">Click on a menu item to see its recipe details, including ingredients and instruction for making it.</p>
-        <p class="content__description">To add a new item to the menu, click 'Add New Menu Item' below.</p> 
+        <p class="content__description">Explore your menu at a glance. Manage costs and sale prices effortlessly.</p>
+        <p class="content__description">Dive into each dish for recipes, ingredient lists, and preparation steps.</p>
+        <p class="content__description">To expand your offerings, simply click the 'ADD TO MENU' button below.</p>
     </div>
     <a href="{% url 'menuitem_new' %}" class="btn btn--add">ADD TO MENU</a> 
     <div class="content__bottom">
@@ -26,7 +26,7 @@
                 <tbody>
                     {% if menuitem_list %}
                     {% for menuitem in menuitem_list %}
-                    <tr>
+                    <tr class="table__row--alternating">
                         <td><a href="{% url 'menuitem_detail' menuitem.id %}" class="table__row__detail table__row__detail--link">{{menuitem.name}}</a></td>
                         <td class="table__row__detail">£{{menuitem.get_total_cost}}</td>
                         <td class="table__row__detail">£{{menuitem.price}}</td>
