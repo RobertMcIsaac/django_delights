@@ -27,6 +27,8 @@ def calculate_daily_revenue(target_date):
     daily_revenue["income"] = daily_revenue["income"] or 0
     daily_revenue["costs"] = daily_revenue["costs"] or 0
     daily_revenue["profit"] = (daily_revenue["income"] or 0) - (daily_revenue["costs"] or 0)
+    if daily_revenue["income"] == 0 and daily_revenue["costs"] == 0 and daily_revenue["profit"] == 0:
+        return None
     return daily_revenue
 
 def calculate_monthly_revenue(target_month):
@@ -313,7 +315,12 @@ class RevenueView(LoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         # Daily revenue using helper method
         daily_revenue_dates = Purchase.objects.annotate(date=TruncDate("purchase_time")).values("date").order_by("-date").distinct()
-        daily_revenue = {date["date"]: calculate_daily_revenue(date["date"]) for date in daily_revenue_dates}
+        daily_revenue = {}
+        for date_entry in daily_revenue_dates:
+            date = date_entry["date"]
+            revenue = calculate_daily_revenue(date)
+            if revenue is not None:
+                daily_revenue[date] = revenue
         context["daily_revenue"] = daily_revenue
         # Monthly revenue using helper method
         monthly_revenue_months = Purchase.objects.annotate(month=TruncMonth("purchase_time")).values("month").order_by("-month").distinct()
