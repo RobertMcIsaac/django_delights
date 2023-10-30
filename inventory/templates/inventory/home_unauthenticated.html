@@ -1,4 +1,7 @@
+
 {% extends "inventory/base.html" %}
+
+{% load static %}
 
 {% block title %}Home - Pantry Pilot{% endblock title %}
 
@@ -6,19 +9,18 @@
 <section id="landing-page" class="landing">
 
     <div class="landing__left">
+        <img src="{% static 'inventory/images/Pantry_Pilot_logo-darkblue_on_grey.png' %}" alt="Pantry Pilot logo" class="landing__img">
         <div class="left__content">
-            <h1 class="leftcontent__title">Pantry Pilot</h1>
+            <!-- <h1 class="leftcontent__title">Pantry Pilot</h1> -->
             <small class="leftcontent__small">By Django Delights</small>
-            <p class="leftcontent__detail">Inventory and sales tracking app for restaurants.</p>
+            <p class="leftcontent__detail">An inventory and sales tracking app for restaurants.</p>
         </div>
         <div class="landing__loginprompt">
             <a href="{% url 'login' %}" class="btn btn--login">LOGIN</a>
-            <small class="loginprompt__signupprompt">Don't have an account?<a href="{% url 'signup' %}" class="signupprompt__link"> Sign-up here</a></small>
+            <small class="loginprompt__signupprompt">Don't have an account?</small>
+            <small><a href="{% url 'signup' %}" class="signupprompt__link"> Sign-up here</a></small>
         </div>
-        <!-- <div>
-            <img src="static/inventory/images/kitchen3.jpeg" alt="" class="landing__img">
-        </div>         -->
-    </div>
+    </div>        
 
     <div class="landing__right">
         <a href="{% url 'menu' %}" class="card card--landingright">
