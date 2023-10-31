@@ -1,10 +1,13 @@
 {% extends "inventory/base.html" %}
 
+{% load static %}
+
 {% block title %}Login - Django Delights{% endblock title %}
 
 {% block header %}
-<div>
-    <span>Pantry Pilot</span>
+<div class="header__logo">
+    <img src="{% static 'inventory/images/Pantry_Pilot_logo-grey_on_darkblue.png' %}" alt="Pantry Pilot logo" class="header__logo__img">
+    <span class="header__logo__title desktop">PANTRY PILOT</span>
 </div>
 {% endblock header %}
 
