@@ -121,6 +121,10 @@ ol,ul {
     transition: all 0.2s ease-in-out;
 }
 
+.card--empty {
+    text-align: center;
+}
+
 .card__title {
     margin: 0;
     padding: .5rem 0;
@@ -620,3 +624,4 @@ ol,ul {
     .home__cards {
         grid-template-columns: 1fr;
     }
+}

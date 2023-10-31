@@ -12,72 +12,90 @@
     </div>
     <div class="content__bottom">
         <h2 class="table__title">OVERVIEW</h2>
-        <div class="card table--card">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th class="table__row__heading">TOTAL SALES</th>
-                        <th class="table__row__heading">TOTAL COSTS</th>
-                        <th class="table__row__heading">TOTAL PROFIT</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="table__row--alternating">
-                        <td class="table__row__detail">£{{total_revenue.total_sales|floatformat:2}}</td>
-                        <td class="table__row__detail">£{{total_revenue.total_costs|floatformat:2}}</td>
-                        <td class="table__row__detail">£{{total_revenue.total_profit|floatformat:2}}</td>
-                    </tr>
-                </tbody>
-             </table>
-        </div>
+        {% if total_revenue %}
+            <div class="card table--card">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="table__row__heading">TOTAL SALES</th>
+                            <th class="table__row__heading">TOTAL COSTS</th>
+                            <th class="table__row__heading">TOTAL PROFIT</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table__row--alternating">
+                            <td class="table__row__detail">£{{total_revenue.total_sales|floatformat:2}}</td>
+                            <td class="table__row__detail">£{{total_revenue.total_costs|floatformat:2}}</td>
+                            <td class="table__row__detail">£{{total_revenue.total_profit|floatformat:2}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="card card--empty">
+                <p>No data to display</p>
+            </div>
+        {% endif %}
 
         <h2 class="table__title">MONTHLY</h2>
-        <div class="card card--table">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th class="table__row__heading">MONTH</th>
-                        <th class="table__row__heading">INCOME</th>
-                        <th class="table__row__heading">COSTS</th>
-                        <th class="table__row__heading">PROFITS</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for month, revenue in monthly_revenue.items %}
-                    <tr class="table__row--alternating">
-                        <td class="table__row__detail">{{month|date:"F Y" }}</td>
-                        <td class="table__row__detail">£{{revenue.income|floatformat:2 }}</td>
-                        <td class="table__row__detail">£{{revenue.costs|floatformat:2 }}</td>
-                        <td class="table__row__detail">£{{revenue.profit|floatformat:2 }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-             </table>
-        </div>
+        {% if monthly_revenue %}
+            <div class="card card--table">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="table__row__heading">MONTH</th>
+                            <th class="table__row__heading">INCOME</th>
+                            <th class="table__row__heading">COSTS</th>
+                            <th class="table__row__heading">PROFITS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for month, revenue in monthly_revenue.items %}
+                        <tr class="table__row--alternating">
+                            <td class="table__row__detail">{{month|date:"F Y" }}</td>
+                            <td class="table__row__detail">£{{revenue.income|floatformat:2 }}</td>
+                            <td class="table__row__detail">£{{revenue.costs|floatformat:2 }}</td>
+                            <td class="table__row__detail">£{{revenue.profit|floatformat:2 }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="card card--empty">
+                <p>No data to display</p>
+            </div>
+        {% endif %}
          
          <h2 class="table__title">DAILY</h2>
-         <div class="card card--table">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th class="table__row__heading">DATE</th>
-                        <th class="table__row__heading">INCOME</th>
-                        <th class="table__row__heading">COSTS</th>
-                        <th class="table__row__heading">PROFIT</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for date, revenue in daily_revenue.items %}
-                    <tr class="table__row--alternating">
-                        <td class="table__row__detail">{{date}}</td>
-                        <td class="table__row__detail">£{{revenue.income|floatformat:2 }}</td>
-                        <td class="table__row__detail">£{{revenue.costs|floatformat:2 }}</td>
-                        <td class="table__row__detail">£{{revenue.profit|floatformat:2 }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-         </div>
+         {% if daily_revenue %}
+            <div class="card card--table">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="table__row__heading">DATE</th>
+                            <th class="table__row__heading">INCOME</th>
+                            <th class="table__row__heading">COSTS</th>
+                            <th class="table__row__heading">PROFIT</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for date, revenue in daily_revenue.items %}
+                        <tr class="table__row--alternating">
+                            <td class="table__row__detail">{{date}}</td>
+                            <td class="table__row__detail">£{{revenue.income|floatformat:2 }}</td>
+                            <td class="table__row__detail">£{{revenue.costs|floatformat:2 }}</td>
+                            <td class="table__row__detail">£{{revenue.profit|floatformat:2 }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="card card--empty">
+                <p>No data to display</p>
+            </div>
+        {% endif %}
     </div>
 
 </section>
