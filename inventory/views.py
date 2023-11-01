@@ -297,7 +297,7 @@ class PurchaseCreate(LoginRequiredMixin, CreateView):
 class PurchaseUpdate(LoginRequiredMixin, UpdateView):
     model = Purchase
     template_name = "inventory/purchase_update.html"
-    fields = ["menuitem"]
+    fields = ["menuitem", "purchase_time"]
     success_url = reverse_lazy("purchase_log")
 
 class PurchaseDelete(LoginRequiredMixin, DeleteView):
