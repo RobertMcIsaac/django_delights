@@ -1,0 +1,18 @@
+{% extends "inventory/base.html" %}
+
+{% block title %}Delete Ingredient - Pantry Pilot{% endblock title %}
+
+{% block content %}
+<section id="delete-ingredient" class="form">
+    <div class="card card--form card--form--delete">
+        <h2 class="card__title card__title--delete">DELETE:</h2>
+        <h3 class="card__title card__title--delete">'{{ingredient.name}}'</h3>
+        <form class="card__form card__form--delete" action="" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn--submit">CONFIRM</button>
+        </form>
+        <a href=" {% url 'inventory' %}" class="navlinks">Cancel</a>
+    </div>
+</section>
+{% endblock content %}

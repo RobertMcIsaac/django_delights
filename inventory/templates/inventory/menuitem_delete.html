@@ -1,0 +1,17 @@
+{% extends "inventory/base.html" %}
+
+{% block title %}Delete Menu Item - Pantry Pilot{% endblock title %}
+
+{% block content %}
+<section id="delete-menu-item" class="form">
+    <div class="card card--form card--form--delete">
+        <h2 class="card__title card__title--delete">DELETE:</h2>
+        <h3 class="card__title card__title--delete">'{{menuitem.name}}'</h3>
+        <form class="card__form" action="" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn--submit">CONFIRM</button>
+        </form>
+        <a href=" {% url 'menu' %}" class="navlinks">Cancel</a>
+    </div>
+</section>
+{% endblock content %}

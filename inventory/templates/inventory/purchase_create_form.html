@@ -1,0 +1,25 @@
+{% extends "inventory/base.html" %}
+
+{% block title %}Log new purchase - Pantry Pilot{% endblock title %}
+
+{% block content %}
+<section id="log-purchase" class="form">
+    <div class="card card--form">
+        <h2 class="card__title card__title--form">Log New Purchase</h2>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li class="{{message.tags}}">{{message}}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        <form class="card__form card__form--start" action="" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn--submit">Log Purchase</button>
+        </form>
+        <a href="{% url 'purchase_log' %}" class="navlinks">Return to Purchase Log</a>
+    </div>    
+</section>
+{% endblock content %}

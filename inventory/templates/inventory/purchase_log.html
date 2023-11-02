@@ -1,0 +1,52 @@
+{% extends "inventory/base.html" %}
+
+{% block title %}Purchase Log - Pantry Pilot{% endblock title %}
+
+{% block content %}
+<section id="purchase-log" class="page">
+    <div class="content">
+        <h1 class="content__title">PURCHASE LOG</h1>
+        <p class="content__description">Maintain a detailed record of all customer transactions. Capture essential details like purchase timing, menu item sold, and the staff member responsible for the transaction.</p>
+        <p class="content__description">To log a new transaction, simply click on the 'LOG PURCHASE' button below.</p>
+        <p class="content__description">Ensure accurate accounting and streamline revenue tracking.</p>
+    </div>
+    <a href="{% url 'purchase_new' %}" class="btn btn--add">LOG PURCHASE</a>
+    <div class="content__bottom">
+        {% if purchase_list %}
+            <div class="card card--table">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="table__row__heading">DATE/TIME OF PURCHASE</th>
+                            <th class="table__row__heading">MENU ITEM</th>
+                            <th class="table__row__heading">USER</th>
+                            <th class="table__row__heading"></th>
+                            <th class="table__row__heading"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for purchase in purchase_list %}
+                        <tr class="table__row--alternating">
+                            <td class="table__row__detail">{{purchase.purchase_time}}</td>
+                            <td class="table__row__detail">{{purchase.menuitem}}</td>
+                            <td class="table__row__detail">{{purchase.user}}</td>
+                            <td class="table__row__detail">
+                                <a href="{% url 'purchase_edit' purchase.id %}" class="table__link"><small>Edit</small></a>
+                            </td>
+                            <td>
+                                <a href="{% url 'purchase_delete' purchase.id %}" class="table__link"><small>Delete</small></a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="card card--empty">
+                <p>No purchases have been logged</p>
+            </div>
+        {% endif %}
+    </div>
+    
+</section>
+{% endblock content%}

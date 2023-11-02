@@ -1,0 +1,71 @@
+{% extends "inventory/base.html" %}
+
+{% load static %}
+
+{% block title %}Home - Pantry Pilot{% endblock title %}
+
+{% block content %}
+
+<section id="home" class="home__container">
+    <img src="{% static 'inventory/images/Pantry_Pilot_logo-darkblue_on_grey.png' %}" alt="" class="home__image">
+    <div class="home__cards">
+
+        <a href="{% url 'menu' %}" class="card card--home">
+            <i class="fa-solid fa-utensils" style="color: #ececec;"></i>
+            <h2 class="card__title card__title--home">MENU</h2>
+            <h4 class="card__info--home">Number of menu items:</h4>
+            <p class="card__data--home">{{num_menuitems}}</p>
+            {% if latest_menuitem %}
+            <h4 class="card__info--home">Recently added:</h4>
+            <p class="card__data--home">{{latest_menuitem}}</p>
+            {% else %}
+            <h4 class="card__info--home">Recently added:</h4>
+            <p class="card__data--home">There are currently no menu items.</p>
+            {% endif %}
+        </a>
+        
+        <a href="{% url 'inventory' %}" class="card card--home">
+            <i class="fa-solid fa-clipboard-list" style="color: #ececec;"></i>
+            <h2 class="card__title card__title--home">INVENTORY</h2>
+            <h4 class="card__info--home">Number of inventory items:</h4>
+            <p class="card__data--home">{{num_ingredients}}</p>
+            {% if latest_ingredient %}
+            <h4 class="card__info--home">Recently added:</h4>
+            <p class="card__data--home">{{latest_ingredient}}</p>
+            {% else %}
+            <h4 class="card__info--home">Recently added:</h4>
+            <p class="card__data--home">There are currently no ingredients.</p>
+            {% endif %}
+        </a>
+
+        <a href="{% url 'purchase_log' %}" class="card card--home">
+            <i class="fa-solid fa-cash-register" style="color: #ececec;"></i>
+            <h2 class="card__title card__title--home">PURCHASE LOG</h2>
+            <h4 class="card__info--home">Total purchases:</h4>
+            <p class="card__data--home">{{num_purchases}}</p>
+            <h4 class="card__info--home">Last purchase:</h4>
+            <p class="card__data--home">{{latest_purchase}}</p>
+        </a>
+        
+        <a href="{% url 'revenue' %}" class="card card--home">
+            <i class="fa-solid fa-coins" style="color: #ececec;"></i>
+            <h2 class="card__title card__title--home">FINANCES</h2>
+            {% if yesterday_revenue %}
+            <h4 class="card__info--home">Profit for yesterday:</h4>
+            <p class="card__data--home">£{{yesterday_revenue.profit|floatformat:2}}</p>
+            {% else %}
+            <h4 class="card__info--home">Profit for yesterday:</h4>
+            <p class="card__data--home">None</p>
+            {% endif %}
+            {% if previous_month_revenue %}
+            <h4 class="card__info--home">Profit for last month:</h4>
+            <p class="card__data--home">£{{previous_month_revenue.profit|floatformat:2}}</p>
+            {% else %}
+            <h4 class="card__info--home">Profit for last month:</h4>
+            <p class="card__data--home">None</p>
+            {% endif %}
+        </a>
+    </div> 
+</section>
+
+{% endblock content %}

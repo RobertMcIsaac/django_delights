@@ -1,0 +1,35 @@
+{% extends "inventory/base.html" %}
+
+{% block title %}Add Recipe To Menu Item - Pantry Pilot{% endblock title %}
+
+{% block content %}
+<section id="add-recipe" class="form">
+    
+     {% if recipe_requirement %}
+     <div class="card card--form">
+        <h2 class="card__title card__title--form">Recipe Complete?</h2>
+        <a href="{% url 'menuitem_detail' menuitem.pk %}" class="btn btn--submit">SUBMIT</a>
+        <h4>Or</h4>
+        <h2 class="card__title card__title--form">Continue Recipe for:</h2>
+        <h3 class="card__title card__title--form">'{{menuitem.name}}'</h3>
+        <form class="card__form card__form--start" action="{% url 'recipe_new' menuitem.pk %}" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn--submit">ADD TO RECIPE</button>
+        </form>  
+    </div>
+    {% else %}
+    <div class="card card--form">
+        <h2 class="card__title card__title--form">Create recipe for:</h2>
+        <h3 class="card__title card__title--form">'{{menuitem.name}}'</h3>
+        <form class="card__form card__form--start" action="{% url 'recipe_new' menuitem.pk %}" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn--submit">ADD TO RECIPE</button>
+        </form>
+    </div>
+    {% endif %}
+</section>
+{% endblock content %}
+
+

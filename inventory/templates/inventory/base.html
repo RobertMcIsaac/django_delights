@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sofia+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+        <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sofia+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css">
+        <link rel="stylesheet" href="{% static 'inventory/css/reset.css' %}">
+        <link type="text/css" rel="stylesheet" href="{% static 'inventory/css/style.css' %}">
+        <title>{% block title %}Page Title - Pantry Pilot{% endblock title %}</title>
+        {% block extrahead %}{% endblock extrahead %}
+    </head>
+
+    <body>
+        <header id="header" class="header__container">
+            {% block header %}
+            {% if user.is_authenticated %}
+            <div class="header__logo desktop">
+                <img src="{% static 'inventory/images/Pantry_Pilot_logo-grey_on_darkblue.png' %}" alt="Pantry Pilot logo" class="header__logo__img">
+                <span class="header__logo__title">PANTRY PILOT</span>
+            </div>
+            <nav id="navigation" class="navbar">
+                <ul class="navlist desktop">
+                    <a href="{% url 'home' %}" class="navlist__link"><li>HOME</li></a>
+                    <a href="{% url 'menu' %}" class="navlist__link"><li>MENU</li></a>
+                    <a href="{% url 'inventory' %}" class="navlist__link"><li>INVENTORY</li></a>
+                    <a href="{% url 'recipes' %}" class="navlist__link"><li>RECIPES</li></a>
+                    <a href="{% url 'purchase_log' %}" class="navlist__link"><li>PURCHASE LOG</li></a>
+                    <a href="{% url 'revenue' %}" class="navlist__link"><li>FINANCES</li></a>
+                    <a href="{% url 'logout' %}" class="btn"><li>LOGOUT</li></a>
+                </ul>
+                <ul class="navlist navlist--mobile mobile">
+                    <a href="{% url 'home' %}" class="navlist__link navlist__link--logo"><li><img src="{% static 'inventory/images/Pantry_Pilot_logo-grey_on_darkblue.png' %}" alt="Pantry Pilot logo" class="header__logo__img"></li></a>
+                    <a href="{% url 'home' %}" class="navlist__link"><li><i class="fa-solid fa-house" style="color: #ececec;"></i></li></a>
+                    <a href="{% url 'menu' %}" class="navlist__link"><li><i class="fa-solid fa-utensils" style="color: #ececec;"></i></li></a>
+                    <a href="{% url 'inventory' %}" class="navlist__link"><li><i class="fa-solid fa-clipboard-list" style="color: #ececec;"></i></li></a>
+                    <a href="{% url 'recipes' %}" class="navlist__link"><li><i class="fa-solid fa-kitchen-set" style="color: #ececec;"></i></li></a>
+                    <a href="{% url 'purchase_log' %}" class="navlist__link"><li><i class="fa-solid fa-cash-register" style="color: #ececec;"></i></li></a>
+                    <a href="{% url 'revenue' %}" class="navlist__link"><li><i class="fa-solid fa-coins" style="color: #ececec;"></i></li></a>
+                    <a href="{% url 'logout' %}" class="btn"><li>LOGOUT</li></a>
+                </ul>
+            </nav>
+            {% else %}
+            <div class="header__logo">
+                <img src="{% static 'inventory/images/Pantry_Pilot_logo-grey_on_darkblue.png' %}" alt="Pantry Pilot logo" class="header__logo__img">
+                <span class="header__logo__title desktop">PANTRY PILOT</span>
+            </div>
+            <nav id="navigation" class="navbar navbar--unauth">
+                <ul class="navlist navlist--unauth">
+                    <a href="{% url 'login' %}" class=" btn"><li>LOGIN</li></a>
+                    <a href="{% url 'signup' %}" class="btn"><li>CREATE ACCOUNT</li></a>
+                </ul>
+            </nav>
+            {% endif %}
+            {% endblock header %}
+        </header>
+
+        <main class="main">
+            {% block content %}
+            {% endblock content %}
+        </main> 
+        
+        <footer>
+            {% block footer %}
+            {% endblock footer %}
+        </footer>
+
+    </body>
+    
+</html>

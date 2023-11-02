@@ -1,0 +1,18 @@
+{% extends 'inventory/base.html' %}
+
+{% block title %}Menu Item Edit - Pantry Pilot{% endblock title %}
+
+{% block content %}
+<section id="edit-menu-item" class="form">
+    <div class="card card--form">
+        <h2 class="card__title card__title--form">EDIT:</h2>
+        <h3 class="card__title card__title--form">'{{menuitem.name}}'</h3>
+        <form class="card__form card__form--start" action="" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn--submit">CONFIRM</button>
+        </form>
+        <a href=" {% url 'menu' %}" class="navlinks">Cancel</a>
+    </div>
+</section>
+{% endblock content %}

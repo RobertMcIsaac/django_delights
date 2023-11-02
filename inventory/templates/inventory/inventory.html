@@ -1,0 +1,88 @@
+{% extends "inventory/base.html" %}
+
+{% block title %}Inventory - Pantry Pilot{% endblock title %}
+
+{% block content %}
+<section id="inventory" class="page">
+    <div class="content">
+        <h1 class="content__title">INVENTORY</h1>
+        <p class="content__description">Organise your kitchen's essentials. Monitor quantity, measurement units, and cost metrics seamlessly.</p>
+        <p class="content__description">Easily expand your inventory by adding new ingredients with a click on the 'ADD TO INVENTORY' button.</p>
+        <p class="content__description">Never run out of stock! Items needing replenishment are highlighted in the 'Restock' table below, complete with quantity and restocking costs.</p>  
+    </div>
+    <a href="{% url 'ingredient_new' %}" class="btn btn--add">ADD TO INVENTORY</a>
+    <div class="content__bottom">
+        {% if ingredient_list %}
+            <div class="card card--table">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="table__row__heading">INGREDIENT</th>
+                            <th class="table__row__heading">QUANTITY</th>
+                            <th class="table__row__heading">UNIT</th>
+                            <th class="table__row__heading">COST/UNIT</th>
+                            <th class="table__row__heading"></th>
+                            <th class="table__row__heading"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for ingredient in ingredient_list %}
+                            <tr class="table__row--alternating">
+                                <td class="table__row__detail">{{ingredient.name}}</td>
+                                <td class="table__row__detail">{{ingredient.quantity_available}}</td>
+                                <td class="table__row__detail">{{ingredient.get_measurement_unit_display}}</td>
+                                <td class="table__row__detail">£{{ingredient.cost_per_unit}}</td>
+                                <td class="table__row__detail">
+                                    <a href="{% url 'ingredient_edit' ingredient.id %}" class="table__row__detail table__link"><small>Edit</small></a>
+                                </td>
+                                <td>
+                                    <a href="{% url 'ingredient_delete' ingredient.id %}" class="table__row__detail table__link"><small>Delete</small></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="card card--empty">
+                <p>There are no items in your inventory</p>
+            </div>
+        {% endif %}
+        <h2 class="table__title">RESTOCK:</h2>
+        {% if restock_dict %}
+            <div class="card card--table">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="table__row__heading">INGREDIENT</th>
+                            <th class="table__row__heading">QUANTITY TO RESTOCK</th>
+                            <th class="table__row__heading">UNIT</th>
+                            <th class="table__row__heading">COST TO RESTOCK</th>
+                            <th class="table__row__heading"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for ingredient, restock_info in restock_dict.items %}
+                        <tr class="table__row--alternating">
+                            <td class="table__row__detail">{{ingredient.name}}</td>
+                            <td class="table__row__detail">{{restock_info.restock_quantity}}</td>
+                            <td class="table__row__detail">{{ingredient.get_measurement_unit_display}}</td>
+                            <td class="table__row__detail">£{{restock_info.restock_cost|floatformat:2}}</td>
+                            <td class="table__row__detail">
+                                <a href="{% url 'ingredient_edit' ingredient.id %}" class="table__row__detail table__link"><small>Update</small></a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="card card--empty">
+                <p>Your inventory is currrently full</p>
+            </div>
+        {% endif %}
+    </div>
+        
+
+</section>
+{% endblock content %}
